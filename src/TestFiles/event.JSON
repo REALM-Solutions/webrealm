@@ -1,0 +1,14 @@
+{
+   "id": 987654,
+   "name": "Volleyball",
+   "location": "Volleyball court",
+   "date": "02/14/2019"
+   "starttime": 1315,
+   "endtime": 1430,
+   "category": "Sports and Games",
+   "creator": johnSmith,
+   "attendees": [],
+   "availablespots": 10,
+   "coordinates": "",
+   "public": true
+}
