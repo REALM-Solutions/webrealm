@@ -1,0 +1,13 @@
+#navbar{
+    text-align: right;
+}
+#navbar{
+    display: inline-block;
+    float: right;
+}
+#navbar ul li {
+    margin:10px;
+    display: flex;
+    align-items: center;
+    height: 70px;
+}

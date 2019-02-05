@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
 import imgSrc from '../../asset/MSUD_Informal_2CPos_125x.png';
 import Dropdown from '../dropdownmenu/Dropdown';
+import './NavBar.css';
+//import '../Search.search.js';
+
 class NavBar extends Component {
     render() {
         return (
-            <div className='navbar' style={navStyle}>
+            // <div align="left">
+            //     {/* <a href="#">
+            //         <img src={imgSrc} style={imgStyle} home />
+
+            //     </a> */}
+            <div className='navbar' style={navStyle} align="left">
 
 
-                <ul style={listStyle}>
+                <ol style={listStyle}>
                     <li><img src={imgSrc} style={imgStyle} /></li>
                     <li style={leftLi}><a href='#home' style={linkStyle} >Home</a></li>
-                    <li style={rightLi}><a href='#www.1.com' style={linkStyle} >My Activities</a></li>
-                    <li style={rightLi}><a href='#www.2.com' style={linkStyle} >Link2</a></li>
-                    <li style={rightLi}><a href='#www.3.com' style={linkStyle} >Link3</a></li>
-                </ul>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Dropdown />
+                    <li style={cntrLi}><a href='#www.1.com' style={linkStyle} >My Activities</a></li>
+                    <form>
 
-                </div>
+                    </form>
+                    {/* <li style={rightLi}><a href='#www.3.com' style={linkStyle} >Link3</a></li> */}
+                    <li style={drpDwnLi}>
+                        <Dropdown /></li>
+                </ol>
+
             </div>
+            // </div>
         );
     }
 }
@@ -54,10 +64,17 @@ const leftLi = {
 const rightLi = {
     float: 'right'
 }
+const cntrLi = {
+    float: 'center'
+}
 
 const imgStyle = {
     height: '50px',
     width: '50px'
 }
 
+const drpDwnLi = {
+    display: 'flex',
+    float: 'right'
+}
 export default NavBar;
