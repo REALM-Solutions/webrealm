@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import imgSrc from '../../asset/MSUD_Informal_2CPos_125x.png';
 import Dropdown from '../dropdownmenu/Dropdown';
-import './NavBar.css';
+import '../../asset/sharedstyles.css';
 //import '../Search.search.js';
 
 class NavBar extends Component {
