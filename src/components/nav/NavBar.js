@@ -15,17 +15,17 @@ class NavBar extends Component {
             <div className='navbar' style={navStyle} align="left">
 
 
-                <ol style={listStyle}>
-                    <li><img src={imgSrc} style={imgStyle} /></li>
+                <ul style={listStyle}>
+                    <li style={leftLi}><img src={imgSrc} style={imgStyle} /></li>
                     <li style={leftLi}><a href='#home' style={linkStyle} >Home</a></li>
-                    <li style={cntrLi}><a href='#www.1.com' style={linkStyle} >My Activities</a></li>
+                    <li style={leftLi}><a href='#www.1.com' style={linkStyle} >My Activities</a></li>
                     <form>
 
                     </form>
                     {/* <li style={rightLi}><a href='#www.3.com' style={linkStyle} >Link3</a></li> */}
                     <li style={drpDwnLi}>
                         <Dropdown /></li>
-                </ol>
+                </ul>
 
             </div>
             // </div>
