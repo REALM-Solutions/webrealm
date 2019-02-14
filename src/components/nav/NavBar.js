@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Nav, NavDropdown, Navbar, Form, FormControl } from 'react-bootstrap';
+import { Button, Nav, NavDropdown, Navbar, Form, FormControl} from 'react-bootstrap';
 import logo from '../../assets/images/logo3.png';
 
 class NavbarPage extends Component {
