@@ -8,7 +8,7 @@ class LandingPage extends Component {
             justifyContent: 'center', alignItems: 'center', margin: '0 auto',
             width: '100vh', height: '100vh',
          }}>
-            <h1 style={{ textAlign: 'center' }}>YUUUP</h1>
+            <h1 style={{ textAlign: 'center' }}>Welcome "USER"</h1>
             <img src={map} style={{ margin: 'auto', width: '80vh', height: '60vh' }} />
          </div>
       );
