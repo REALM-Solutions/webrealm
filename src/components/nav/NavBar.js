@@ -45,6 +45,7 @@ class NavbarPage extends Component {
 
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item eventKey="4.2">Profile</NavDropdown.Item>
+                                <NavDropdown.Item eventKey="4.3">Create Event</NavDropdown.Item>
                             </NavDropdown>
 
                         </Navbar.Collapse>

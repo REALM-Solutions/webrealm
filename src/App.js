@@ -4,6 +4,7 @@ import './components/nav/NavBar';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import LandingPage from "./screens/landingPage";
 import Contact from "./screens/Contact";
+import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
 import Stuff from "./screens/Stuff";
 import logo from './assets/images/logo3.png';
@@ -52,7 +53,7 @@ class App extends Component {
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/stuff">Events</NavLink></li>
             <li><NavLink to="/contact">Log-In</NavLink></li>
-            <li><input type="text" className="input" placeholder="Search..." style={{marginLeft:'600px'}}/></li>
+            <li><input type="text" className="input" placeholder="Search..." style={{marginRight:'400px'}}/></li>
             <li>  <div style={{ float: 'right', position: 'relative', padding: '10px' }}>
               <a onClick={this.showMenu} style={{ color: '#ffffff'}}>Menu</a>
               {this.state.showMenu ? (
@@ -60,6 +61,7 @@ class App extends Component {
                   className="menu" style={{ color: 'red' }} ref={(element) => { this.dropdownMenu = element; }}>
                   <a> Profile </a>
                   <a> My Events </a>
+                  <NavLink to='/createEvent'>Create Event</NavLink>
                 </div>
               ) : (null)
               }
@@ -71,6 +73,7 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route path="/stuff" component={Stuff} />
             <Route path="/contact" component={Contact} />
+            <Route path='/createEvent' component={CreateEventPage} />
           </div>
         </div>
       </HashRouter>
