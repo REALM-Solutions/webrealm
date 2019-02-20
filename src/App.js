@@ -40,9 +40,6 @@ class App extends Component {
     }
   }
 
-
-
-
   render() {
     return (
       <HashRouter>
@@ -52,9 +49,9 @@ class App extends Component {
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/stuff">Events</NavLink></li>
             <li><NavLink to="/contact">Log-In</NavLink></li>
-            <li><input type="text" className="input" placeholder="Search..." style={{marginLeft:'600px'}}/></li>
+            <li><input type="text" className="input" placeholder="Search..." style={{ marginLeft: '45vw' }} /></li>
             <li>  <div style={{ float: 'right', position: 'relative', padding: '10px' }}>
-              <a onClick={this.showMenu} style={{ color: '#ffffff'}}>Menu</a>
+              <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
               {this.state.showMenu ? (
                 <div
                   className="menu" style={{ color: 'red' }} ref={(element) => { this.dropdownMenu = element; }}>
@@ -67,7 +64,7 @@ class App extends Component {
             </li>
           </ul>
 
-          <div className="content" style={{ justifyContent:'center', alignItems:'center',  height:'100%', width:'100%'}}>
+          <div className="content">
             <Route exact path="/" component={LandingPage} />
             <Route path="/stuff" component={Stuff} />
             <Route path="/contact" component={Contact} />
