@@ -25,11 +25,11 @@ class CategoryButtonGroup extends React.Component {
       <React.Fragment>
         {
           checkboxes.map(item => (
-            <label style={{padding:'10px'}} key={item.key}>
+            <label style={{ padding: '10px' }} key={item.key}>
               {item.name}
-              <Checkbox name={item.name} 
-              checked={this.state.checkedItems.get(item.name)} 
-              onChange={this.handleChange} />
+              <Checkbox name={item.name}
+                checked={this.state.checkedItems.get(item.name)}
+                onChange={this.handleChange} />
             </label>
           ))
         }

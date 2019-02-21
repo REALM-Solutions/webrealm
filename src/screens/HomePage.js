@@ -5,7 +5,7 @@ import CategoryButtonGroup from "../components/CategoryButtonGroup/CategoryButto
 
 const API = 'https://hn.algolia.com/api/v1/search?query=redux';
 
-class LandingPage extends Component {
+class HomePage extends Component {
 
    constructor(props) {
       super(props);
@@ -25,10 +25,7 @@ class LandingPage extends Component {
    render() {
       const { hits } = this.state;
       return (
-         <div style={{
-            textAlign: 'center', margin: '0 auto',
-            width: '100%', height: '100%',
-         }}>
+         <div style={{ textAlign: 'center', margin: '0 auto', width: '100%', height: '100%' }}>
             <h1 style={{ textAlign: 'center' }}>Welcome "USER"</h1>
             <img src={map} style={{ width: '80vh', height: '60vh', border: '2px solid #000000' }} />
             <div>
@@ -55,4 +52,4 @@ class LandingPage extends Component {
    }
 }
 
-export default LandingPage;
+export default HomePage;

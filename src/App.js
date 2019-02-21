@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './components/nav/NavBar';
 import { Route, NavLink, HashRouter } from "react-router-dom";
-import LandingPage from "./screens/landingPage";
+import HomePage from "./screens/HomePage";
 import Contact from "./screens/Contact";
 import "../src/assets/CSS/sharedStyles.css";
 import Stuff from "./screens/Stuff";
@@ -65,7 +65,7 @@ class App extends Component {
           </ul>
 
           <div className="content">
-            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/" component={HomePage} />
             <Route path="/stuff" component={Stuff} />
             <Route path="/contact" component={Contact} />
           </div>
