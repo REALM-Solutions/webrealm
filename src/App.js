@@ -4,6 +4,7 @@ import './components/nav/NavBar';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import Contact from "./screens/Contact";
+import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
 import Stuff from "./screens/Stuff";
 import logo from './assets/images/logo3.png';
@@ -57,6 +58,7 @@ class App extends Component {
                   className="menu" style={{ color: 'red' }} ref={(element) => { this.dropdownMenu = element; }}>
                   <a> Profile </a>
                   <a> My Events </a>
+                  <NavLink to='/createEvent'>Create Event</NavLink>
                 </div>
               ) : (null)
               }
@@ -68,6 +70,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/stuff" component={Stuff} />
             <Route path="/contact" component={Contact} />
+            <Route path='/createEvent' component={CreateEventPage} />
           </div>
         </div>
       </HashRouter>

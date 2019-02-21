@@ -1,0 +1,9 @@
+{
+   "id": 12345,
+   "firstname": "John",
+   "lastname": "Smith",
+   "email": "jsmith@msudenver.edu",
+   "username": "jsmith",
+   "photoURL": "",
+   "events": []
+}
