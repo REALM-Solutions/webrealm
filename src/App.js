@@ -6,7 +6,7 @@ import HomePage from "./screens/HomePage";
 import Contact from "./screens/Contact";
 import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
-import Stuff from "./screens/Stuff";
+import EventView from "./screens/EventView";
 import logo from './assets/images/logo3.png';
 
 
@@ -48,7 +48,7 @@ class App extends Component {
           <ul className="header">
             <li> <a><img src={logo} alt="" style={{ height: '40px', width: '40px' }} /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/stuff">Events</NavLink></li>
+            <li><NavLink to="/EventView">Events</NavLink></li>
             <li><NavLink to="/contact">Log-In</NavLink></li>
             <li><input type="text" className="input" placeholder="Search..." style={{ marginLeft: '45vw' }} /></li>
             <li>  <div style={{ float: 'right', position: 'relative', padding: '10px' }}>
@@ -66,9 +66,9 @@ class App extends Component {
             </li>
           </ul>
 
-          <div className="content">
+          <div className="content" style={{height:'700px'}}>
             <Route exact path="/" component={HomePage} />
-            <Route path="/stuff" component={Stuff} />
+            <Route path="/EventView" component={EventView} />
             <Route path="/contact" component={Contact} />
             <Route path='/createEvent' component={CreateEventPage} />
           </div>
