@@ -66,7 +66,7 @@ class App extends Component {
             </li>
           </ul>
 
-          <div className="content" style={{height:'700px'}}>
+          <div className="content" style={{ minHeight: '700px' }}>
             <Route exact path="/" component={HomePage} />
             <Route path="/EventView" component={EventView} />
             <Route path="/contact" component={Contact} />
