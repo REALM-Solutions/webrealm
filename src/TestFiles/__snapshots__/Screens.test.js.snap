@@ -1,0 +1,522 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateEventPage renders correctly 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <img
+      src="map.PNG"
+      style={
+        Object {
+          "height": "600px",
+          "width": "600px",
+        }
+      }
+    />
+  </div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "#f2f2f2",
+        "borderRadius": "5px",
+        "textAlign": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <form
+      onSubmit={[Function]}
+      style={
+        Object {
+          "display": "inline-block",
+          "textAlign": "center",
+          "width": "60%",
+        }
+      }
+    >
+      <div>
+        <label
+          for="eventDate"
+        >
+          Date
+        </label>
+        <input
+          id="eventDate"
+          onChange={[Function]}
+          type="date"
+        />
+        <label
+          for="eventStartTime"
+        >
+          Start Time
+        </label>
+        <input
+          id="eventStartTime"
+          onChange={[Function]}
+          type="time"
+        />
+        <label
+          for="eventEndTime"
+        >
+          End Time
+        </label>
+        <input
+          id="eventEndTime"
+          onChange={[Function]}
+          type="time"
+        />
+        <select
+          onChange={[Function]}
+        >
+          <option
+            value=""
+          >
+            Select a Category
+          </option>
+          <option
+            value="sports"
+          >
+            Sports
+          </option>
+          <option
+            value="games"
+          >
+            Games
+          </option>
+          <option
+            value="study"
+          >
+            Study
+          </option>
+          <option
+            value="entertainment"
+          >
+            Entertainment
+          </option>
+          <option
+            value="casual"
+          >
+            Casual
+          </option>
+          <option
+            value="misc"
+          >
+            Misc.
+          </option>
+        </select>
+      </div>
+      <label
+        for="eventName"
+      >
+        Event Name
+      </label>
+      <input
+        id="eventName"
+        onChange={[Function]}
+        placeholder="Event Name"
+        style={
+          Object {
+            "border": "1px solid #ccc",
+            "borderRadius": "4px",
+            "boxSizing": "border-box",
+            "display": "inline-block",
+            "margin": "8px 0",
+            "padding": "12px 20px",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+        type="text"
+      />
+      <label
+        for="eventLocation"
+      >
+        Location
+      </label>
+      <input
+        id="eventLocation"
+        onChange={[Function]}
+        placeholder="Event Location"
+        style={
+          Object {
+            "border": "1px solid #ccc",
+            "borderRadius": "4px",
+            "boxSizing": "border-box",
+            "display": "inline-block",
+            "margin": "8px 0",
+            "padding": "12px 20px",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+        type="text"
+      />
+      <label
+        for="eventDescription"
+      >
+        Description
+      </label>
+      <textarea
+        id="eventDescription"
+        onChange={[Function]}
+        placeholder="Event Description"
+        style={
+          Object {
+            "border": "1px solid #ccc",
+            "borderRadius": "4px",
+            "boxSizing": "border-box",
+            "display": "inline-block",
+            "margin": "8px 0",
+            "padding": "12px 20px",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+        type="text"
+      />
+      <input
+        type="submit"
+        value="Create Event"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`EventView renders correctly 1`] = `
+<span>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <h1
+      className="eventHeader"
+    >
+      Event Name: Mighty Fine Shindig
+    </h1>
+  </div>
+  <span
+    className="calIcon"
+  >
+    <time
+      class="icon"
+      datetime="2019-04-20"
+    >
+      <em>
+        Saturday
+      </em>
+      <strong>
+        April
+      </strong>
+      <span>
+        20
+      </span>
+    </time>
+    <img
+      className="eventViewMapStyling"
+      src="map.PNG"
+    />
+    <div
+      style={
+        Object {
+          "gridColumn": "6",
+        }
+      }
+    >
+      <button
+        className="redButton"
+        onClick={[Function]}
+        style={
+          Object {
+            "borderRadius": "8px",
+            "height": "7em",
+            "margin": "2em",
+            "marginLeft": "3em",
+            "width": "7em",
+          }
+        }
+      >
+        <text>
+          I wanna go!
+        </text>
+      </button>
+    </div>
+  </span>
+  <span>
+    <span
+      style={
+        Object {
+          "display": "grid",
+        }
+      }
+    >
+      <ul
+        className="ulEventData"
+      >
+        <li
+          style={
+            Object {
+              "height": "60px",
+              "marginBottom": "5px",
+              "padding": "5px",
+              "textAlign": "center",
+            }
+          }
+        >
+          <text
+            className="lisTxt_lead"
+          >
+            Total Attending:
+          </text>
+          <text
+            className="lisTxt_content"
+          >
+            1s / 
+          </text>
+          <text
+            className="lisTxt_lead"
+          >
+            Total Capacity:
+          </text>
+          <text
+            className="lisTxt_content"
+          >
+             9000
+          </text>
+        </li>
+        <li
+          className="eventLis"
+        >
+          <text
+            className="lisTxt_lead"
+          >
+            Event Host:
+          </text>
+          <text
+            className="lisTxt_content"
+          >
+             Malcom Reynolds
+          </text>
+        </li>
+        <li
+          className="eventLis"
+        >
+          <text
+            className="lisTxt_lead"
+          >
+            Event Location:
+          </text>
+          <text
+            className="lisTxt_content"
+          >
+             Miranda
+          </text>
+        </li>
+      </ul>
+    </span>
+  </span>
+</span>
+`;
+
+exports[`Homepage renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "height": "100%",
+      "margin": "0 auto",
+      "textAlign": "center",
+      "width": "100%",
+    }
+  }
+>
+  <h1
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    Welcome "USER"
+  </h1>
+  <img
+    src="map.PNG"
+    style={
+      Object {
+        "border": "2px solid #000000",
+        "height": "60vh",
+        "width": "80vh",
+      }
+    }
+  />
+  <div>
+    <label
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Sports
+      <input
+        checked={false}
+        name="Sports"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Games
+      <input
+        checked={false}
+        name="Games"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Study
+      <input
+        checked={false}
+        name="Study"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Entertainment
+      <input
+        checked={false}
+        name="Entertainment"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Causal
+      <input
+        checked={false}
+        name="Causal"
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label
+      style={
+        Object {
+          "padding": "10px",
+        }
+      }
+    >
+      Misc.
+      <input
+        checked={false}
+        name="Misc."
+        onChange={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <ul
+      className="list-group"
+      onKeyDown={[Function]}
+      style={
+        Object {
+          "listStyleType": "none",
+          "margin": "auto",
+          "textAlign": "center",
+          "width": "100vh",
+        }
+      }
+    >
+      <li
+        style={
+          Object {
+            "border": "2px solid #444",
+            "width": "100vh",
+          }
+        }
+      >
+        <text
+          style={
+            Object {
+              "fontWeight": "bold",
+              "padding": "5px",
+            }
+          }
+        >
+          Found a new nation :: 5/14/1607  ::  K.James  :: 4:00 PM  :: Study 
+        </text>
+      </li>
+      <li
+        style={
+          Object {
+            "border": "2px solid #444",
+            "width": "100vh",
+          }
+        }
+      >
+        <text
+          style={
+            Object {
+              "fontWeight": "bold",
+              "padding": "5px",
+            }
+          }
+        >
+          Flight Launch :: 1/28/1986  ::  C.McAuliffe  :: 4:00 PM  ::  Misc. 
+        </text>
+      </li>
+      <li
+        style={
+          Object {
+            "border": "2px solid #444",
+            "width": "100vh",
+          }
+        }
+      >
+        <text
+          style={
+            Object {
+              "fontWeight": "bold",
+              "padding": "5px",
+            }
+          }
+        >
+          Wrap up Party :: 5/8/1945  ::  W.Churchill  :: 4:00 PM  ::  Entertainment
+        </text>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
