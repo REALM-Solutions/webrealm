@@ -41,9 +41,9 @@ class EventView extends Component {
                </time>
                <img src={map} className="eventViewMapStyling" />
                <div style={{ gridColumn: '6' }}>
-                  <button className={btn_class} onClick={this.changeColor.bind(this)}
+               <button className={btn_class} onClick={this.changeColor.bind(this)}
                      style={btn_classStyle}>
-                     <text>Attending</text></button>
+                     {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
 
                </div>
             </span>
