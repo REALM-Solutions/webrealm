@@ -209,7 +209,7 @@ body {
   }
 
   .eventViewMapStyling{ 
-    grid-column: 2/5;
+    grid-column: 1/3;
     width: 100%;
     height: 60vh;
     border-radius: 20px;
@@ -269,3 +269,32 @@ body {
     padding-top: 15;
     /* max-width: 20px; */
  }
+
+ input.event_input{
+  margin-bottom: 5px;
+  height: 25px;
+  border: 1px solid #d8d8d8;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.error{
+  margin-left: 5px;
+  font-size: 13px;
+  color: red;
+  grid-column: 1;
+  grid-row: 4
+}
+
+button.btnpro{
+  padding: 10px;
+  border: 1px solid #d8d8d8;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  height:35px;
+  width:180px;
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 100%
+  
+}

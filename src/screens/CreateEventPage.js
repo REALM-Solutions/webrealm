@@ -21,6 +21,11 @@ class CreateEventPage extends Component {
       let formIsValid = true;
 
       //Name
+      if (!fields["event_name"]) {
+         formIsValid = false;
+         errors["event_name"] = "Please enter an event ";
+      }
+
       if (typeof fields["event_name"] !== "undefined") {
          if (!fields["event_name"].match(/^[\S\s]{5,25}$/)) {
             formIsValid = false;
@@ -65,16 +70,10 @@ class CreateEventPage extends Component {
          }
       }
 
-      // if(typeof fields["email"] !== "undefined"){
-      //   let lastAtPos = fields["email"].lastIndexOf('@');
-      //   let lastDotPos = fields["email"].lastIndexOf('.');
-
-      //   if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
-      //     formIsValid = false;
-      //     errors["email"] = "Email is not valid";
-      //   }
-      // }
-
+      if (!fields["eventDescription"]) {
+         formIsValid = false;
+         errors["eventDescription"] = "Please enter an event description.";
+      }
 
 
       this.setState({ errors: errors });
@@ -100,39 +99,46 @@ class CreateEventPage extends Component {
 
    render() {
       return (
-         <div>
-            <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)}>
+
+         <div style={{ width: '100%' }}>
+            <div>
+               <img src={map} className="eventViewMapStyling" />
+            </div>
+            <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ margin: '20px' }}>
                <div className="col-md-6">
-                  <fieldset>
-                     <input ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "event_name")} value={this.state.fields["event_name"]} />
+                  <fieldset style={{ display: 'grid', gridTemplateColumns: '200px 200px 200px 300px', gridTemplateRows:'30 30 35 100' , columnGap:'10px'}}>
+                     <input style={{ gridColumn: 1, gridRow: 1 }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "event_name")} value={this.state.fields["event_name"]} />
                      <span className="error">{this.state.errors["event_name"]}</span>
                      <br />
-                     <input type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
+                     <input style={{ gridColumn: 2, gridRow: 1 }} className="event_input" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
                      <span className="error">{this.state.errors["eventDate"]}</span>
                      <br />
-                     <input type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                     <input style={{ gridColumn: 2, gridRow: 2 }} className="event_input" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                     <span style={{ gridColumn: 3, gridRow: 2 }}>Enter Start Time </span>
                      <span className="error">{this.state.errors["eventStartTime"]}</span>
                      <br />
-                     <input type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                     <input style={{ gridColumn: 2, gridRow: 3 }} className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                     <span style={{ gridColumn: 3, gridRow: 3  }}>Enter End Time </span>
                      <span className="error">{this.state.errors["eventEndTime"]}</span>
                      <br />
-                     <input refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
+                     <input style={{ gridColumn: 1, gridRow: 2 }} className="event_input" refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
                      <span className="error">{this.state.errors["eventLocation"]}</span>
                      <br />
+                     <textarea style={{ paddingLeft: '0', borderRadius: '3px', gridColumn:4, gridRow:'1/5' }} refs="eventDescription" cols="28" rows="4"
+                           className="eventDescription" placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
+                        </textarea>
+                        <span className="error">{this.state.errors["eventDescription"]}</span>
+                        <button style={{gridColumn:'1', gridRow:'3', border:'1px solid black'}} className="btnpro" id="submit" value="Submit">Submit Event</button>
                   </fieldset>
-               </div>
-               <div className="col-md-6">
-                  <fieldset>
-                     <textarea refs="eventDescription" cols="28" rows="10"
-                        className="eventDescription" placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
-                     </textarea>
-                     <span className="error">{this.state.errors["eventDescription"]}</span>
-                  </fieldset>
-               </div>
-               <div className="col-md-12">
-                  <fieldset>
-                     <button className="btn btn-lg pro" id="submit" value="Submit">Submit Event</button>
-                  </fieldset>
+
+                  {/* <div className="col-md-6" style={{ paddingLeft: '0', borderRadius: '3px', gridColumn:4, gridRow :1/4}}>
+                     <fieldset>
+                        <textarea refs="eventDescription" cols="28" rows="10"
+                           className="eventDescription" placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
+                        </textarea>
+                        <span className="error">{this.state.errors["eventDescription"]}</span>
+                     </fieldset>
+                  </div> */}
                </div>
             </form>
          </div>
