@@ -52,10 +52,7 @@ class CreateEventPage extends Component {
       var chsnDate = chsnyr + "" + chsnmth + "" + chsnday;
       var dif = chsnDate - newDate;
 
-      console.log(newDate + "  tday entry   " + chsnDate + " dif" + dif)
-
       if (dif < 0) {
-         console.log("bad date")
          formIsValid = false;
          errors["eventDate"] = "Please enter a valid date";
       }
@@ -131,17 +128,17 @@ class CreateEventPage extends Component {
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
                      <br />
-                     <input style={{}} className="event_input" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
+                     <input  className="event_input" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
                      <br />
                      <span className="error">{this.state.errors["eventDate"]}</span>
                      <br />
-                     <input style={{}} className="event_input" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
-                     <span style={{}}>&nbsp;Enter Start Time </span>
+                     <input  className="event_input" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                     <span >&nbsp;Enter Start Time </span>
                      <br />
                      <span className="error">{this.state.errors["eventStartTime"]}</span>
                      <br />
-                     <input style={{}} className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
-                     <span style={{}}>&nbsp;Enter End Time </span>
+                     <input  className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                     <span >&nbsp;Enter End Time </span>
                      <br />
                      <span className="error">{this.state.errors["eventEndTime"]}</span>
                      <br />
