@@ -30,9 +30,9 @@ class NavbarPage extends Component {
                     <Button variant="outline-primary" style={{ margin: '20px' }}>Search</Button>
                 </Form>
 
-                <Button variant="outline-primary" style={frstBtnStyle}>Home</Button>
-                <Button variant="outline-primary" style={btnStyle}>Events</Button>
-                <Button variant="outline-primary" style={btnStyle} >Log In</Button>
+                <Button variant="outline-primary" style={frstBtnStyle}>Home33</Button>
+                <Button variant="outline-primary" style={btnStyle}>Events333</Button>
+                <Button variant="outline-primary" style={btnStyle} >Log In333</Button>
 
                 <Nav className="navRight" style={{ marginLeft: 'auto' }} >
                     <Navbar bg="dark" expand="lg"  >

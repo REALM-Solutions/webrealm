@@ -29,36 +29,30 @@ class EventView extends Component {
       };
 
       return (
-         <span >
-            <div style={{ textAlign: 'center' }}>
-               <h1 className="eventHeader">Event Name: Mighty Fine Shindig</h1>
-            </div>
-            <span className="calIcon" >
-               <time datetime="2019-04-20" class="icon">
-                  <em>Saturday</em>
-                  <strong>April</strong>
-                  <span>20</span>
-               </time>
-               <img src={map} className="eventViewMapStyling" />
-               <div style={{ gridColumn: '6' }}>
-               <button className={btn_class} onClick={this.changeColor.bind(this)}
-                     style={btn_classStyle}>
-                     {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
+         <div style={{ textAlign: 'center' }}>
+            <h1 className="eventHeader">Event Name: Mighty Fine Shindig</h1>
 
-               </div>
-            </span>
-            <span >
-               <span style={{ display: 'grid' }}>
+            <span style={{ display: 'flex' }} >
 
+               <span className="calIcon" >
+                  <time datetime="2019-04-20" class="icon">
+                     <em>Saturday</em>
+                     <strong>April</strong>
+                     <span>20</span>
+                  </time>
+               </span>
+               
+               <span >
                   <ul className="ulEventData">
 
-                     <li style={{ padding: '5px', height: '60px', marginBottom: '5px', textAlign: 'center' }}>
-                        <text className="lisTxt_lead">Total Attending:</text>
-                        <text className="lisTxt_content">1s / </text>
-                        <text className="lisTxt_lead">Total Capacity:</text>
-                        <text className="lisTxt_content"> 9000</text>
+                  <li><img style={{ width:'40vw', height:'40vh' }} src={map} className="eventViewMapStyling" /></li>
 
-                     </li>
+                  <li style={{ padding: '5px', height: '60px', marginBottom: '5px', textAlign: 'center' }}>
+                     <text className="lisTxt_lead">Total Attending:</text>
+                     <text className="lisTxt_content">1s / </text>
+                     <text className="lisTxt_lead">Total Capacity:</text>
+                     <text className="lisTxt_content"> 9000</text>
+                  </li>
 
                      <li className="eventLis">
                         <text className="lisTxt_lead">Event Host:</text>
@@ -72,8 +66,18 @@ class EventView extends Component {
 
                   </ul>
                </span>
+
+
+
+               <div style={{}}>
+                  <button className={btn_class} onClick={this.changeColor.bind(this)}
+                     style={btn_classStyle}>
+                     {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
+
+               </div>
+
             </span>
-         </span>
+         </div>
 
       );
    }
