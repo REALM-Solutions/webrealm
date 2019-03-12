@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import './components/nav/NavBar';
+// import './components/nav/NavBar';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import LogIn from "./screens/LogIn";
@@ -51,15 +51,16 @@ class App extends Component {
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/EventView">Events</NavLink></li>
             <li><NavLink to="/LogIn">Log-In</NavLink></li>
-            <li><input type="text" className="input" placeholder="Search..." style={{ marginLeft: '45vw' }} /></li>
-            <li>  <div style={{ float: 'right', position: 'relative', padding: '10px' }}>
-              <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
+            <li>  <div style={{ float: 'right',  padding: '10px' }}>
+            <input type="text" className="input" placeholder="Search..."  />
+            <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
               {this.state.showMenu ? (
                 <div
                   className="menu" style={{ color: 'red' }} ref={(element) => { this.dropdownMenu = element; }}>
-                  <a> Profile </a>
-                  <NavLink to='/myEvents' style={{color:'black'}}>My Events</NavLink>
-                  <NavLink to='/createEvent' style={{color:'black'}}>Create Event</NavLink>
+                  <NavLink to='/EventView' style={{color:'black', display:'block'}}>Profile</NavLink>
+                  {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
+                  <NavLink to='/myEvents' style={{color:'black', display:'block'}}>My Events</NavLink>
+                  <NavLink to='/createEvent' style={{color:'black', display:'block'}}>Create Event</NavLink>
                 </div>
               ) : (null)
               }
@@ -67,7 +68,7 @@ class App extends Component {
             </li>
           </ul>
 
-          <div className="content" style={{ minHeight: '700px', display:'flex', justifyContent:'center' }}>
+          <div className="content" style={{ minHeight: '700px', display:'flex', justifyContent:'center', width:'100%' }}>
             <Route exact path="/" component={HomePage} />
             <Route path="/EventView" component={EventView} />
             <Route path="/LogIn" component={LogIn} />

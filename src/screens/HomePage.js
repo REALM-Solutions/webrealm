@@ -34,9 +34,9 @@ class HomePage extends Component {
 
                <ListGroup as='ul' style={{ listStyleType: 'none', textAlign: 'center', width: '100vh', margin: 'auto' }}>
 
-                  <li style={{ width: '100vh', border: '2px solid #444' }}><text style={{ padding: '5px', fontWeight: 'bold' }}>Found a new nation :: 5/14/1607  ::  K.James  :: 4:00 PM  :: Study </text></li>
-                  <li style={{ width: '100vh', border: '2px solid #444' }}><text style={{ padding: '5px', fontWeight: 'bold' }}>Flight Launch :: 1/28/1986  ::  C.McAuliffe  :: 4:00 PM  ::  Misc. </text></li>
-                  <li style={{ width: '100vh', border: '2px solid #444' }}><text style={{ padding: '5px', fontWeight: 'bold' }}>Wrap up Party :: 5/8/1945  ::  W.Churchill  :: 4:00 PM  ::  Entertainment</text></li>
+                  <li style={{ width: '100vh', border: '2px solid #444' }}><p style={{ padding: '5px', fontWeight: 'bold' }}>Found a new nation :: 5/14/1607  ::  K.James  :: 4:00 PM  :: Study </p></li>
+                  <li style={{ width: '100vh', border: '2px solid #444' }}><p style={{ padding: '5px', fontWeight: 'bold' }}>Flight Launch :: 1/28/1986  ::  C.McAuliffe  :: 4:00 PM  ::  Misc. </p></li>
+                  <li style={{ width: '100vh', border: '2px solid #444' }}><p style={{ padding: '5px', fontWeight: 'bold' }}>Wrap up Party :: 5/8/1945  ::  W.Churchill  :: 4:00 PM  ::  Entertainment</p></li>
 
 
                   {/*  this section is for reading new data from a JSON file*/}
