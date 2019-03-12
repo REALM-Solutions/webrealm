@@ -100,9 +100,9 @@ class CreateEventPage extends Component {
    contactSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
-         alert("Form submitted");
+         //TODO: this is where the BE content will go
       } else {
-         alert("Form has errors.")
+         //TODO: this is where the BE content will go
       }
 
    }
@@ -124,29 +124,29 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '30%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                     <input style={{ marginTop: '10px' , width:'80%'}} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "event_name")} value={this.state.fields["event_name"]} />
+                     <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "event_name")} value={this.state.fields["event_name"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
                      <br />
-                     <input  className="event_input" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
+                     <input className="event_input" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
                      <br />
                      <span className="error">{this.state.errors["eventDate"]}</span>
                      <br />
-                     <input  className="event_input" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                     <input className="event_input" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
                      <span >&nbsp;Enter Start Time </span>
                      <br />
                      <span className="error">{this.state.errors["eventStartTime"]}</span>
                      <br />
-                     <input  className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                     <input className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
                      <span >&nbsp;Enter End Time </span>
                      <br />
                      <span className="error">{this.state.errors["eventEndTime"]}</span>
                      <br />
-                     <input style={{width:'80%'}} className="event_input" refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
+                     <input style={{ width: '80%' }} className="event_input" refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
                      <br />
                      <span className="error">{this.state.errors["eventLocation"]}</span>
                      <br />
-                     <textarea style={{ paddingLeft: '0', borderRadius: '3px',width:'80%' }} refs="eventDescription" cols="28" rows="4"
+                     <textarea style={{ paddingLeft: '0', borderRadius: '3px', width: '80%' }} refs="eventDescription" cols="28" rows="4"
                         className="eventDescription" placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
                      </textarea>
                      <br />
