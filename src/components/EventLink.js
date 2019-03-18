@@ -10,12 +10,17 @@ class EventLink extends Component {
          eventCategory: this.props.category,
          eventHost: this.props.host,
          eventDate: this.props.date,
-         eventTime: this.props.time
+         eventStartTime: this.props.startTime,
+         eventEndTime: this.props.endTime,
+         eventLocation: this.props.location,
+         eventDescription: this.props.description,
+         spotsAvailable: this.props.spotsAvailable
       };
    }
    render() {
       return (
          <div className='eventLinkContainer '>
+         
             <p className='eventText'>{ this.state.eventName }&nbsp; </p>
             <p className='eventText'>{ this.state.eventCategory }&nbsp;</p>
             <p className='eventText'>{ this.state.eventHost }&nbsp;</p>

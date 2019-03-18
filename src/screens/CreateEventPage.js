@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import map from "../assets/images/map.PNG";
+import CategoryButtonGroup from '../components/CategoryButtonGroup/CategoryButtonGroup';
 
 
 class CreateEventPage extends Component {
@@ -118,12 +119,13 @@ class CreateEventPage extends Component {
       return (
 
          <div style={{ display: 'flex', width: '100%' }}>
-            <div style={{ height: '65%', width: '60%', marginRight: '15px' }}>
+            <div style={{ height: '75%', width: '50%', marginRight: '15px' }}>
                <img src={map} className="eventViewMapStyling" />
             </div>
-            <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '30%', }}>
+            <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
+                  <CategoryButtonGroup />
                      <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "event_name")} value={this.state.fields["event_name"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
