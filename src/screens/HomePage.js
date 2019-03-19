@@ -74,7 +74,7 @@ class HomePage extends Component {
                <CategoryButtonGroup />
 
                <ListGroup as='ul' style={{ listStyleType: 'none', textAlign: 'center', width: '100vh', margin: 'auto' }}>
-                  {this.state.events === [] ? <p>No Events Found</p> : eventElements}
+                  {this.state.events === [] ? <p>No Events Found</p> : eventElements }
                </ListGroup>
             </div>
          </div>
