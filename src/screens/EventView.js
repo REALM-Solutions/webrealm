@@ -6,10 +6,18 @@ import "../assets/CSS/sharedStyles.css"
 class EventView extends Component {
    constructor(props) {
       super(props);
-
+      const {name, category, host, date, startTime, endTime, location, description, spotsAvailable} = props.location.state
       this.state = {
          green: false,
-         name: this.props.name
+         name: name,
+         category:category,
+         host:host,
+         date:date,
+         startTime:startTime,
+         endTime:endTime,
+         location:location,
+         description:description,
+         spotsAvailable:spotsAvailable
       }
    }
 
@@ -19,7 +27,7 @@ class EventView extends Component {
 
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
-      console.log(this.state.props)
+      console.log(this.state)
 
       const btn_classStyle = {
          width: '100%',
