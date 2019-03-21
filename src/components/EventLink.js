@@ -20,17 +20,10 @@ class EventLink extends Component {
    }
    render() {
       return (
-         <Link to={{pathname:'/EventView', event:{
-                  name:this.state.eventName,
-                  category:this.state.eventCategory,
-                  host:this.state.eventHost,
-                  date:this.state.date,
-                  startTime:this.state.startTime,
-                  endTime:this.state.endTime,
-                  location:this.state.location,
-                  description:this.state.description,
-                  spotsAvailable:this.state.spotsAvailable
-            }}}>
+         <Link to={{
+            pathname: '/EventView',
+            state: { eventState: this.props }
+         }}>
             <div className='eventLinkContainer '>
                <p className='eventText'>{this.state.eventName}&nbsp; </p>
                <p className='eventText'>{this.state.eventCategory}&nbsp;</p>

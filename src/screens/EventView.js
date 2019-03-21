@@ -7,9 +7,11 @@ class EventView extends Component {
    constructor(props) {
       super(props);
 
+      const {event}= props.location.state.eventState;
+
       this.state = {
          green: false,
-         name: this.props.name
+         
       }
    }
 
