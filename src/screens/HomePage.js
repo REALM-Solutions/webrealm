@@ -22,6 +22,7 @@ class HomePage extends Component {
       })
          .then(response => response.json())
          .then(responseJson => {
+            console.log(responseJson)
             if (responseJson !== null) {
                Object.values(responseJson).map(function (event) {
                   eventArray.push(event)
@@ -73,7 +74,7 @@ class HomePage extends Component {
 
                <CategoryButtonGroup />
 
-               <ListGroup as='ul' style={{ listStyleType: 'none', textAlign: 'center', width: '100vh', margin: 'auto' }}>
+               <ListGroup as='ul'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements }
                </ListGroup>
             </div>

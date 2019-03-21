@@ -256,19 +256,19 @@ body {
   .eventLinkContainer {
     flex-direction: row;
     justify-content: space-evenly;
-    border-width: 1;
-    border-radius: 4;
+    border-width: 3px;
+    border-style: solid;
+    border-color:black;
+    border-radius: 4px;
+    text-align: center;
     width: 100%;
-    align-self: center;
-    margin-bottom: 2;
-    height: 40;
-    font: bold;
+    padding-top:5px;    
  }
 
  .eventText {
    display:inline-block;
     font-size: 12;
-    color: rgb(21, 41, 226);
+    color: 'black';
     line-height: 2;
     text-align: center;
     padding-top: 15;
@@ -301,4 +301,15 @@ button.btnpro{
   vertical-align: middle;
   line-height: 100%
   
+}
+
+input.chkbox{
+  margin-left:4px
+}
+
+ul.list-group{
+  list-style-type:none;
+  text-align: center;
+  width: 150vh;
+  margin: auto;
 }

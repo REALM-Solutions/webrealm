@@ -8,16 +8,18 @@ class EventView extends Component {
       super(props);
 
       this.state = {
-         green: false
+         green: false,
+         name: this.props.name
       }
    }
 
    changeColor() {
       this.setState({ green: !this.state.green })
-
    }
+
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
+      console.log(this.state.props)
 
       const btn_classStyle = {
          width: '100%',
@@ -29,8 +31,9 @@ class EventView extends Component {
       };
 
       return (
+         
          <div style={{ textAlign: 'center' }}>
-            <h1 className="eventHeader">Event Name: Mighty Fine Shindig</h1>
+            <h1 className="eventHeader">{this.state.name}</h1>
 
             <span style={{ display: 'flex' }} >
 
