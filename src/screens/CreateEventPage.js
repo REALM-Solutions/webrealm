@@ -9,7 +9,15 @@ class CreateEventPage extends Component {
 
       this.state = {
          fields: {},
-         errors: {}
+         errors: {},
+         category:'',
+         eventNameText: '',
+         eventDescriptionText: '',
+         eventLocationText: '',
+         eventDate: {},
+         eventStartTime: {},
+         eventEndTime: {},
+         eventSpotsAvailable: '',
       }
 
       this.handleValidation = this.handleValidation.bind(this)
@@ -101,7 +109,34 @@ class CreateEventPage extends Component {
    contactSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
-         //TODO: this is where the BE content will go
+         let {category, eventNameText, eventDescription, eventLocationText,
+         eventDate, eventStartTime, eventEndTime, eventSpotsAvailable} = this.state
+         fetch('http://localhost:8080/events',{
+            method: 'POST',
+            headers: {
+               Accept: 'application/json',
+               'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               category: "sports",
+            name: eventNameText,
+            description: eventDescription,
+            location: eventLocationText,
+            date: eventDate,
+            startTime: eventStartTime,
+            endTime: eventEndTime,
+            creator: {
+               username: "pperez"
+            },
+            availableSpots: eventSpotsAvailable,
+            coordinates: '',
+            public: 'true'
+            }),
+         }).then((response) => response.json())
+           .then((responseJson) => {console.log(responseJson);
+            })
+            .catch((error) => {console.error(error);
+            })
       } else {
          //TODO: this is where the BE content will go
       }
