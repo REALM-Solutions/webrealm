@@ -233,5 +233,10 @@ ul.list-group{
   border-width: 3px;
   border-radius: 6px;
   border-color: black;
-  
+}
+
+.categoryDropdown{
+  width: 40vw;
+  border-radius: 4px; 
+  text-align: center
 }

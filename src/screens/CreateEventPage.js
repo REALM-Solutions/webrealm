@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import map from "../assets/images/map.PNG";
-import CategoryButtonGroup from '../components/CategoryButtonGroup/CategoryButtonGroup';
+// import CategoryButtonGroup from '../components/CategoryButtonGroup/CategoryButtonGroup';
+import CategoryDropdown from '../components/CategoryDropdown/CategoryDropdown';
 
 
 class CreateEventPage extends Component {
@@ -10,7 +11,7 @@ class CreateEventPage extends Component {
       this.state = {
          fields: {},
          errors: {},
-         category:'',
+         category: '',
          eventNameText: '',
          eventDescriptionText: '',
          eventLocationText: '',
@@ -19,6 +20,8 @@ class CreateEventPage extends Component {
          eventEndTime: {},
          eventSpotsAvailable: '',
       }
+
+      this.baseState = this.state
 
       this.handleValidation = this.handleValidation.bind(this)
    }
@@ -30,9 +33,9 @@ class CreateEventPage extends Component {
       let formIsValid = true;
 
       //Name
-      if (!fields["event_name"]) {
+      if (!fields["eventNameText"]) {
          formIsValid = false;
-         errors["event_name"] = "Please enter an event ";
+         errors["eventNameText"] = "Please enter an event ";
       }
 
       if (typeof fields["event_name"] !== "undefined") {
@@ -109,9 +112,10 @@ class CreateEventPage extends Component {
    contactSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
-         let {category, eventNameText, eventDescription, eventLocationText,
-         eventDate, eventStartTime, eventEndTime, eventSpotsAvailable} = this.state
-         fetch('http://localhost:8080/events',{
+         let { category, eventNameText, eventDescription, eventLocationText,
+            eventDate, eventStartTime, eventEndTime, eventSpotsAvailable } = this.state.fields
+         console.log(this.state.fields)
+         fetch('http://localhost:8080/events', {
             method: 'POST',
             headers: {
                Accept: 'application/json',
@@ -119,35 +123,47 @@ class CreateEventPage extends Component {
             },
             body: JSON.stringify({
                category: "sports",
-            name: eventNameText,
-            description: eventDescription,
-            location: eventLocationText,
-            date: eventDate,
-            startTime: eventStartTime,
-            endTime: eventEndTime,
-            creator: {
-               username: "pperez"
-            },
-            availableSpots: eventSpotsAvailable,
-            coordinates: '',
-            public: 'true'
+               name: eventNameText,
+               description: eventDescription,
+               location: eventLocationText,
+               date: eventDate,
+               startTime: eventStartTime,
+               endTime: eventEndTime,
+               creator: {
+                  username: "pperez"
+               },
+               availableSpots: eventSpotsAvailable,
+               coordinates: '',
+               public: 'true'
             }),
          }).then((response) => response.json())
-           .then((responseJson) => {console.log(responseJson);
+            .then((responseJson) => {
+               console.log(responseJson);
             })
-            .catch((error) => {console.error(error);
+            .catch((error) => {
+               console.error(error);
             })
+            alert('Event Created')
+            this.resetFields()
+            console.log (this.state + "reset state")
+            
+            
       } else {
          //TODO: this is where the BE content will go
       }
 
    }
 
+
    handleChange(field, e) {
       let fields = this.state.fields;
       fields[field] = e.target.value;
       this.setState({ fields });
    }
+
+   resetFields  () {
+       this.setState(this.baseState)
+      }
 
 
    render() {
@@ -160,8 +176,8 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                  <CategoryButtonGroup />
-                     <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "event_name")} value={this.state.fields["event_name"]} />
+                     <CategoryDropdown />
+                     <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
                      <br />
