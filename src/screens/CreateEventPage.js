@@ -11,7 +11,7 @@ class CreateEventPage extends Component {
       this.state = {
          fields: {},
          errors: {},
-         category: '',
+         categoryType: '',
          eventNameText: '',
          eventDescriptionText: '',
          eventLocationText: '',
@@ -112,7 +112,7 @@ class CreateEventPage extends Component {
    contactSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
-         let { category, eventNameText, eventDescription, eventLocationText,
+         let { categoryType, eventNameText, eventDescription, eventLocationText,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable } = this.state.fields
          console.log(this.state.fields)
          fetch('http://localhost:8080/events', {
@@ -122,7 +122,7 @@ class CreateEventPage extends Component {
                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-               category: "sports",
+               category: categoryType,
                name: eventNameText,
                description: eventDescription,
                location: eventLocationText,
@@ -132,7 +132,8 @@ class CreateEventPage extends Component {
                creator: {
                   username: "pperez"
                },
-               availableSpots: eventSpotsAvailable,
+               availableSpots: "8",
+               // availableSpots: eventSpotsAvailable,
                coordinates: '',
                public: 'true'
             }),
@@ -176,7 +177,7 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                     <CategoryDropdown />
+                     <CategoryDropdown onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]} />
                      <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>

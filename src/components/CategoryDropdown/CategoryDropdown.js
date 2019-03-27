@@ -9,13 +9,13 @@ class CategoryDropdown extends React.Component {
 
 render() {
    return (
-      <select className="categoryDropdown">
-         <option selectedCategory="sports">Sports</option>
-         <option selectedCategory="study">Study</option>
-         <option selectedCategory="games">Games</option>
-         <option selectedCategory="entertainment">Entertainment</option>
-         <option selectedCategory="casual">Casual</option>
-         <option selectedCategory="miscelaneous">Miscelaneous</option>
+      <select className="categoryDropdown" >
+         <option categoryType="sports">Sports</option>
+         <option categoryType="study">Study</option>
+         <option categoryType="games">Games</option>
+         <option categoryType="entertainment">Entertainment</option>
+         <option categoryType="casual">Casual</option>
+         <option categoryType="miscelaneous">Miscelaneous</option>
       </select>
       
    );
