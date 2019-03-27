@@ -11,14 +11,7 @@ class CreateEventPage extends Component {
       this.state = {
          fields: {},
          errors: {},
-         categoryType: '',
-         eventNameText: '',
-         eventDescriptionText: '',
-         eventLocationText: '',
-         eventDate: {},
-         eventStartTime: {},
-         eventEndTime: {},
-         eventSpotsAvailable: '',
+         
       }
 
       this.baseState = this.state
@@ -177,7 +170,7 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                     <CategoryDropdown ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]} />
+                     <CategoryDropdown onChange={this.handleChange.bind(this, "categoryType")}/>
                      <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>

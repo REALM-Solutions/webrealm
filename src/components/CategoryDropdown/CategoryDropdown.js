@@ -9,7 +9,7 @@ class CategoryDropdown extends React.Component {
 
 render() {
    return (
-      <select className="categoryDropdown" >
+      <select className="categoryDropdown" ref='categoryType'  value={this.state.fields["categoryType"]} >
          <option categoryType="sports">Sports</option>
          <option categoryType="study">Study</option>
          <option categoryType="games">Games</option>
