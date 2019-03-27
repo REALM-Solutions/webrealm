@@ -132,6 +132,17 @@ body {
     
   }
 
+  .createEventViewMapStyling{ 
+   
+    width: 40vw; 
+    height: 90vh;
+    border-radius: 20px;
+    border:2px solid #000;
+    margin: 10px;
+    text-align: left;
+    
+  }
+
   .myEventsMapStyling{ 
     
     width: 70vh;
@@ -238,9 +249,11 @@ ul.list-group{
 }
 
 .categoryDropdown{
-  width: 37vw;
+  width: 27vw;
   border-radius: 4px; 
-  text-align: center
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 8px;
 }
 
 .event_input_small{
@@ -251,6 +264,6 @@ ul.list-group{
 .event_input_smaller{
   margin-top: 5px;
   width: 8vw  ;
-  margin-right: 5px;
+  margin-right: 10px;
   margin-bottom: 5px;
 }

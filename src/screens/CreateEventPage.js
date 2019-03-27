@@ -178,8 +178,8 @@ class CreateEventPage extends Component {
       return (
 
          <div style={{ display: 'flex', width: '100%' }}>
-            <div style={{ height: '75%', width: '50%', marginRight: '15px' }}>
-               <img src={map} className="eventViewMapStyling" />
+            <div style={{ height: '100%', width: '50%', marginRight: '15px' }}>
+               <img src={map} className="createEventViewMapStyling" />
             </div>
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
@@ -192,6 +192,7 @@ class CreateEventPage extends Component {
                         <option categoryType="casual">Casual</option>
                         <option categoryType="miscelaneous">Miscelaneous</option>
                      </select>
+                     <label> Select Category</label>
                      <input className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
@@ -204,7 +205,7 @@ class CreateEventPage extends Component {
 
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                            <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
-                           <span >Enter Start Time </span>
+                           <label >Enter Start Time </label>
                            <br />
                            <span className="error">{this.state.errors["eventStartTime"]}</span>
                            <br />
@@ -212,7 +213,7 @@ class CreateEventPage extends Component {
 
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                            <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
-                           <span >Enter End Time </span>
+                           <label >Enter End Time </label>
                            <br />
                            <span className="error">{this.state.errors["eventEndTime"]}</span>
                            <br />
@@ -220,7 +221,7 @@ class CreateEventPage extends Component {
 
                         <div style={{ display: 'flex', flexDirection: 'column' , marginLeft:'10px'}}>
                            <input className="event_input_smaller" type='number' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
-                           <span >Enter Available Spots </span>
+                           <label >Enter Available Spots </label>
                            <br />
                         </div>
                      </div>
