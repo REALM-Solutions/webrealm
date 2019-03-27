@@ -11,7 +11,7 @@ class CreateEventPage extends Component {
       this.state = {
          fields: {},
          errors: {},
-         
+
       }
 
       this.baseState = this.state
@@ -47,6 +47,13 @@ class CreateEventPage extends Component {
       var month = dateObj.getUTCMonth() + 1; //months from 1-12
       var day = dateObj.getUTCDate();
       var year = dateObj.getUTCFullYear();
+      
+      if (day < 10){
+         day = "0"+day
+      } 
+      if (month < 10){
+         month = "0"+month   
+      }
 
       var newDate = year + "" + month + "" + day;
 
@@ -54,8 +61,15 @@ class CreateEventPage extends Component {
       var chsnyr = chosenDate.getUTCFullYear();
       var chsnmth = chosenDate.getUTCMonth() + 1;
       var chsnday = chosenDate.getUTCDate();
+      if (chsnday < 10){
+         chsnday = "0"+chsnday
+      } 
+      if (chsnmth < 10){
+         chsnmth = "0"+chsnmth   
+      }
       var chsnDate = chsnyr + "" + chsnmth + "" + chsnday;
       var dif = chsnDate - newDate;
+      console.log(dif + " "+ chsnDate+ " "+newDate)
 
       if (dif < 0) {
          formIsValid = false;
@@ -137,11 +151,11 @@ class CreateEventPage extends Component {
             .catch((error) => {
                console.error(error);
             })
-            alert('Event Created')
-            this.resetFields()
-            console.log (this.state + "reset state")
-            
-            
+         alert('Event Created')
+         this.resetFields()
+         console.log(this.state + "reset state")
+
+
       } else {
          //TODO: this is where the BE content will go
       }
@@ -155,9 +169,9 @@ class CreateEventPage extends Component {
       this.setState({ fields });
    }
 
-   resetFields  () {
-       this.setState(this.baseState)
-      }
+   resetFields() {
+      this.setState(this.baseState)
+   }
 
 
    render() {
@@ -170,28 +184,46 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                     <CategoryDropdown onChange={this.handleChange.bind(this, "categoryType")}/>
-                     <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
+                     <select className="categoryDropdown" ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]}>
+                        <option categoryType="sports">Sports</option>
+                        <option categoryType="study">Study</option>
+                        <option categoryType="games">Games</option>
+                        <option categoryType="entertainment">Entertainment</option>
+                        <option categoryType="casual">Casual</option>
+                        <option categoryType="miscelaneous">Miscelaneous</option>
+                     </select>
+                     <input className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
                      <br />
-                     <input className="event_input" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
-                     <br />
-                     <span className="error">{this.state.errors["eventDate"]}</span>
-                     <br />
-                     <input className="event_input" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
-                     <span >&nbsp;Enter Start Time </span>
-                     <br />
-                     <span className="error">{this.state.errors["eventStartTime"]}</span>
-                     <br />
-                     <input className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
-                     <span >&nbsp;Enter End Time </span>
-                     <br />
-                     <span className="error">{this.state.errors["eventEndTime"]}</span>
-                     <br />
-                     <input className="event_input" type='number' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
-                     <span >&nbsp; Enter Available Spots </span>
-                     <br />
+                     <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <input className="event_input_small" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
+                        <br />
+                        <span className="error">{this.state.errors["eventDate"]}</span>
+                        <br />
+
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                           <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                           <span >Enter Start Time </span>
+                           <br />
+                           <span className="error">{this.state.errors["eventStartTime"]}</span>
+                           <br />
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                           <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                           <span >Enter End Time </span>
+                           <br />
+                           <span className="error">{this.state.errors["eventEndTime"]}</span>
+                           <br />
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column' , marginLeft:'10px'}}>
+                           <input className="event_input_smaller" type='number' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
+                           <span >Enter Available Spots </span>
+                           <br />
+                        </div>
+                     </div>
                      <span className="error">{this.state.errors["eventEndTime"]}</span>
                      <br />
                      <input style={{ width: '80%' }} className="event_input" refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />

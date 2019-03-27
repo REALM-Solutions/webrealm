@@ -4,12 +4,15 @@ import React from 'react';
 class CategoryDropdown extends React.Component {
    constructor(props) {
       super(props); 
+      this.state = {
+         onChange: props.onChange
+      }
    }
 
 
 render() {
    return (
-      <select className="categoryDropdown" ref='categoryType'  value={this.state.fields["categoryType"]} >
+      <select className="categoryDropdown" onChange={this.state.onChange}>
          <option categoryType="sports">Sports</option>
          <option categoryType="study">Study</option>
          <option categoryType="games">Games</option>

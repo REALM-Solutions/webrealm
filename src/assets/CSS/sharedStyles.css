@@ -191,6 +191,8 @@ body {
   border: 1px solid #d8d8d8;
   padding: 3px;
   border-radius: 3px;
+  margin-top: 10px;
+  width: 37vw
 }
 
 .error{
@@ -236,7 +238,19 @@ ul.list-group{
 }
 
 .categoryDropdown{
-  width: 40vw;
+  width: 37vw;
   border-radius: 4px; 
   text-align: center
+}
+
+.event_input_small{
+  margin-top: 5px;
+  width: 10vw  
+}
+
+.event_input_smaller{
+  margin-top: 5px;
+  width: 8vw  ;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
