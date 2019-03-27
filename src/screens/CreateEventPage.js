@@ -132,7 +132,7 @@ class CreateEventPage extends Component {
                creator: {
                   username: "pperez"
                },
-               availableSpots: "8",
+               availableSpots: eventSpotsAvailable,
                // availableSpots: eventSpotsAvailable,
                coordinates: '',
                public: 'true'
@@ -177,7 +177,7 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                     <CategoryDropdown onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]} />
+                     <CategoryDropdown ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]} />
                      <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
@@ -193,6 +193,11 @@ class CreateEventPage extends Component {
                      <br />
                      <input className="event_input" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
                      <span >&nbsp;Enter End Time </span>
+                     <br />
+                     <span className="error">{this.state.errors["eventEndTime"]}</span>
+                     <br />
+                     <input className="event_input" type='number' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
+                     <span >&nbsp; Enter Available Spots </span>
                      <br />
                      <span className="error">{this.state.errors["eventEndTime"]}</span>
                      <br />
