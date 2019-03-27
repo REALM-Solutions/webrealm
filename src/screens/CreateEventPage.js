@@ -177,7 +177,14 @@ class CreateEventPage extends Component {
             <form name="contactform" className="contactform" onSubmit={this.contactSubmit.bind(this)} style={{ width: '50%', }}>
                <div style={{ width: '100%' }}>
                   <fieldset style={{ width: '100%', margin: '5px' }} >
-                     <CategoryDropdown ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]} />
+                     <select className="categoryDropdown" ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]}>
+                        <option categoryType="sports">Sports</option>
+                        <option categoryType="study">Study</option>
+                        <option categoryType="games">Games</option>
+                        <option categoryType="entertainment">Entertainment</option>
+                        <option categoryType="casual">Casual</option>
+                        <option categoryType="miscelaneous">Miscelaneous</option>
+                     </select>
                      <input style={{ marginTop: '10px', width: '80%' }} className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
                      <span className="error">{this.state.errors["event_name"]}</span>
