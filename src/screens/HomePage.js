@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
 import { ListGroup } from "react-bootstrap";
-import CategoryDropdown from "../components/CategoryDropdown/CategoryDropdown";
+import CategoryButtonGroup from "../components/CategoryButtonGroup/CategoryButtonGroup";
 import EventLink from "../components/EventLink"
-// import CategoryDropdown from "../components/CategoryDropdown/CategoryDropdown";
 
 class HomePage extends Component {
    constructor(props) {
@@ -74,16 +73,9 @@ class HomePage extends Component {
             <img src={map} style={{ width: '80vh', height: '60vh', border: '2px solid #000000' }} />
             <div>
 
-               <CategoryDropdown />
+               <CategoryButtonGroup />
 
-               {/* <select style={{width:'800px', borderRadius:'4px', textAlign:'center'}}>
-                  <option selectedCategory="sports">Sports</option>
-                  <option selectedCategory="study">Study</option>
-                  <option selectedCategory="games">Games</option>
-                  <option selectedCategory="entertainment">Entertainment</option>
-                  <option selectedCategory="casual">Casual</option>
-                  <option selectedCategory="miscelaneous">Miscelaneous</option>
-               </select> */}
+
 
                <ListGroup as='ul'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements}

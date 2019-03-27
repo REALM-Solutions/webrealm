@@ -197,7 +197,7 @@ body {
  }
 
  input.event_input{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   height: 25px;
   border: 1px solid #d8d8d8;
   padding: 3px;
@@ -266,4 +266,55 @@ ul.list-group{
   width: 8vw  ;
   margin-right: 10px;
   margin-bottom: 5px;
+}
+
+.createEventFormContainer{
+  display: flex;
+  width: 100%;
+}
+
+.createEventMapContainer{
+  height:100%;
+  width:50%;
+}
+
+.eventform{
+  width: 50%;
+}
+
+.eventFormInputContainer{
+  width: 100%
+}
+
+.createEventFieldset{
+  width:100%;
+  margin: 5px;
+}
+
+.eventInputDateTimeContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.timeFormContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.spotsFormContainer{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.eventDescription{
+   padding-left: 0; 
+   border-radius: 3px;
+    width: 80%;
+}
+
+.btnpro{
+  border: #000 solid;
+  margin-top:5px;
+
 }
