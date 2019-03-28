@@ -258,12 +258,21 @@ ul.list-group{
 
 .event_input_small{
   margin-top: 5px;
-  width: 10vw  
+  width: 9vw;
+  margin-right: 10px;  
+  margin-bottom: 5px;
 }
 
 .event_input_smaller{
   margin-top: 5px;
   width: 8vw  ;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.event_input_smallerNums{
+  margin-top: 5px;
+  width: 6vw  ;
   margin-right: 10px;
   margin-bottom: 5px;
 }
@@ -305,6 +314,7 @@ ul.list-group{
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+  
 }
 
 .eventDescription{

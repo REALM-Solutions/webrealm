@@ -29,13 +29,13 @@ class CreateEventPage extends Component {
       //Name
       if (!fields["eventNameText"]) {
          this.state.formIsValid = false;
-         errors["eventNameText"] = "Please enter an event ";
+         errors["eventNameText"] = "Please enter an event name";
       }
 
-      if (typeof fields["event_name"] !== "undefined") {
-         if (!fields["event_name"].match(/^[\S\s]{5,25}$/)) {
+      if (typeof fields["eventNameText"] !== "undefined") {
+         if (!fields["eventNameText"].match(/^[\S\s]{3,25}$/)) {
             this.state.formIsValid = false;
-            errors["event_name"] = "Name must be longer than a curse word";
+            errors["eventNameText"] = "Name must be longer than 3 characters";
          }
       }
 
@@ -103,7 +103,7 @@ class CreateEventPage extends Component {
       if (typeof fields["eventDescription"] !== "undefined") {
          if (!fields["eventDescription"].match(/^[\S\s]{5,325}$/)) {
             this.state.formIsValid = false;
-            errors["eventDescription"] = "Description must be longer than a curse word, but shorter than War and Peace";
+            errors["eventDescription"] = "Description must be longer than 5 characters and less than 325 characters";
          }
       }
 
@@ -158,6 +158,8 @@ class CreateEventPage extends Component {
 
 
       } else {
+         this.resetFields()
+         this.state.formIsValid = true;
          console.log("something went wrong, check validation errors")
       }
 
@@ -168,10 +170,13 @@ class CreateEventPage extends Component {
       let fields = this.state.fields;
       fields[field] = e.target.value;
       this.setState({ fields });
+      this.state.formIsValid = true
+      console.log(this.state.formIsValid)
    }
 
    resetFields() {
-      this.setState(this.baseState)
+      this.state = this.baseState
+
    }
 
 
@@ -186,9 +191,9 @@ class CreateEventPage extends Component {
                <div className="eventFormInputContainer" >
                   <fieldset className="createEventFieldset"  >
 
-                     <input className="event_input" ref="event_name" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
-                     
-                     <span className="error">{this.state.errors["event_name"]}</span>
+                     <input className="event_input" ref="eventNameText" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
+                     <br />
+                     <span className="error">{this.state.errors["eventNameText"]}</span>
                      <br />
 
                      <select className="categoryDropdown" ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]}>
@@ -202,10 +207,13 @@ class CreateEventPage extends Component {
                      <label> Select Category</label>
 
                      <div className="eventInputDateTimeContainer" >
-                        <input className="event_input_small" type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
-                        <br />
-                        <span className="error">{this.state.errors["eventDate"]}</span>
-                        <br />
+                        <div className="timeFormContainer">
+                           <input className="event_input_small" style={{ maxHeight: '22.667px' }} type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
+                           <label >Enter Date </label>
+                           <br />
+                           <span className="error">{this.state.errors["eventDate"]}</span>
+                           <br />
+                        </div>
 
                         <div className="timeFormContainer" >
                            <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
@@ -224,19 +232,18 @@ class CreateEventPage extends Component {
                         </div>
 
                         <div className="spotsFormContainer">
-                           <input className="event_input_smaller" type='number' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
-                           <label >Enter Available Spots </label>
+                           <input className="event_input_smallerNums" type='number' min='1' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
+                           <label >Available Spots </label>
                            <br />
                         </div>
                      </div>
-                     <span className="error">{this.state.errors["eventEndTime"]}</span>
-                     <br />
-                     <input style={{ width: '80%' }} className="event_input" refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
 
+
+                     <input className="event_input" style={{ width: '80%' }} refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
                      <span className="error">{this.state.errors["eventLocation"]}</span>
                      <br />
-                     <textarea  className="eventDescription"  refs="eventDescription" cols="28" rows="4"
-                         placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
+                     <textarea className="eventDescription" refs="eventDescription" cols="28" rows="4"
+                        placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
                      </textarea>
                      <br />
                      <span className="error">{this.state.errors["eventDescription"]}</span>
