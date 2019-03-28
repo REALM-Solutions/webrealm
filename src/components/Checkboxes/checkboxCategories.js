@@ -17,7 +17,7 @@ const checkboxes = [
   {
     name: 'Entertainment',
     key: 'entertainmentCheckBox',
-    label: 'Check Box 4',
+    label: 'Entertainment',
   },
   {
     name: 'Causal',
