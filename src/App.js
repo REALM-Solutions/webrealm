@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-// import './components/nav/NavBar';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import LogIn from "./screens/LogIn";
@@ -57,6 +56,7 @@ class App extends Component {
               {this.state.showMenu ? (
                 <div
                   className="menu" ref={(element) => { this.dropdownMenu = element; }}>
+                  {/* these NavLink styles must be hard coded to function properly */}
                   <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
                   {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
                   <NavLink to='/myEvents' style={{ color: 'black', display: 'block' }}>My Events</NavLink>
