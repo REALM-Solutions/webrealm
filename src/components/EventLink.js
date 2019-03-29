@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import style from '../assets/CSS/sharedStyles.css';
 import { Route, NavLink, HashRouter, Link } from "react-router-dom";
 
 

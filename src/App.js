@@ -47,20 +47,20 @@ class App extends Component {
       <HashRouter>
         <div>
           <ul className="header">
-            <li> <a><img src={logo} alt="" style={{ height: '40px', width: '40px' }} /></a> </li>
+            <li> <a><img className="headerLogo" src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/EventView">Events</NavLink></li>
+            <li><NavLink to="/">Events</NavLink></li>
             <li><NavLink to="/LogIn">Log-In</NavLink></li>
-            <li>  <div style={{ float: 'right',  padding: '10px' }}>
-            <input type="text" className="input" placeholder="Search..."  />
-            <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
+            <li>  <div className="navBarMenuBtnContainer" >
+              <input type="text" className="input" placeholder="Search..." />
+              <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
               {this.state.showMenu ? (
                 <div
-                  className="menu" style={{ color: 'red' }} ref={(element) => { this.dropdownMenu = element; }}>
-                  <NavLink to='/EventView' style={{color:'black', display:'block'}}>Profile</NavLink>
+                  className="menu" ref={(element) => { this.dropdownMenu = element; }}>
+                  <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
                   {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
-                  <NavLink to='/myEvents' style={{color:'black', display:'block'}}>My Events</NavLink>
-                  <NavLink to='/createEvent' style={{color:'black', display:'block'}}>Create Event</NavLink>
+                  <NavLink to='/myEvents' style={{ color: 'black', display: 'block' }}>My Events</NavLink>
+                  <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
                 </div>
               ) : (null)
               }
@@ -68,7 +68,7 @@ class App extends Component {
             </li>
           </ul>
 
-          <div className="content" style={{ minHeight: '700px', display:'flex', justifyContent:'center', width:'100%' }}>
+          <div className="content" >
             <Route exact path="/" component={HomePage} />
             <Route path="/EventView" component={EventView} />
             <Route path="/LogIn" component={LogIn} />

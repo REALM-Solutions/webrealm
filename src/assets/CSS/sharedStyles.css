@@ -3,7 +3,6 @@
 }
 #navbar{
     display: inline-block;
-    float: right;
 }
 #navbar ul li {
     margin:10px;
@@ -48,7 +47,12 @@ body {
   .content {
     background-color: #FFF;
     padding: 20px;
+    min-height: 700px;
+    display: flex;
+    justify-content: center;
+    width: 100%
   }
+  
   .content h2 {
     padding: 0;
     margin: 0;
@@ -129,7 +133,18 @@ body {
     border:2px solid #000;
     margin: 10px;
     text-align: left;
-    
+  }
+
+  .eventViewMapStylingCont{
+    display: flex;
+  }
+
+  .eventViewMainDiv{
+    text-align: center
+  }
+
+  .eventViewStrong{
+    font-size: large
   }
 
   .createEventViewMapStyling{ 
@@ -168,6 +183,13 @@ body {
     list-style-type:none ;
     padding:0;
 
+  }
+
+  .uleventdatali{
+    padding:5px;
+    height:60px;
+    margin-bottom: 5px;
+    text-align: center
   }
 
   .nav-item nav-link{
@@ -230,10 +252,17 @@ input.chkbox{
   margin-left:4px
 }
 
-ul.list-group{
+ulhp.list-group{
   list-style-type:none;
   text-align: center;
   width: 150vh;
+  margin: auto;
+}
+
+ulme.list-group{
+  list-style-type:none;
+  text-align: center;
+  width: 80vh;
   margin: auto;
 }
 
@@ -326,5 +355,59 @@ ul.list-group{
 .btnpro{
   border: #000 solid;
   margin-top:5px;
+}
 
+.noEventContatiner{  
+  align-self:center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 300px;
+}
+
+.noEventMsg{ 
+  font-size: 40px;
+  color: gray;
+}
+
+.navPillContainer{
+  width: 80%;
+  
+}
+
+.nav.nav-pills{
+  width:80%;
+  
+}
+
+.homePageBanner{
+  text-align:center;
+  margin: 0 auto;
+  
+}
+
+.homePageBannerMsg{
+  text-align: center;
+}
+
+.checkBxLbl{
+  padding: 10px;
+  margin-right: 4px;
+}
+
+.headerLogo{
+  height: 40px;
+  width: 40px;
+}
+
+.navBarMenuBtnContainer{
+  float: right;
+  padding: 10px;
+}
+
+.navBarMenuBtn{
+  color: white
+}
+
+.navlinkbtn{
+  
 }
