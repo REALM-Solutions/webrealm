@@ -48,7 +48,7 @@ class App extends Component {
           <ul className="header">
             <li> <a><img className="headerLogo" src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/">Events</NavLink></li>
+            <li><NavLink to="/myEvents">Events</NavLink></li>
             <li><NavLink to="/LogIn">Log-In</NavLink></li>
             <li>  <div className="navBarMenuBtnContainer" >
               <input type="text" className="input" placeholder="Search..." />
@@ -59,7 +59,6 @@ class App extends Component {
                   {/* these NavLink styles must be hard coded to function properly */}
                   <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
                   {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
-                  <NavLink to='/myEvents' style={{ color: 'black', display: 'block' }}>My Events</NavLink>
                   <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
                 </div>
               ) : (null)
