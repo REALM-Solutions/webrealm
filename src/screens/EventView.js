@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
-import addpicture from "../assets/images/addpicture.png";
 import "../assets/CSS/sharedStyles.css"
 
 class EventView extends Component {
@@ -41,17 +40,17 @@ class EventView extends Component {
 
       return (
 
-         <div style={{ textAlign: 'center' }}>
+         <div className="eventViewMainDiv">
             <h1 className="eventHeader">{this.state.name}</h1>
-         <span style={{display:'flex'}}>
+         <span className="eventViewMapStylingCont" >
             <img src={map} className="eventViewMapStyling" />
-            <p className='eventDescription'><strong style={{fontSize:'large'}}>Description: </strong><br/>{this.state.description}</p>
+            <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br/>{this.state.description}</p>
          </span>
 
             <span >
                <ul className="ulEventData">
 
-                  <li style={{ padding: '5px', height: '60px', marginBottom: '5px', textAlign: 'center' }}>
+                  <li className="uleventdatali" >
                      <text className="lisTxt_lead">Total Attending:</text>
                      <text className="lisTxt_content">1s / </text>
                      <text className="lisTxt_lead">Total Capacity:</text>

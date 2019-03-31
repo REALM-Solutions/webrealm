@@ -44,8 +44,8 @@ class HomePage extends Component {
       let eventElements = []
       if (this.state.events === []) {
          eventElements.push(
-            <div style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', marginTop: 3000 }}>
-               <p style={{ fontSize: 40, color: 'gray' }}>No Events Found</p>
+            <div className="noEventContatiner">
+               <p className="noEventMsg">No Events Found</p>
             </div>
          )
       } else {
@@ -68,16 +68,16 @@ class HomePage extends Component {
          console.log("fetched")
       }
       return (
-         <div style={{ textAlign: 'center', margin: '0 auto', width: '100%', height: '100%' }}>
-            <h1 style={{ textAlign: 'center' }}>Welcome "USER"</h1>
-            <img src={map} style={{ width: '80vh', height: '60vh', border: '2px solid #000000' }} />
+         <div className="homePageBanner" >
+            <h1 className="homePageBannerMsg">Welcome "USER"</h1>
+            <img className="eventViewMapStyling" src={map}  />
             <div>
 
                <CategoryButtonGroup />
 
 
 
-               <ListGroup as='ul'>
+               <ListGroup as='ulhp'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements}
                </ListGroup>
             </div>

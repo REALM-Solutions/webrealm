@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
-import addpicture from "../assets/images/addpicture.png";
 import "../assets/CSS/sharedStyles.css";
 import TabList from '../components/TabList';
 import EventsList from "../components/EventsList";
@@ -11,7 +10,7 @@ class MyEvents extends Component {
 
       return (
          <div className="tabsFlexContainer" >
-            <TabList style={{width:'100vh'}}>
+            <TabList >
                <div label="Attending" className="tab-content">
                   <EventsList/>
                </div>
