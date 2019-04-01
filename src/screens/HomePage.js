@@ -62,6 +62,7 @@ class HomePage extends Component {
                   location={event.location}
                   description={event.description}
                   spotsAvailable={event.availableSpots}
+                  attendees={event.attendees}
                />
             )
          })

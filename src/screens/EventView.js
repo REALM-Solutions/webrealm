@@ -5,7 +5,7 @@ import "../assets/CSS/sharedStyles.css"
 class EventView extends Component {
    constructor(props) {
       super(props);
-      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable } = props.location.state
+      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable , attendees} = props.location.state
 
       this.state = {
          green: false,
@@ -17,7 +17,8 @@ class EventView extends Component {
          endTime: endTime,
          location: location,
          description: description,
-         spotsAvailable: spotsAvailable
+         spotsAvailable: spotsAvailable,
+         attendees: attendees
       }
    }
 
@@ -52,7 +53,7 @@ class EventView extends Component {
 
                   <li className="uleventdatali" >
                      <text className="lisTxt_lead">Total Attending:</text>
-                     <text className="lisTxt_content">1s / </text>
+                     <text className="lisTxt_content">{this.state.attendees} </text>
                      <text className="lisTxt_lead">Total Capacity:</text>
                      <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
                   </li>

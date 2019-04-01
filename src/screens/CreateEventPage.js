@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import map from "../assets/images/map.PNG";
-// import CategoryButtonGroup from '../components/CategoryButtonGroup/CategoryButtonGroup';
-import CategoryDropdown from '../components/CategoryDropdown/CategoryDropdown';
+
 
 
 class CreateEventPage extends Component {
