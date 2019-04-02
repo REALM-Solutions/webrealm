@@ -32,7 +32,7 @@ class CreateEventPage extends Component {
       }
 
       if (typeof fields["eventNameText"] !== "undefined") {
-         if (!fields["eventNameText"].match(/^[\S\s]{3,25}$/)) {
+         if (!fields["eventNameText"].match(/^[\S\s]{3,15}$/)) {
             this.state.formIsValid = false;
             errors["eventNameText"] = "Name must be longer than 3 characters";
          }
@@ -97,6 +97,12 @@ class CreateEventPage extends Component {
          this.state.formIsValid = false;
          errors["eventLocation"] = "Cannot be empty";
       }
+      if (typeof fields["eventLocation"] !== "undefined") {
+         if (!fields["eventLocation"].match(/^[\S\s]{3,12}$/)) {
+            this.state.formIsValid = false;
+            errors["eventLocation"] = "Location must be longer than 3 characters";
+         }
+      }
 
       //Description
       if (typeof fields["eventDescription"] !== "undefined") {
@@ -140,7 +146,6 @@ class CreateEventPage extends Component {
                   username: "pperez"
                },
                availableSpots: eventSpotsAvailable,
-               // availableSpots: eventSpotsAvailable,
                coordinates: '',
                public: 'true'
             }),

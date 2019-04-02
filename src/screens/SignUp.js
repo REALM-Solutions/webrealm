@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Route, NavLink, HashRouter } from "react-router-dom";
+import TermsandConditions from "./TermsandConditions";
 
 class SignUp extends Component {
    constructor(props) {
@@ -10,13 +12,14 @@ class SignUp extends Component {
          formIsValid: true
 
       }
+      this.handleValidation = this.handleValidation.bind(this)
 
    }
 
    userSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
-         let { firstName, lastName, email, tscs, schoolName, password, verifyPassword } = this.state.fields
+         let { firstName, lastName, email,  password,  } = this.state.fields
          console.log(this.state.fields)
          fetch('http://localhost:8080/users', {
             method: 'POST',
@@ -28,7 +31,8 @@ class SignUp extends Component {
                firstName: firstName,
                lastName: lastName,
                email: email,
-               password: password
+               password: password,
+               photoUrl: "ljhl"
             }),
          }).then((response) => response.json())
             .then((responseJson) => {
@@ -44,6 +48,7 @@ class SignUp extends Component {
 
       } else {
          this.resetFields()
+         
          this.state.formIsValid = true;
          console.log("something went wrong, check validation errors")
       }
@@ -63,6 +68,13 @@ class SignUp extends Component {
 
    }
 
+   handleValidation() {
+      let fields = this.state.fields;
+      let errors = {};
+      console.log(fields)
+      return this.state.formIsValid;
+   }
+
    render() {
       return (
          <form name="userform" className="userform" onSubmit={this.userSubmit.bind(this)} >
@@ -80,13 +92,12 @@ class SignUp extends Component {
                <br />
                <input className="userInput" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} />
                <br />
-               <input className="userInput" ref="password" type="text" size="30" placeholder="Password" value={this.state.fields["password"]} />
+               <input className="userInput" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]} />
                <br />
-               <input className="userInput" ref="verifyPassword" type="text" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "verifyPassword")} value={this.state.fields["verifyPassword"]} />
+               <input className="userInput" ref="verifyPassword" type="text" size="30" placeholder="Verify Password"  value={this.state.fields["verifyPassword"]} />
                <br />
 
-               <input type="checkbox" value="TscsAccepted" onChange={this.handleChange.bind(this, "tscs")} value={this.state.fields["tscs"]} />
-               <label>Accept Terms & Conditions</label>
+               <p>By signing up, you agree to the <NavLink to="/TermsandConditions">Terms & Conditions</NavLink></p>
                <br />
                <button className="btnpro" id="submit" value="Submit">Complete Sign-Up</button>
             </div>

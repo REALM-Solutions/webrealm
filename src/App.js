@@ -8,6 +8,7 @@ import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
 import logo from './assets/images/logo3.png';
 import MyEvents from './screens/MyEvents';
+import TermsandConditions from './screens/TermsandConditions';
 
 
 class App extends Component {
@@ -73,6 +74,7 @@ class App extends Component {
             <Route path="/SignUp" component={SignUp} />
             <Route path='/createEvent' component={CreateEventPage} />
             <Route path='/myEvents' component={MyEvents} />
+            <Route exact path="/TermsandConditions" component={TermsandConditions} />
           </div>
         </div>
       </HashRouter>

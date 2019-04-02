@@ -1,15 +1,4 @@
-#navbar{
-    text-align: right;
-}
-#navbar{
-    display: inline-block;
-}
-#navbar ul li {
-    margin:10px;
-    display: flex;
-    align-items: center;
-    height: 70px;
-}
+
 .dropdown {
     position: relative;
     display: inline-block;
