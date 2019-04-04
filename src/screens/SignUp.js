@@ -1,26 +1,34 @@
 import React, { Component } from "react";
-import { Route, NavLink, HashRouter } from "react-router-dom";
-import TermsandConditions from "./TermsandConditions";
+import {  NavLink,  } from "react-router-dom";
+import {validateEmail, validateName, validatePassword} from "../assets/helpers/userValidationTools"
+
 
 class SignUp extends Component {
    constructor(props) {
       super(props);
 
       this.state = {
-         fields: {},
-         errors: {},
+         firstName: '',
+         lastName: '',
+         email:'',
+         password: '',
+         passwordVerification: '',
          formIsValid: true
 
       }
+
+      this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
+      this.errorSpan = this.errorSpan.bind(this)
 
    }
 
    userSubmit(e) {
       e.preventDefault();
+      console.log(this.state.formIsValid)
       if (this.handleValidation()) {
-         let { firstName, lastName, email,  password,  } = this.state.fields
-         console.log(this.state.fields)
+         let { firstName, lastName, email, password, } = this.state
+         console.log(this.state)
          fetch('http://localhost:8080/users', {
             method: 'POST',
             headers: {
@@ -32,7 +40,7 @@ class SignUp extends Component {
                lastName: lastName,
                email: email,
                password: password,
-               photoUrl: "ljhl"
+               photoUrl: ""
             }),
          }).then((response) => response.json())
             .then((responseJson) => {
@@ -48,58 +56,67 @@ class SignUp extends Component {
 
       } else {
          this.resetFields()
-         
-         this.state.formIsValid = true;
+
+         //this.state.formIsValid = true;
          console.log("something went wrong, check validation errors")
       }
 
    }
 
    handleChange(field, e) {
-      let fields = this.state.fields;
-      fields[field] = e.target.value;
-      this.setState({ fields });
-      this.state.formIsValid = true
+      
+      this.state[field]=e.target.value;
+      this.setState({ field });
+      this.state.formIsValid=true
       console.log(this.state.formIsValid)
+      console.log(this.state)
    }
 
    resetFields() {
       this.state = this.baseState
+   }
+
+   errorSpan(message){
+      this.setState({errorMsg:message})
+
 
    }
 
    handleValidation() {
-      let fields = this.state.fields;
-      let errors = {};
-      console.log(fields)
-      return this.state.formIsValid;
+     
+      if (validateEmail(this.state.email, this.errorSpan) && validateName(this.state.firstName, this.errorSpan) && 
+      validateName(this.state.lastName, this.errorSpan) && validatePassword(this.state.password, this.state.passwordVerification, this.errorSpan)) {
+         console.log("handleValidation")
+      return this.state.formIsValid=true;
    }
+}
 
    render() {
       return (
-         <form name="userform" className="userform" onSubmit={this.userSubmit.bind(this)} >
+         <form name="userform" className="userform" style={{width:'100%', textAlign:'center'}} onSubmit={this.userSubmit.bind(this)} >
             <div className="logInFormContainer">
-               <input className="userInput" ref="firstNameText" type="text" size="30" placeholder="First Name" onChange={this.handleChange.bind(this, "firstName")} value={this.state.fields["firstName"]} />
+            <h1>Welcome to On the Quad!</h1>
+            <p>
+            We at REALM Solutions spent days and nights 
+            building it for you!<br/> Please create a free account to be 
+            able to view events happining on your campus,<br/> or to 
+            create new events that others can attend!</p>
+               <input className="user_input" ref="firstNameText" type="text" size="30" placeholder="First Name" onChange={this.handleChange.bind(this, "firstName")} value={this.state.firstName} />
                <br />
-               <input className="userInput" ref="lastNameText" type="text" size="30" placeholder="Last Name" onChange={this.handleChange.bind(this, "lastName")} value={this.state.fields["lastName"]} />
+               <input className="user_input" ref="lastNameText" type="text" size="30" placeholder="Last Name" onChange={this.handleChange.bind(this, "lastName")} value={this.state.lastName} />
                <br />
-               <select className="schoolDropdown" ref='schoolName' onChange={this.handleChange.bind(this, "schoolName")} value={this.state.fields["schoolName"]}>
-                  <option schoolName="MSU">Metropolitan State University</option>
-                  <option schoolName="CUD">Colorado University, Denver</option>
-                  <option schoolName="CCD">Community College Of Denver</option>
-               </select>
-               <label> Select Category</label>
+               <input className="user_input" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.email} />
                <br />
-               <input className="userInput" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.fields["email"]} />
+               <input className="user_input" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
                <br />
-               <input className="userInput" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]} />
-               <br />
-               <input className="userInput" ref="verifyPassword" type="text" size="30" placeholder="Verify Password"  value={this.state.fields["verifyPassword"]} />
+               <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password"  onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
                <br />
 
                <p>By signing up, you agree to the <NavLink to="/TermsandConditions">Terms & Conditions</NavLink></p>
                <br />
-               <button className="btnpro" id="submit" value="Submit">Complete Sign-Up</button>
+               <button className="btnpro" id="submit" value="Submit">Sign-Up</button>
+               <br />
+               <span className="error">{this.state.errorMsg}</span>
             </div>
          </form>
 

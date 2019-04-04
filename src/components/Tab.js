@@ -23,12 +23,12 @@ export default class Tab extends Component {
     }
 
     return (
-      <a style={{width:'50%'}}
+      <p style={{width:'50%'}}
         className={className}
         onClick={onClick}
       >
         {label}
-      </a>
+      </p>
     );
   }
 }

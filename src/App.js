@@ -6,7 +6,7 @@ import SignUp from "./screens/SignUp";
 import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
-import logo from './assets/images/logo3.png';
+import logo from './assets/images/otqicon.png';
 import MyEvents from './screens/MyEvents';
 import TermsandConditions from './screens/TermsandConditions';
 
@@ -47,7 +47,7 @@ class App extends Component {
       <HashRouter>
         <div>
           <ul className="header">
-            <li> <a><img className="headerLogo" src={logo} alt="" /></a> </li>
+            <li> <a style={{padding:'0'}}><img className="headerLogo"  src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/myEvents">Events</NavLink></li>
             <li><NavLink to="/SignUp">Sign Up</NavLink></li>

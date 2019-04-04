@@ -27,20 +27,20 @@ class CreateEventPage extends Component {
 
       //Name
       if (!fields["eventNameText"]) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState( false);
          errors["eventNameText"] = "Please enter an event name";
       }
 
       if (typeof fields["eventNameText"] !== "undefined") {
          if (!fields["eventNameText"].match(/^[\S\s]{3,15}$/)) {
-            this.state.formIsValid = false;
+            this.state.formIsValid.setState(false);
             errors["eventNameText"] = "Name must be longer than 3 characters";
          }
       }
 
       //Event Date
       if (!fields["eventDate"]) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventDate"] = "Please enter a valid date";
       }
       var dateObj = new Date();
@@ -72,34 +72,34 @@ class CreateEventPage extends Component {
       console.log(dif + " " + chsnDate + " " + newDate)
 
       if (dif < 0) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventDate"] = "Please enter a valid date";
       }
 
       //Event Start Time
       if (!fields["eventStartTime"]) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventStartTime"] = "Please enter a valid time";
       }
 
       //Event End Time
       if (!fields["eventEndTime"]) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventEndTime"] = "Please enter a valid time";
       }
       if (this.state.fields.eventStartTime > this.state.fields.eventEndTime) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventEndTime"] = "This must be later than the start time."
       }
 
       //Location
       if (!fields["eventLocation"]) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventLocation"] = "Cannot be empty";
       }
       if (typeof fields["eventLocation"] !== "undefined") {
          if (!fields["eventLocation"].match(/^[\S\s]{3,12}$/)) {
-            this.state.formIsValid = false;
+            this.state.formIsValid.setState(false);
             errors["eventLocation"] = "Location must be longer than 3 characters";
          }
       }
@@ -107,13 +107,13 @@ class CreateEventPage extends Component {
       //Description
       if (typeof fields["eventDescription"] !== "undefined") {
          if (!fields["eventDescription"].match(/^[\S\s]{5,325}$/)) {
-            this.state.formIsValid = false;
+            this.state.formIsValid.setState(false);
             errors["eventDescription"] = "Description must be longer than 5 characters and less than 325 characters";
          }
       }
 
       if (!fields["eventDescription"]) {
-         this.state.formIsValid = false;
+         this.state.formIsValid.setState(false);
          errors["eventDescription"] = "Please enter an event description.";
       }
 
@@ -158,12 +158,13 @@ class CreateEventPage extends Component {
             })
          alert('Event Created')
          this.resetFields()
+         
          console.log(this.state + "reset state")
 
 
       } else {
          this.resetFields()
-         this.state.formIsValid = true;
+         this.state.formIsValid.setState(true);
          console.log("something went wrong, check validation errors")
       }
 
@@ -174,13 +175,12 @@ class CreateEventPage extends Component {
       let fields = this.state.fields;
       fields[field] = e.target.value;
       this.setState({ fields });
-      this.state.formIsValid = true
+      this.state.formIsValid.setState(true);
       console.log(this.state.formIsValid)
    }
 
    resetFields() {
-      this.state = this.baseState
-
+      this.state.setState(this.baseState)
    }
 
 
@@ -189,7 +189,7 @@ class CreateEventPage extends Component {
 
          <div className="createEventFormContainer" >
             <div className="createEventMapContainer" >
-               <img className="createEventViewMapStyling" src={map} />
+               <img className="createEventViewMapStyling" alt="" src={map} />
             </div>
             <form name="eventform" className="eventform" onSubmit={this.eventSubmit.bind(this)} >
                <div className="eventFormInputContainer" >

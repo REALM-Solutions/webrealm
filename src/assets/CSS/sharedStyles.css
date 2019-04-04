@@ -214,12 +214,22 @@ body {
   padding: 3px;
   border-radius: 3px;
   margin-top: 10px;
-  width: 37vw
+  width: 37vw;
+  text-align: center
 }
-
+input.user_input{
+  margin-bottom: 10px;
+  height: 25px;
+  border: 1px solid #d8d8d8;
+  padding: 3px;
+  border-radius: 3px;
+  margin-top: 10px;
+  width: 27vw;
+  text-align: center
+}
 .error{
   margin-left: 5px;
-  font-size: 10px;
+  font-size: 20px;
   color: red;
   height: 10px;
 }
@@ -384,8 +394,8 @@ ulme.list-group{
 }
 
 .headerLogo{
-  height: 40px;
-  width: 40px;
+  height: 80px;
+  width: 80px;
 }
 
 .navBarMenuBtnContainer{
@@ -397,6 +407,7 @@ ulme.list-group{
   color: white
 }
 
-.navlinkbtn{
-  
+.logInFormContainer{
+  display: flexbox;
+  flex-direction: column;  
 }

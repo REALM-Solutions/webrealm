@@ -44,7 +44,7 @@ class EventView extends Component {
          <div className="eventViewMainDiv">
             <h1 className="eventHeader">{this.state.name}</h1>
          <span className="eventViewMapStylingCont" >
-            <img src={map} className="eventViewMapStyling" />
+            <img src={map} alt="" className="eventViewMapStyling" />
             <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br/>{this.state.description}</p>
          </span>
 
