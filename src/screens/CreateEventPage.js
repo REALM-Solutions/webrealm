@@ -27,7 +27,7 @@ class CreateEventPage extends Component {
 
       //Name
       if (!fields["eventNameText"]) {
-         this.state.formIsValid.setState( false);
+         this.state.formIsValid.setState(false);
          errors["eventNameText"] = "Please enter an event name";
       }
 
@@ -158,8 +158,9 @@ class CreateEventPage extends Component {
             })
          alert('Event Created')
          this.resetFields()
-         
+
          console.log(this.state + "reset state")
+         this.props.history.push('/')
 
 
       } else {
