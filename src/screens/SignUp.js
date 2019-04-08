@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {  NavLink,  } from "react-router-dom";
-import {validateEmail, validateName, validatePassword} from "../assets/helpers/userValidationTools"
+import { NavLink, } from "react-router-dom";
+import { validateEmail, validateName, validatePassword } from "../assets/helpers/userValidationTools"
 
 
 class SignUp extends Component {
@@ -10,10 +10,11 @@ class SignUp extends Component {
       this.state = {
          firstName: '',
          lastName: '',
-         email:'',
+         email: '',
          password: '',
          passwordVerification: '',
-         formIsValid: true
+         formIsValid: true,
+         redirectToHome: false,
 
       }
 
@@ -52,22 +53,21 @@ class SignUp extends Component {
          alert('User Created')
          this.resetFields()
          console.log(this.state + "reset state")
+         this.props.history.push('/')
+
 
 
       } else {
          this.resetFields()
-
-         //this.state.formIsValid = true;
+         this.state.formIsValid.setState(true);
          console.log("something went wrong, check validation errors")
       }
-
    }
 
    handleChange(field, e) {
-      
-      this.state[field]=e.target.value;
+      this.state[field] = e.target.value;
       this.setState({ field });
-      this.state.formIsValid=true
+      this.state.formIsValid = true
       console.log(this.state.formIsValid)
       console.log(this.state)
    }
@@ -76,31 +76,25 @@ class SignUp extends Component {
       this.state = this.baseState
    }
 
-   errorSpan(message){
-      this.setState({errorMsg:message})
-
-
+   errorSpan(message) {
+      this.setState({ errorMsg: message })
    }
 
    handleValidation() {
-     
-      if (validateEmail(this.state.email, this.errorSpan) && validateName(this.state.firstName, this.errorSpan) && 
-      validateName(this.state.lastName, this.errorSpan) && validatePassword(this.state.password, this.state.passwordVerification, this.errorSpan)) {
+      if (validateEmail(this.state.email, this.errorSpan) && validateName(this.state.firstName, this.errorSpan) &&
+         validateName(this.state.lastName, this.errorSpan) && validatePassword(this.state.password, this.state.passwordVerification, this.errorSpan)) {
          console.log("handleValidation")
-      return this.state.formIsValid=true;
+         return this.state.formIsValid = true;
+      }
    }
-}
 
    render() {
+
       return (
-         <form name="userform" className="userform" style={{width:'100%', textAlign:'center'}} onSubmit={this.userSubmit.bind(this)} >
+         <form name="userform" className="userform" style={{ width: '100%', textAlign: 'center' }} onSubmit={this.userSubmit.bind(this)} >
             <div className="logInFormContainer">
-            <h1>Welcome to On the Quad!</h1>
-            <p>
-            We at REALM Solutions spent days and nights 
-            building it for you!<br/> Please create a free account to be 
-            able to view events happining on your campus,<br/> or to 
-            create new events that others can attend!</p>
+               <h1>Welcome to On the Quad!</h1>
+               <p>Please create a free account to be able to let event organizers know that you're going or to create new events that others can attend!</p>
                <input className="user_input" ref="firstNameText" type="text" size="30" placeholder="First Name" onChange={this.handleChange.bind(this, "firstName")} value={this.state.firstName} />
                <br />
                <input className="user_input" ref="lastNameText" type="text" size="30" placeholder="Last Name" onChange={this.handleChange.bind(this, "lastName")} value={this.state.lastName} />
@@ -109,9 +103,8 @@ class SignUp extends Component {
                <br />
                <input className="user_input" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
                <br />
-               <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password"  onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
+               <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
                <br />
-
                <p>By signing up, you agree to the <NavLink to="/TermsandConditions">Terms & Conditions</NavLink></p>
                <br />
                <button className="btnpro" id="submit" value="Submit">Sign-Up</button>
