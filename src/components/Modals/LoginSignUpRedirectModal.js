@@ -20,13 +20,13 @@ const modal = (props) => {
                     <h3>Please Sign Up For a Free Account</h3>
                 </div>
                 <div className="modal-body"  >
-                    <p className="modal-body-text" style={{color:"white"}}>
+                    <p className="modal-body-text" >
                     To view and create events, please consider signing up for a free On The Quad Account!
                     </p>
                 </div>
                 <div className="modal-footer">
-                <NavLink  style={{paddingRight:'30px'}} to="/"><button style={{height:'30px', backgroundColor:" #ff3333", color:"white", borderRadius:"5px"}}>Home</button></NavLink>
-                <NavLink to="/SignUp"><button style={{height:'30px', backgroundColor:" #00cc00", color:"white", borderRadius:"5px"}}>Sign Up</button></NavLink>
+                <NavLink style={{paddingRight:'30px'}} to="/"><button className="modal-signup-nav-btn" style={{backgroundColor:" #e60000"}}>Home</button></NavLink>
+                <NavLink to="/SignUp"><button className="modal-signup-nav-btn" style={{ backgroundColor:" #00cc00"}}>Sign Up</button></NavLink>
                 </div>
             </div>
         </div>

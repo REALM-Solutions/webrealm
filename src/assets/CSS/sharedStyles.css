@@ -445,6 +445,10 @@ ulme.list-group{
   background-image: url(../images/splash.png);
   background-size:cover;
 }
+.modal-body-text{
+  color:white;
+  font-size: 200%
+}
 
 
 .modal-footer {
@@ -463,6 +467,12 @@ ulme.list-group{
 
 .close-modal-btn:hover {
   color: black;
+}
+
+.modal-signup-nav-btn{
+  height:30px;
+  color: white;
+  border-radius: 5px;
 }
 
 .btn-cancel, .btn-continue {
@@ -487,10 +497,10 @@ ulme.list-group{
 
 .back-drop {
   background-color: rgba(48, 49, 48, 0.42);
-  height: 100%;
+  height: 60%;
   position: fixed;
   transition: all 1.3s;
-  width: 100%;
+  width: 90%;
 }
 
 .open-modal-btn {
