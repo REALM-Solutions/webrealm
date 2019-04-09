@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 class EventView extends Component {
    constructor(props) {
@@ -24,21 +25,30 @@ class EventView extends Component {
       }
    }
 
+   componentDidMount() {
+      // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav). 
+      // this.targetElement = document.querySelector("eventview_wrapper");
+      clearAllBodyScrollLocks();
+    }
 
    changeColor() {
       this.setState({ green: !this.state.green })
    }
 
    openModalHandler = () => {
+      disableBodyScroll(this.targetElement);
       this.setState({
          isShowing: true
       });
    }
 
    closeModalHandler = () => {
+      enableBodyScroll(this.targetElement);
+      clearAllBodyScrollLocks();
       this.setState({
          isShowing: false
       });
+     
       this.props.history.push('/')
    }
 
@@ -58,14 +68,15 @@ class EventView extends Component {
       return (
          <div className="eventview_wrapper">
             {this.state.isShowing ? <div className="back-drop"></div> : null}
-            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
+            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
 
             {this.state.isShowing ? <Modal
                className="modal"
                show={this.state.isShowing}
                close={this.closeModalHandler}>
             </Modal> : null}
-            {!this.state.isShowing ? <div className="eventViewMainDiv">
+            
+            <div className="eventViewMainDiv">
 
                <h1 className="eventHeader">{this.state.name}</h1>
                <span className="eventViewMapStylingCont" >

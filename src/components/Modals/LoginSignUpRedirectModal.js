@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, } from "react-router-dom";
 import "../../assets/CSS/sharedStyles.css"
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 
 const modal = (props) => {
@@ -25,7 +26,8 @@ const modal = (props) => {
                     </p>
                 </div>
                 <div className="modal-footer">
-                <NavLink style={{paddingRight:'30px'}} to="/"><button className="modal-signup-nav-btn" style={{backgroundColor:" #e60000"}}>Home</button></NavLink>
+                <NavLink style={{paddingRight:'30px'}} to="/"><button className="modal-signup-nav-btn" style={{backgroundColor:" #e60000"}} 
+                onClick={() => {clearAllBodyScrollLocks()}}>Home</button></NavLink>
                 <NavLink to="/SignUp"><button className="modal-signup-nav-btn" style={{ backgroundColor:" #00cc00"}}>Sign Up</button></NavLink>
                 </div>
             </div>

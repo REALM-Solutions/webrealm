@@ -497,17 +497,22 @@ ulme.list-group{
 }
 
 .back-drop {
-  background-color: rgba(48, 49, 48, 0.42);
-  height: 60%;
-  position: fixed;
+  background-color: rgba(0, 0, 0, .9);
+  height: 100%;
   transition: all 1.3s;
   width: 90%;
+  position: fixed;
 }
 
 .open-modal-btn {
   margin: 15px;
   padding: 10px;
   font-weight: bold;
+}
+.modtst{
+  position: fixed;
+  height: 100%;
+  
 }
 
 .my_events_wrapper{

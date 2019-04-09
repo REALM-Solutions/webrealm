@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import map from "../assets/images/map.PNG";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 
 
@@ -13,7 +14,6 @@ class CreateEventPage extends Component {
          errors: {},
          formIsValid: true,
          showModal:false,
-         isShowing: false
       }
 
       this.baseState = this.state
@@ -21,16 +21,24 @@ class CreateEventPage extends Component {
       this.handleValidation = this.handleValidation.bind(this)
    }
 
+   componentDidMount() {
+      // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav). 
+      this.targetElement = document.querySelector("create_event_wrapper");
+      clearAllBodyScrollLocks();
+    }
+
    openModalHandler = () => {
+      
+    disableBodyScroll(this.targetElement);
       this.setState({
-         isShowing: true
+         showModal: true
       });
    }
 
    closeModalHandler = () => {
-      this.setState({
-         isShowing: false
-      });
+      enableBodyScroll(this.targetElement);
+      this.setState({showModal: false});
+      clearAllBodyScrollLocks();
       this.props.history.push('/')
    }
 
@@ -41,20 +49,20 @@ class CreateEventPage extends Component {
 
       //Name
       if (!fields["eventNameText"]) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventNameText"] = "Please enter an event name";
       }
 
       if (typeof fields["eventNameText"] !== "undefined") {
          if (!fields["eventNameText"].match(/^[\S\s]{3,15}$/)) {
-            this.state.formIsValid=false;
+            this.setState({formIsValid: false})
             errors["eventNameText"] = "Name must be longer than 3 characters";
          }
       }
 
       //Event Date
       if (!fields["eventDate"]) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventDate"] = "Please enter a valid date";
       }
       var dateObj = new Date();
@@ -86,34 +94,34 @@ class CreateEventPage extends Component {
       console.log(dif + " " + chsnDate + " " + newDate)
 
       if (dif < 0) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventDate"] = "Please enter a valid date";
       }
 
       //Event Start Time
       if (!fields["eventStartTime"]) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventStartTime"] = "Please enter a valid time";
       }
 
       //Event End Time
       if (!fields["eventEndTime"]) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventEndTime"] = "Please enter a valid time";
       }
       if (this.state.fields.eventStartTime > this.state.fields.eventEndTime) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventEndTime"] = "This must be later than the start time."
       }
 
       //Location
       if (!fields["eventLocation"]) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventLocation"] = "Cannot be empty";
       }
       if (typeof fields["eventLocation"] !== "undefined") {
          if (!fields["eventLocation"].match(/^[\S\s]{3,12}$/)) {
-            this.state.formIsValid=false;
+            this.setState({formIsValid: false})
             errors["eventLocation"] = "Location must be longer than 3 characters";
          }
       }
@@ -121,13 +129,13 @@ class CreateEventPage extends Component {
       //Description
       if (typeof fields["eventDescription"] !== "undefined") {
          if (!fields["eventDescription"].match(/^[\S\s]{5,325}$/)) {
-            this.state.formIsValid=false;
+            this.setState({formIsValid: false})
             errors["eventDescription"] = "Description must be longer than 5 characters and less than 325 characters";
          }
       }
 
       if (!fields["eventDescription"]) {
-         this.state.formIsValid=false;
+         this.setState({formIsValid: false})
          errors["eventDescription"] = "Please enter an event description.";
       }
 
@@ -206,16 +214,16 @@ class CreateEventPage extends Component {
    render() {
       return (
          <div className="create_event_wrapper">
-            {this.state.isShowing ? <div className="back-drop"></div> : null}
-            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
+            {this.state.showModal ? <div className="back-drop"></div> : null}
+            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
             
-            {this.state.isShowing ? <Modal 
+            {this.state.showModal ? <Modal 
                className="modal"
-               show={this.state.isShowing}
+               show={this.state.showModal}
                close={this.closeModalHandler}>               
             </Modal> : null }
 
-            {!this.state.isShowing ? <div className="createEventFormContainer" >
+            <div className="createEventFormContainer" >
             <div className="createEventMapContainer" >
                <img className="createEventViewMapStyling" alt="" src={map} />
             </div>
@@ -284,7 +292,7 @@ class CreateEventPage extends Component {
                   </fieldset>
                </div>
             </form>
-         </div> :null }
+         </div> 
          </div>
       )
    }
