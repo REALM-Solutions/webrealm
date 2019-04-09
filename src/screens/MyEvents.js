@@ -31,7 +31,7 @@ class MyEvents extends Component {
 
       return (
          <div className="my_events_wrapper" >
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             {this.state.isShowing ? <div className="back-drop">
             <Modal
                className="modal"

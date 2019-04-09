@@ -59,55 +59,55 @@ class EventView extends Component {
          <div className="eventview_wrapper">
             {this.state.isShowing ? <div className="back-drop"></div> : null}
             {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
-            
-            {this.state.isShowing ? <Modal 
+
+            {this.state.isShowing ? <Modal
                className="modal"
                show={this.state.isShowing}
-               close={this.closeModalHandler}>               
-            </Modal> : null }
-         {!this.state.isShowing ? <div className="eventViewMainDiv">
- 
-            <h1 className="eventHeader">{this.state.name}</h1>
-            <span className="eventViewMapStylingCont" >
-               <img src={map} alt="" className="eventViewMapStyling" />
-               <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
-            </span>
+               close={this.closeModalHandler}>
+            </Modal> : null}
+            {!this.state.isShowing ? <div className="eventViewMainDiv">
 
-            <span >
-               <ul className="ulEventData">
+               <h1 className="eventHeader">{this.state.name}</h1>
+               <span className="eventViewMapStylingCont" >
+                  <img src={map} alt="" className="eventViewMapStyling" />
+                  <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
+               </span>
 
-                  <li className="uleventdatali" >
-                     <text className="lisTxt_lead">Total Attending:</text>
-                     <text className="lisTxt_content">{this.state.attendees} </text>
-                     <text className="lisTxt_lead">Total Capacity:</text>
-                     <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
-                  </li>
+               <span >
+                  <ul className="ulEventData">
 
-                  <li className="eventLis">
-                     <text className="lisTxt_lead">Event Date and Time:</text>
-                     <text className="lisTxt_content"> {this.state.date} {this.state.startTime} to {this.state.endTime}</text>
-                  </li>
+                     <li className="uleventdatali" >
+                        <text className="lisTxt_lead">Total Attending:</text>
+                        <text className="lisTxt_content">{this.state.attendees} </text>
+                        <text className="lisTxt_lead">Total Capacity:</text>
+                        <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
+                     </li>
 
-                  <li className="eventLis">
-                     <text className="lisTxt_lead">Event Host:</text>
-                     <text className="lisTxt_content"> {this.state.host}</text>
-                  </li>
+                     <li className="eventLis">
+                        <text className="lisTxt_lead">Event Date and Time:</text>
+                        <text className="lisTxt_content"> {this.state.date} {this.state.startTime} to {this.state.endTime}</text>
+                     </li>
 
-                  <li className="eventLis">
-                     <text className="lisTxt_lead">Event Location:</text>
-                     <text className="lisTxt_content"> {this.state.location}</text>
-                  </li>
+                     <li className="eventLis">
+                        <text className="lisTxt_lead">Event Host:</text>
+                        <text className="lisTxt_content"> {this.state.host}</text>
+                     </li>
 
-               </ul>
+                     <li className="eventLis">
+                        <text className="lisTxt_lead">Event Location:</text>
+                        <text className="lisTxt_content"> {this.state.location}</text>
+                     </li>
 
-               <div >
-                  <button className={btn_class} onClick={this.changeColor.bind(this)}
-                     style={btn_classStyle}>
-                     {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
+                  </ul>
 
-               </div>
-            </span>
-         </div>:null}
+                  <div >
+                     <button className={btn_class} onClick={this.changeColor.bind(this)}
+                        style={btn_classStyle}>
+                        {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
+
+                  </div>
+               </span>
+            </div> : null}
          </div>
 
       );
