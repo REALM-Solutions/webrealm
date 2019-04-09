@@ -57,7 +57,7 @@ class EventView extends Component {
 
       return (
          <div className="eventview_wrapper">
-            {this.state.isShowing ? <div  onClick={this.closeModalHandler} className="back-drop"></div> : null}
+            {this.state.isShowing ? <div className="back-drop"></div> : null}
             {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             
             {this.state.isShowing ? <Modal 

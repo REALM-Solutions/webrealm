@@ -1,7 +1,6 @@
 import React from 'react';
-import { Route, NavLink, HashRouter, } from "react-router-dom";
+import { NavLink, } from "react-router-dom";
 import "../../assets/CSS/sharedStyles.css"
-import { Button } from 'react-bootstrap';
 
 
 const modal = (props) => {
