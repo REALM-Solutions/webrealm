@@ -10,8 +10,8 @@ class CreateEventPage extends Component {
       this.state = {
          fields: {},
          errors: {},
-         formIsValid: true
-
+         formIsValid: true,
+         showModal:false
       }
 
       this.baseState = this.state
@@ -121,6 +121,10 @@ class CreateEventPage extends Component {
       this.setState({ errors: errors });
       return this.state.formIsValid;
    }
+
+   showModal = () => {
+      this.setState({ showModal: true });
+    };
 
    eventSubmit(e) {
       e.preventDefault();

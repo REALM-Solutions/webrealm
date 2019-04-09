@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
-import "../assets/CSS/sharedStyles.css"
+import "../assets/CSS/sharedStyles.css";
+import Modal from "../components/Modals/SignInModal"
 
 class EventView extends Component {
    constructor(props) {
       super(props);
-      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable , attendees} = props.location.state
+      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, attendees } = props.location.state
 
       this.state = {
          green: false,
@@ -18,7 +19,8 @@ class EventView extends Component {
          location: location,
          description: description,
          spotsAvailable: spotsAvailable,
-         attendees: attendees
+         attendees: attendees,
+         isShowing: false
       }
    }
 
@@ -27,9 +29,26 @@ class EventView extends Component {
       this.setState({ green: !this.state.green })
    }
 
+   openModalHandler = () => {
+      this.setState({
+         isShowing: true
+      });
+   }
+
+   closeModalHandler = () => {
+      this.setState({
+         isShowing: false
+      });
+   }
+
+
+
+
+
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
       console.log(this.state)
+
 
       const btn_classStyle = {
          margin: '2em',
@@ -40,13 +59,23 @@ class EventView extends Component {
       };
 
       return (
-
          <div className="eventViewMainDiv">
+            {this.state.isShowing ? <div  onClick={this.closeModalHandler} className="back-drop"></div> : null}
+            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            
+            <Modal 
+               
+               className="modal"
+               show={this.state.isShowing}
+               close={this.closeModalHandler}>
+               Maybe aircrafts fly very high because they don't want to be seen in plane sight?
+            </Modal>
+
             <h1 className="eventHeader">{this.state.name}</h1>
-         <span className="eventViewMapStylingCont" >
-            <img src={map} alt="" className="eventViewMapStyling" />
-            <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br/>{this.state.description}</p>
-         </span>
+            <span className="eventViewMapStylingCont" >
+               <img src={map} alt="" className="eventViewMapStyling" />
+               <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
+            </span>
 
             <span >
                <ul className="ulEventData">
@@ -87,5 +116,7 @@ class EventView extends Component {
       );
    }
 }
+
+
 
 export default EventView;
