@@ -21,10 +21,12 @@ class SignUp extends Component {
       this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
       this.errorSpan = this.errorSpan.bind(this)
+      
 
    }
 
    userSubmit(e) {
+      console.log(e + "29")
       e.preventDefault();
       console.log(this.state.formIsValid)
       if (this.handleValidation()) {
@@ -65,6 +67,9 @@ class SignUp extends Component {
    }
 
    handleChange(field, e) {
+      
+      console.log(field)
+      console.log(this.state + "71")
       this.state[field] = e.target.value;
       this.setState({ field });
       this.state.formIsValid = true
@@ -73,17 +78,19 @@ class SignUp extends Component {
    }
 
    resetFields() {
+      console.log(this.state + "79")
       this.state = this.baseState
    }
 
    errorSpan(message) {
+      console.log(this.state + "84")
       this.setState({ errorMsg: message })
    }
 
    handleValidation() {
       if (validateEmail(this.state.email, this.errorSpan) && validateName(this.state.firstName, this.errorSpan) &&
          validateName(this.state.lastName, this.errorSpan) && validatePassword(this.state.password, this.state.passwordVerification, this.errorSpan)) {
-         console.log("handleValidation")
+            console.log(this.state + "90")
          return this.state.formIsValid = true;
       }
    }
@@ -101,9 +108,9 @@ class SignUp extends Component {
                <br />
                <input className="user_input" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.email} />
                <br />
-               <input className="user_input" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
+               <input className="user_input"  ref="password" type="password"  size="30" placeholder="Password"  onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
                <br />
-               <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
+               <input className="user_input" ref="password" type="password"  size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
                <br />
                <p>By signing up, you agree to the <NavLink to="/TermsandConditions">Terms & Conditions</NavLink></p>
                <br />
