@@ -206,7 +206,7 @@ class CreateEventPage extends Component {
       return (
          <div>
             {this.state.isShowing ? <div  onClick={this.closeModalHandler} className="back-drop"></div> : null}
-            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
+            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
             
             {this.state.isShowing ? <Modal 
                className="modal"
