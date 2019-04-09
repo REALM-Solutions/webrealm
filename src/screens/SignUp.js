@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, } from "react-router-dom";
 import { validateEmail, validateName, validatePassword } from "../assets/helpers/userValidationTools"
+import Modal from "../components/Modals/TermsAndConditionsModal"
 
 
 class SignUp extends Component {
@@ -22,6 +23,18 @@ class SignUp extends Component {
       this.handleValidation = this.handleValidation.bind(this)
       this.errorSpan = this.errorSpan.bind(this)
 
+   }
+
+   openModalHandler = () => {
+      this.setState({
+         isShowing: true
+      });
+   }
+
+   closeModalHandler = () => {
+      this.setState({
+         isShowing: false
+      });
    }
 
    userSubmit(e) {
@@ -105,7 +118,17 @@ class SignUp extends Component {
                <br />
                <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
                <br />
-               <p>By signing up, you agree to the <NavLink to="/TermsandConditions">Terms & Conditions</NavLink></p>
+
+               <p> {this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null}
+
+
+                  {this.state.isShowing ? <Modal
+                     className="modal"
+                     show={this.state.isShowing}
+                     close={this.closeModalHandler}>
+
+                  </Modal> : <p onClick={this.openModalHandler}>By siging up you agree to the Terms and Conditions</p>}</p>
+
                <br />
                <button className="btnpro" id="submit" value="Submit">Sign-Up</button>
                <br />
