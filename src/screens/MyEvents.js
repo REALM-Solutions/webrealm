@@ -3,7 +3,7 @@ import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
 import TabList from '../components/TabList';
 import EventsList from "../components/EventsList";
-import Modal from "../components/Modals/SignInModal"
+import Modal from "../components/Modals/LoginSignUpRedirectModal"
 
 class MyEvents extends Component {
    constructor(props) {
@@ -24,28 +24,20 @@ class MyEvents extends Component {
       this.setState({
          isShowing: false
       });
+      this.props.history.push('/')
    }
 
    render() {
 
       return (
-         <div>
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+         <div className="my_events_wrapper" >
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             {this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop">
             <Modal
                className="modal"
                show={this.state.isShowing}
                close={this.closeModalHandler}>
-               We Can Fly Twice As High...
             </Modal></div> : null}
-            
-
-            {/* {this.state.isShowing ? <Modal
-               className="modal"
-               show={this.state.isShowing}
-               close={this.closeModalHandler}>
-               We Can Fly Twice As High...
-            </Modal> : null} */}
 
             {!this.state.isShowing ? <div className="tabsFlexContainer" >
                <TabList >

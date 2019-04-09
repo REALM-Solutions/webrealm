@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import map from "../assets/images/map.PNG";
-import Modal from "../components/Modals/SignInModal"
+import Modal from "../components/Modals/LoginSignUpRedirectModal"
 
 
 
@@ -31,6 +31,7 @@ class CreateEventPage extends Component {
       this.setState({
          isShowing: false
       });
+      this.props.history.push('/')
    }
 
    handleValidation() {
@@ -204,15 +205,14 @@ class CreateEventPage extends Component {
 
    render() {
       return (
-         <div>
+         <div className="create_event_wrapper">
             {this.state.isShowing ? <div  onClick={this.closeModalHandler} className="back-drop"></div> : null}
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             
             {this.state.isShowing ? <Modal 
                className="modal"
                show={this.state.isShowing}
-               close={this.closeModalHandler}>
-               Maybe aircrafts fly very high because they don't want to be seen in plane sight?
+               close={this.closeModalHandler}>               
             </Modal> : null }
 
             {!this.state.isShowing ? <div className="createEventFormContainer" >

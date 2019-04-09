@@ -416,7 +416,7 @@ ulme.list-group{
   background: white;
   border: 1px solid #d0cccc;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-  margin: 100px auto 0;
+  margin: 10px auto 0;
   transition: all .8s;
   width: 60%;
 }
@@ -437,9 +437,15 @@ ulme.list-group{
 }
 
 .modal-body {
-  padding: 10px 15px;
+  padding: 50px 15px;
   text-align: center;
+  height:200px;
+  width: 100%;
+  background-color: #000;
+  background-image: url(../images/splash.png);
+  background-size:cover;
 }
+
 
 .modal-footer {
   background: #263238;
@@ -491,4 +497,17 @@ ulme.list-group{
   margin: 15px;
   padding: 10px;
   font-weight: bold;
+}
+
+.my_events_wrapper{
+  width: 100%
+}
+
+.create_event_wrapper{
+  position: fixed;
+  width: 100%
+}
+
+.eventview_wrapper{
+  width: 100%
 }

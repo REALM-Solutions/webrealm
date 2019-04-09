@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
-import Modal from "../components/Modals/SignInModal"
+import Modal from "../components/Modals/LoginSignUpRedirectModal"
 
 class EventView extends Component {
    constructor(props) {
@@ -39,6 +39,7 @@ class EventView extends Component {
       this.setState({
          isShowing: false
       });
+      this.props.history.push('/')
    }
 
    render() {
@@ -55,15 +56,14 @@ class EventView extends Component {
       };
 
       return (
-         <div>
+         <div className="eventview_wrapper">
             {this.state.isShowing ? <div  onClick={this.closeModalHandler} className="back-drop"></div> : null}
             {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             
             {this.state.isShowing ? <Modal 
                className="modal"
                show={this.state.isShowing}
-               close={this.closeModalHandler}>
-               Maybe aircrafts fly very high because they don't want to be seen in plane sight?
+               close={this.closeModalHandler}>               
             </Modal> : null }
          {!this.state.isShowing ? <div className="eventViewMainDiv">
  

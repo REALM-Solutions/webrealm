@@ -6,7 +6,7 @@ import SignUp from "./screens/SignUp";
 import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
-import logo from './assets/images/otqicon.png';
+import logo from './assets/images/splash.png';
 import MyEvents from './screens/MyEvents';
 import TermsandConditions from './screens/TermsandConditions';
 
