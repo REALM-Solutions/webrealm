@@ -54,6 +54,7 @@ class EventView extends Component {
                   <li className="uleventdatali" >
                      <text className="lisTxt_lead">Total Attending:</text>
                      <text className="lisTxt_content">{this.state.attendees} </text>
+                     {/* change to this.state.attendees.length when that feature is available */}
                      <text className="lisTxt_lead">Total Capacity:</text>
                      <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
                   </li>

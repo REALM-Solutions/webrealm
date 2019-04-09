@@ -13,7 +13,7 @@ class SignUp extends Component {
          email: '',
          password: '',
          passwordVerification: '',
-         formIsValid: true,
+         formIsValid: false,
          redirectToHome: false,
 
       }
@@ -59,7 +59,7 @@ class SignUp extends Component {
 
       } else {
          this.resetFields()
-         this.state.formIsValid.setState(true);
+         this.state.formIsValid.setState(false);
          console.log("something went wrong, check validation errors")
       }
    }
