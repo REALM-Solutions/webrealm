@@ -41,10 +41,6 @@ class EventView extends Component {
       });
    }
 
-
-
-
-
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
       console.log(this.state)
@@ -59,18 +55,18 @@ class EventView extends Component {
       };
 
       return (
-         <div className="eventViewMainDiv">
+         <div>
             {this.state.isShowing ? <div  onClick={this.closeModalHandler} className="back-drop"></div> : null}
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             
-            <Modal 
-               
+            {this.state.isShowing ? <Modal 
                className="modal"
                show={this.state.isShowing}
                close={this.closeModalHandler}>
                Maybe aircrafts fly very high because they don't want to be seen in plane sight?
-            </Modal>
-
+            </Modal> : null }
+         {!this.state.isShowing ? <div className="eventViewMainDiv">
+ 
             <h1 className="eventHeader">{this.state.name}</h1>
             <span className="eventViewMapStylingCont" >
                <img src={map} alt="" className="eventViewMapStyling" />
@@ -111,6 +107,7 @@ class EventView extends Component {
 
                </div>
             </span>
+         </div>:null}
          </div>
 
       );
