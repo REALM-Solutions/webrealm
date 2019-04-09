@@ -15,13 +15,14 @@ class SignUp extends Component {
          passwordVerification: '',
          formIsValid: false,
          redirectToHome: false,
+         photoUrl:''
 
       }
 
       this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
       this.errorSpan = this.errorSpan.bind(this)
-      
+
 
    }
 
@@ -30,7 +31,7 @@ class SignUp extends Component {
       e.preventDefault();
       console.log(this.state.formIsValid)
       if (this.handleValidation()) {
-         let { firstName, lastName, email, password, } = this.state
+         let { firstName, lastName, email, password, photoUrl } = this.state
          console.log(this.state)
          fetch('http://localhost:8080/users', {
             method: 'POST',
@@ -43,7 +44,7 @@ class SignUp extends Component {
                lastName: lastName,
                email: email,
                password: password,
-               photoUrl: ""
+               photoUrl: photoUrl
             }),
          }).then((response) => response.json())
             .then((responseJson) => {
@@ -60,14 +61,13 @@ class SignUp extends Component {
 
 
       } else {
-         this.resetFields()
-         this.state.formIsValid = false;
+         this.state.formIsValid = true;
          console.log("something went wrong, check validation errors")
       }
    }
 
    handleChange(field, e) {
-      
+
       console.log(field)
       console.log(this.state + "71")
       this.state[field] = e.target.value;
@@ -90,7 +90,7 @@ class SignUp extends Component {
    handleValidation() {
       if (validateEmail(this.state.email, this.errorSpan) && validateName(this.state.firstName, this.errorSpan) &&
          validateName(this.state.lastName, this.errorSpan) && validatePassword(this.state.password, this.state.passwordVerification, this.errorSpan)) {
-            console.log(this.state + "90")
+         console.log(this.state + "90")
          return this.state.formIsValid = true;
       }
    }
@@ -108,9 +108,9 @@ class SignUp extends Component {
                <br />
                <input className="user_input" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.email} />
                <br />
-               <input className="user_input"  ref="password" type="password"  size="30" placeholder="Password"  onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
+               <input className="user_input" ref="password" type="password" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
                <br />
-               <input className="user_input" ref="password" type="password"  size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
+               <input className="user_input" ref="password" type="password" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
                <br />
                <p>By signing up, you agree to the <NavLink to="/TermsandConditions">Terms & Conditions</NavLink></p>
                <br />
