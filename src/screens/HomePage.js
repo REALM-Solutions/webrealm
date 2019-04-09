@@ -62,6 +62,7 @@ class HomePage extends Component {
                   location={event.location}
                   description={event.description}
                   spotsAvailable={event.availableSpots}
+                  attendees={event.attendees}
                />
             )
          })
@@ -70,7 +71,7 @@ class HomePage extends Component {
       return (
          <div className="homePageBanner" >
             <h1 className="homePageBannerMsg">Welcome "USER"</h1>
-            <img className="eventViewMapStyling" src={map}  />
+            <img className="eventViewMapStyling" alt="" src={map}  />
             <div>
 
                <CategoryButtonGroup />

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
-import LogIn from "./screens/LogIn";
+import SignUp from "./screens/SignUp";
 import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
-import logo from './assets/images/logo3.png';
+import logo from './assets/images/otqicon.png';
 import MyEvents from './screens/MyEvents';
+import TermsandConditions from './screens/TermsandConditions';
 
 
 class App extends Component {
@@ -46,10 +47,10 @@ class App extends Component {
       <HashRouter>
         <div>
           <ul className="header">
-            <li> <a><img className="headerLogo" src={logo} alt="" /></a> </li>
+            <li> <a style={{padding:'0'}}><img className="headerLogo"  src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/myEvents">Events</NavLink></li>
-            <li><NavLink to="/LogIn">Log-In</NavLink></li>
+            <li><NavLink to="/SignUp">Sign Up</NavLink></li>
             <li>  <div className="navBarMenuBtnContainer" >
               <input type="text" className="input" placeholder="Search..." />
               <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
@@ -70,9 +71,10 @@ class App extends Component {
           <div className="content" >
             <Route exact path="/" component={HomePage} />
             <Route path="/EventView" component={EventView} />
-            <Route path="/LogIn" component={LogIn} />
+            <Route path="/SignUp" component={SignUp} />
             <Route path='/createEvent' component={CreateEventPage} />
             <Route path='/myEvents' component={MyEvents} />
+            <Route exact path="/TermsandConditions" component={TermsandConditions} />
           </div>
         </div>
       </HashRouter>

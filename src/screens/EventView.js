@@ -5,7 +5,7 @@ import "../assets/CSS/sharedStyles.css"
 class EventView extends Component {
    constructor(props) {
       super(props);
-      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable } = props.location.state
+      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable , attendees} = props.location.state
 
       this.state = {
          green: false,
@@ -17,7 +17,8 @@ class EventView extends Component {
          endTime: endTime,
          location: location,
          description: description,
-         spotsAvailable: spotsAvailable
+         spotsAvailable: spotsAvailable,
+         attendees: []
       }
    }
 
@@ -43,7 +44,7 @@ class EventView extends Component {
          <div className="eventViewMainDiv">
             <h1 className="eventHeader">{this.state.name}</h1>
          <span className="eventViewMapStylingCont" >
-            <img src={map} className="eventViewMapStyling" />
+            <img src={map} alt="" className="eventViewMapStyling" />
             <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br/>{this.state.description}</p>
          </span>
 
@@ -52,7 +53,8 @@ class EventView extends Component {
 
                   <li className="uleventdatali" >
                      <text className="lisTxt_lead">Total Attending:</text>
-                     <text className="lisTxt_content">1s / </text>
+                     <text className="lisTxt_content">{this.state.attendees.length} </text>
+                     {/* change to this.state.attendees.length when that feature is available */}
                      <text className="lisTxt_lead">Total Capacity:</text>
                      <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
                   </li>

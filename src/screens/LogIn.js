@@ -3,12 +3,12 @@ import React, { Component } from "react";
 class LogIn extends Component {
    render() {
       return (
-         <div>
-            <h2>HELLO</h2>
-            <p>Yup LogIn page loads</p>
-
+         <div className="logInFormContainer">
+         <p>LogIn stuff goes here</p>
            
+            <button className="btnpro" id="submit" value="Submit">Sign In</button>
          </div>
+
       );
    }
 }

@@ -20,7 +20,7 @@ class MyEvents extends Component {
                
             </TabList>
             <div  >
-                  <img src={map} className="myEventsMapStyling" />
+                  <img src={map} alt="" className="myEventsMapStyling" />
                </div>
 
          </div>
