@@ -574,7 +574,7 @@ width: 100%
   .tc-modal-body {
   padding: 10px 15px;
   text-align: center;
-  height:250px;
+  height:50vh;
   border: 1px solid #d0cccc;
   width: 100%;
   background-color: #000;
