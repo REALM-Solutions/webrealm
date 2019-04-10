@@ -12,8 +12,7 @@ class CreateEventPage extends Component {
          fields: {},
          errors: {},
          formIsValid: true,
-         showModal:false,
-         isShowing: false
+         isShowing:false
       }
 
       this.baseState = this.state
