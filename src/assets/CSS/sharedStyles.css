@@ -450,7 +450,10 @@ ulme.list-group{
   width: 100%;
   background-color: #000;
   background-image: url(../images/splash.png);
-  background-size:28vw 47vh;
+  background-size:27vw 47vh;
+  background-repeat:no-repeat;
+    background-position:fixed;
+    background-position: center; 
 }
 .modal-body-text{
   color:white;
