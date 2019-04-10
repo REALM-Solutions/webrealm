@@ -16,7 +16,6 @@ class MyEvents extends Component {
    }
 
    componentDidMount() {
-      // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav). 
       this.targetElement = document.querySelector("my_events_wrapper");
       clearAllBodyScrollLocks();
     }
@@ -31,7 +30,6 @@ class MyEvents extends Component {
    closeModalHandler = () => {
       enableBodyScroll(this.targetElement);
       this.setState({isShowing: false});
-      clearAllBodyScrollLocks();
       this.props.history.push('/')
    }
 

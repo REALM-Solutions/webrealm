@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, } from "react-router-dom";
 import "../../assets/CSS/sharedStyles.css"
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import {  clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 
 const modal = (props) => {

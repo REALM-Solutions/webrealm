@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, } from "react-router-dom";
 import { validateEmail, validateName, validatePassword } from "../assets/helpers/userValidationTools"
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 
 class SignUp extends Component {
@@ -23,6 +24,11 @@ class SignUp extends Component {
       this.errorSpan = this.errorSpan.bind(this)
 
    }
+
+   componentDidMount() {
+      
+      clearAllBodyScrollLocks();
+    }
 
    userSubmit(e) {
       e.preventDefault();
@@ -59,7 +65,7 @@ class SignUp extends Component {
 
       } else {
          this.resetFields()
-         this.state.formIsValid.setState(true);
+         this.state.formIsValid=true;
          console.log("something went wrong, check validation errors")
       }
    }

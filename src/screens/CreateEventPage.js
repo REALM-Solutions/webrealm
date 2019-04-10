@@ -22,13 +22,10 @@ class CreateEventPage extends Component {
    }
 
    componentDidMount() {
-      // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav). 
       this.targetElement = document.querySelector("create_event_wrapper");
-      clearAllBodyScrollLocks();
     }
 
-   openModalHandler = () => {
-      
+   openModalHandler = () => {      
     disableBodyScroll(this.targetElement);
       this.setState({
          showModal: true
@@ -37,8 +34,10 @@ class CreateEventPage extends Component {
 
    closeModalHandler = () => {
       enableBodyScroll(this.targetElement);
-      this.setState({showModal: false});
-      clearAllBodyScrollLocks();
+      this.setState({
+         showModal: false
+      });
+      
       this.props.history.push('/')
    }
 
