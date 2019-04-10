@@ -416,7 +416,7 @@ ulme.list-group{
 
 .modal-wrapper {
   background: white;
-  border: 1px solid #d0cccc;
+  
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
   margin: 10px auto 0;
   transition: all .8s;
@@ -425,8 +425,9 @@ ulme.list-group{
 }
 
 .modal-header {
+  border: 1px solid #d0cccc;
   background: #263238;
-  height: 40px;
+  height: 70px;
   line-height: 40px;
   padding: 5px 20px;
   text-align: right;
@@ -444,11 +445,12 @@ ulme.list-group{
 .modal-body {
   padding: 50px 15px;
   text-align: center;
-  height:81%;
+  height:83%;
+  border: 1px solid #d0cccc;
   width: 100%;
   background-color: #000;
   background-image: url(../images/splash.png);
-  background-size:cover;
+  background-size:28vw 47vh;
 }
 .modal-body-text{
   color:white;
@@ -457,6 +459,7 @@ ulme.list-group{
 
 
 .modal-footer {
+  justify-content: center;
   border: 1px solid #d0cccc;
   background: #263238;
   height: 46px;

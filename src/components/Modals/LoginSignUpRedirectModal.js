@@ -26,8 +26,8 @@ const modal = (props) => {
                     </p>
                 </div>
                 <div className="modal-footer">
-                <NavLink style={{paddingRight:'30px'}} to="/"><button className="modal-signup-nav-btn" style={{backgroundColor:" #e60000"}} 
-                onClick={() => {clearAllBodyScrollLocks()}}>Home</button></NavLink>
+                <NavLink style={{paddingRight:'30px'}} to="/"><button className="modal-signup-nav-btn" style={{backgroundColor:" #397fef"}} 
+                onClick={() => {clearAllBodyScrollLocks()}}>Sign In</button></NavLink>
                 <NavLink to="/SignUp"><button className="modal-signup-nav-btn" style={{ backgroundColor:" #00cc00"}}>Sign Up</button></NavLink>
                 </div>
             </div>
