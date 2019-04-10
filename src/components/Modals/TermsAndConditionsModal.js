@@ -15,7 +15,7 @@ const modal = (props) => {
                 }}>
                 <div className="tc-modal-header" >
                     <h3>Terms And Conditions</h3>
-                    <span className="close-modal-btn" onClick={props.close}>×</span>
+                    
                 </div>
                 <div className="tc-modal-body"  >
                     <p>
