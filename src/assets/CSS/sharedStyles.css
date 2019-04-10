@@ -503,10 +503,10 @@ ulme.list-group{
 }
 
 .back-drop {
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, .95);
   height: 100%;
   transition: all 1.3s;
-  width: 90%;
+  width: 95%;
   position: fixed;
 }
 
@@ -519,7 +519,7 @@ ulme.list-group{
   vertical-align: top;
   position: fixed;
   height: 100%;
-  
+  margin-left: 15%
 }
 
 .my_events_wrapper{

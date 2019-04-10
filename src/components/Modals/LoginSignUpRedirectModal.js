@@ -22,7 +22,7 @@ const modal = (props) => {
                 </div>
                 <div className="modal-body"  >
                     <p className="modal-body-text" >
-                    To view and create events, please consider signing up for a free On The Quad Account!
+                    To view and create events, create a free On the Quad account!
                     </p>
                 </div>
                 <div className="modal-footer">
