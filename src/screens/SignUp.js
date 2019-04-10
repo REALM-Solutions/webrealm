@@ -75,7 +75,7 @@ class SignUp extends Component {
 
       } else {
          this.resetFields()
-         this.state.formIsValid.setState(true);
+         this.state.setState({formIsValid:true});
          console.log("something went wrong, check validation errors")
       }
    }
