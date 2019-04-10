@@ -106,20 +106,22 @@ class SignUp extends Component {
       return (
          <form name="userform" className="userform" style={{ width: '100%', textAlign: 'center' }} onSubmit={this.userSubmit.bind(this)} >
             <div className="logInFormContainer">
+            {!this.state.isShowing ?<div>
                <h1>Welcome to On the Quad!</h1>
                <p>Please create a free account to be able to let event organizers know that you're going or to create new events that others can attend!</p>
-               <input className="user_input" ref="firstNameText" type="text" size="30" placeholder="First Name" onChange={this.handleChange.bind(this, "firstName")} value={this.state.firstName} />
-               <br />
-               <input className="user_input" ref="lastNameText" type="text" size="30" placeholder="Last Name" onChange={this.handleChange.bind(this, "lastName")} value={this.state.lastName} />
-               <br />
-               <input className="user_input" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.email} />
-               <br />
-               <input className="user_input" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
-               <br />
-               <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
-               <br />
+                  <input className="user_input" ref="firstNameText" type="text" size="30" placeholder="First Name" onChange={this.handleChange.bind(this, "firstName")} value={this.state.firstName} />
+                  <br />
+                  <input className="user_input" ref="lastNameText" type="text" size="30" placeholder="Last Name" onChange={this.handleChange.bind(this, "lastName")} value={this.state.lastName} />
+                  <br />
+                  <input className="user_input" ref="emailText" type="text" size="30" placeholder="Email Address" onChange={this.handleChange.bind(this, "email")} value={this.state.email} />
+                  <br />
+                  <input className="user_input" ref="password" type="text" size="30" placeholder="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.password} />
+                  <br />
+                  <input className="user_input" ref="verifyPassword" type="text" size="30" placeholder="Verify Password" onChange={this.handleChange.bind(this, "passwordVerification")} value={this.state.passwordVerification} />
+                  <br />
+               </div>:null}
 
-               <p> {this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null}
+               <p style={{padding:'1px'}}> {this.state.isShowing ? <div onClick={this.closeModalHandler} className="tc-back-drop"></div> : null}
 
                   {this.state.isShowing ? <Modal
                      className="tc-modal"
@@ -128,9 +130,9 @@ class SignUp extends Component {
                   </Modal> : <p onClick={this.openModalHandler}>By siging up you agree to the Terms and Conditions</p>}</p>
 
                <br />
-               <button className="btnpro" id="submit" value="Submit">Sign-Up</button>
+               {!this.state.isShowing ?<div><button className="btnpro" id="submit" value="Submit">Sign-Up</button>
                <br />
-               <span className="error">{this.state.errorMsg}</span>
+               <span className="error">{this.state.errorMsg}</span></div>:null}
             </div>
          </form>
 

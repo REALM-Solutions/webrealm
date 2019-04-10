@@ -2,12 +2,10 @@ import React from 'react';
 import "../../assets/CSS/sharedStyles.css"
 
 const modal = (props) => {
-
-    const styled=props.show ? {height:'80%'}:{height:'0%'}
     
     return (
         
-        <div className="tc-modtst" style={styled}>
+        <div className="tc-modtst" >
             
             <div className="tc-modal-wrapper"
                 style={{
@@ -15,13 +13,13 @@ const modal = (props) => {
                     opacity: props.show ? '1' : '0',
                     
                 }}>
-                <div className="tc-modal-header" style={styled}>
+                <div className="tc-modal-header" >
                     <h3>Terms And Conditions</h3>
                     <span className="close-modal-btn" onClick={props.close}>×</span>
                 </div>
-                <div className="tc-modal-body"  style={styled}>
+                <div className="tc-modal-body"  >
                     <p>
-                    <iframe style={{width:'100%'}} src="https://docs.google.com/document/d/e/2PACX-1vRECMYNKNOcWY47A9Jn8X6MkPFDQsVzI29n8-RIk-Sh-Rijh1qXovIsHRXyG3IonvvF1lmkx543BdIb/pub?embedded=true"></iframe>
+                    <iframe style={{width:'100%',}} src="https://docs.google.com/document/d/e/2PACX-1vRECMYNKNOcWY47A9Jn8X6MkPFDQsVzI29n8-RIk-Sh-Rijh1qXovIsHRXyG3IonvvF1lmkx543BdIb/pub?embedded=true"></iframe>
                     </p>
                 </div>
                 <div className="tc-modal-footer">
