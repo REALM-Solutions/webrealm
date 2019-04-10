@@ -18,8 +18,8 @@ const modal = (props) => {
                     
                 </div>
                 <div className="tc-modal-body"  >
-                    <p>
-                    <iframe style={{width:'100%',}} src="https://docs.google.com/document/d/e/2PACX-1vRECMYNKNOcWY47A9Jn8X6MkPFDQsVzI29n8-RIk-Sh-Rijh1qXovIsHRXyG3IonvvF1lmkx543BdIb/pub?embedded=true"></iframe>
+                    <p className='tc-body-contnr' style={{height:'100%'}}>
+                    <iframe style={{width:'100%', height:'100%'}} src="https://docs.google.com/document/d/e/2PACX-1vRECMYNKNOcWY47A9Jn8X6MkPFDQsVzI29n8-RIk-Sh-Rijh1qXovIsHRXyG3IonvvF1lmkx543BdIb/pub?embedded=true"></iframe>
                     </p>
                 </div>
                 <div className="tc-modal-footer">

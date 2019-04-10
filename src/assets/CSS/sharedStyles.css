@@ -572,17 +572,17 @@ width: 100%
   }
   
   .tc-modal-body {
-  padding: 50px 15px;
+  padding: 10px 15px;
   text-align: center;
-  height:83%;
+  height:250px;
   border: 1px solid #d0cccc;
   width: 100%;
   background-color: #000;
   background-image: url(../images/otqicon.png);
   background-size:27vw 47vh;
   background-repeat:no-repeat;
-    background-position:fixed;
-    background-position: center; 
+  background-position:fixed;
+  background-position: center; 
   }
   .tc-modal-body-text{
   color:white;
