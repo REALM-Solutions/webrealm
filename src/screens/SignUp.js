@@ -143,7 +143,7 @@ class SignUp extends Component {
                      className="tc-modal"
                      show={this.state.isShowing}
                      close={this.closeModalHandler}>
-                  </Modal> : <p onClick={this.openModalHandler}>By siging up you agree to the Terms and Conditions</p>}</p>
+                  </Modal> : <p onClick={this.openModalHandler}>By siging up you agree to the <span style={{color:"blue"}}>Terms and Conditions</span></p>}</p>
 
                <br />
                {!this.state.isShowing ?<div><button className="btnpro" id="submit" value="Submit">Sign-Up</button>
