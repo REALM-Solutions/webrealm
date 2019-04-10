@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { NavLink, } from "react-router-dom";
 import { validateEmail, validateName, validatePassword } from "../assets/helpers/userValidationTools"
-import Modal from "../components/Modals/TermsAndConditionsModal"
+import Modal from "../components/Modals/TermsAndConditionsModal";
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 
 class SignUp extends Component {
@@ -26,12 +26,15 @@ class SignUp extends Component {
    }
 
    openModalHandler = () => {
+      disableBodyScroll(this.targetElement);
       this.setState({
          isShowing: true
       });
    }
 
    closeModalHandler = () => {
+      enableBodyScroll(this.targetElement);
+      clearAllBodyScrollLocks();
       this.setState({
          isShowing: false
       });
@@ -100,6 +103,11 @@ class SignUp extends Component {
          return this.state.formIsValid = true;
       }
    }
+
+   componentDidMount() {
+      this.targetElement = document.querySelector("logInFormContainer");
+      clearAllBodyScrollLocks();
+    }
 
    render() {
 
