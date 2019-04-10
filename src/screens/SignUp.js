@@ -121,12 +121,10 @@ class SignUp extends Component {
 
                <p> {this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null}
 
-
                   {this.state.isShowing ? <Modal
-                     className="modal"
+                     className="tc-modal"
                      show={this.state.isShowing}
                      close={this.closeModalHandler}>
-
                   </Modal> : <p onClick={this.openModalHandler}>By siging up you agree to the Terms and Conditions</p>}</p>
 
                <br />
