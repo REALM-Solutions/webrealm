@@ -20,8 +20,11 @@ class EventView extends Component {
          location: location,
          description: description,
          spotsAvailable: spotsAvailable,
-         attendees: attendees,
+
          isShowing: false
+
+         attendees: []
+
       }
    }
 
@@ -65,6 +68,7 @@ class EventView extends Component {
       };
 
       return (
+
          <div className="eventview_wrapper">
             {this.state.isShowing ? <div className="back-drop"></div> : null}
             <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
@@ -118,6 +122,7 @@ class EventView extends Component {
                   </div>
                </span>
             </div> : null}
+
          </div>
 
       );
