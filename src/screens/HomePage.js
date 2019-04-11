@@ -2,49 +2,86 @@ import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
 import { ListGroup } from "react-bootstrap";
 import CategoryButtonGroup from "../components/CategoryButtonGroup/CategoryButtonGroup";
-
-const API = 'https://hn.algolia.com/api/v1/search?query=redux';
+import EventLink from "../components/EventLink";
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 class HomePage extends Component {
-
    constructor(props) {
       super(props);
       this.state = {
-         hits: []
-      };
+         selectedCategory: '',
+         events: []
+      }
    }
 
-   componentDidMount() {
-      fetch(API)
+   componentWillMount() {
+      clearAllBodyScrollLocks()
+      let eventArray = []
+      fetch('http://localhost:8080/events', {
+         method: 'GET',
+         headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:8080'
+         }
+      })
          .then(response => response.json())
-         .then(
-            data => this.setState({ hits: data.hits }));
+         .then(responseJson => {
+            console.log(responseJson)
+            if (responseJson !== null) {
+               Object.values(responseJson).map(function (event) {
+                  eventArray.push(event)
+               })
+               this.setState({
+                  events: eventArray
+               })
+               console.log(responseJson);
+            }
+         })
+         .catch((error) => {
+            console.error(error)
+         });
    }
 
 
    render() {
-      const { hits } = this.state;
+      let eventElements = []
+      if (this.state.events === []) {
+         eventElements.push(
+            <div className="noEventContatiner">
+               <p className="noEventMsg">No Events Found</p>
+            </div>
+         )
+      } else {
+         this.state.events.forEach(function (event, index) {
+            eventElements.push(
+               <EventLink
+                  key={index}
+                  name={event.name}
+                  category={event.category}
+                  host={event.creator.username}
+                  date={event.date}
+                  startTime={event.startTime}
+                  endTime={event.endTime}
+                  location={event.location}
+                  description={event.description}
+                  spotsAvailable={event.availableSpots}
+                  attendees={event.attendees}
+               />
+            )
+         })
+         console.log("fetched")
+      }
       return (
-         <div style={{ textAlign: 'center', margin: '0 auto', width: '100%', height: '100%' }}>
-            <h1 style={{ textAlign: 'center' }}>Welcome "USER"</h1>
-            <img src={map} style={{ width: '80vh', height: '60vh', border: '2px solid #000000' }} />
+         <div className="homePageBanner" >
+            <h1 className="homePageBannerMsg">Welcome "USER"</h1>
+            <img className="eventViewMapStyling" alt="" src={map}  />
             <div>
 
                <CategoryButtonGroup />
 
-               <ListGroup as='ul' style={{ listStyleType: 'none', textAlign: 'center', width: '100vh', margin: 'auto' }}>
-
-                  <li style={{ width: '100vh', border: '2px solid #444' }}><text style={{ padding: '5px', fontWeight: 'bold' }}>Found a new nation :: 5/14/1607  ::  K.James  :: 4:00 PM  :: Study </text></li>
-                  <li style={{ width: '100vh', border: '2px solid #444' }}><text style={{ padding: '5px', fontWeight: 'bold' }}>Flight Launch :: 1/28/1986  ::  C.McAuliffe  :: 4:00 PM  ::  Misc. </text></li>
-                  <li style={{ width: '100vh', border: '2px solid #444' }}><text style={{ padding: '5px', fontWeight: 'bold' }}>Wrap up Party :: 5/8/1945  ::  W.Churchill  :: 4:00 PM  ::  Entertainment</text></li>
 
 
-                  {/*  this section is for reading new data from a JSON file*/}
-                  {/* {hits.map(hit =>
-                  <ListGroup.Item as="li" active key={hit.objectID} style={{ border: '2px solid #444', }}>
-                     <a href={hit.url} style={{color:'red'}}>{hit.title}</a>
-                  </ListGroup.Item>
-               )} */}
+               <ListGroup as='ulhp'>
+                  {this.state.events === [] ? <p>No Events Found</p> : eventElements}
                </ListGroup>
             </div>
          </div>

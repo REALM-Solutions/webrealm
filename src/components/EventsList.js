@@ -1,74 +1,81 @@
 import React, { Component } from 'react';
 import EventLink from './EventLink';
-import styles from '../assets/CSS/sharedStyles.css';
+import { ListGroup } from "react-bootstrap";
 
 
 class EventsList extends Component {
-   // constructor(props){
-   //    super(props);
-   //    this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCategory: '',
+      events: []
+    }
+  }
+  componentWillMount() {
+    let eventArray = []
+    fetch('http://localhost:8080/events', {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost:8080'
+      }
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log(responseJson)
+        if (responseJson !== null) {
+          Object.values(responseJson).map(function (event) {
+            eventArray.push(event)
+          })
+          this.setState({
+            events: eventArray
+          })
+          console.log(responseJson);
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      });
+  }
 
-   //    }
-   // }
-   render(){
-      return(
-         <ul >
-          <div 
-          // onClick={() => this.props.navigation.navigate('EventDetail', {
-          //  name: 'Volleyball',
-          //  location: 'The Quad',
-          //  date: '2/23/19',
-          //  startTime: '1:45PM', 
-          //  endTime: '3:15PM',
-          //  description: 'Something super cool',
-          //  category: 'Sports', 
-          //  creator: 'jpauga',  
-          //  spotsTaken: '6', 
-          //  spotsAvailable: '10', 
-          //  })}
-           >
-            <EventLink
-              name='Volleyball'
-              category='Sports'
-              host='jpauga'
-              date='2/23/19'
-              time='1:45PM'
-              />
-            </div>
-
-            <div>
-              <EventLink
-              name='SweetHeart Dance'
-              category='Casual'
-              host='pperez'
-              date='2/14/19'
-              time='6:35PM'
-              />
-            </div>
-
-            <div>
-              <EventLink
-              name='Volleyball'
-              category='Sports'
-              host='jpauga'
-              date='2/23/19'
-              time='1:45PM'
-              />
-            </div>
-
-            <div>
-              <EventLink
-              name='SweetHeart Dance'
-              category='Casual'
-              host='pperez'
-              date='2/14/19'
-              time='6:35PM'
-              />
-            </div>
-
-          </ul>
+  render() {
+    let eventElements = []
+    if (this.state.events === []) {
+      eventElements.push(
+        <div className = "noEventContatiner" >
+          <p className= "noEventMsg" >No Events Found</p>
+        </div>
       )
-   }
+    } else {
+      this.state.events.forEach(function (event, index) {
+        eventElements.push(
+          <EventLink
+            key={index}
+            name={event.name}
+            category={event.category}
+            host={event.creator.username}
+            date={event.date}
+            startTime={event.startTime}
+            endTime={event.endTime}
+            location={event.location}
+            description={event.description}
+            spotsAvailable={event.availableSpots}
+          />
+        )
+      })
+      console.log("fetched")
+    }
+    return (
+      <ul >
+        <div >
+          <ListGroup as='ulme'>
+            {this.state.events === [] ? <p>No Events Found</p> : eventElements}
+          </ListGroup>
+
+        </div>
+
+      </ul>
+    )
+  }
 }
 
 export default (EventsList);

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import "../assets/CSS/sharedStyles.css";
 import Tab from './Tab';
 
 export default class TabList extends Component {
@@ -25,9 +25,9 @@ export default class TabList extends Component {
     const { onClickTabItem, props: {children},state: {activeTab} } = this;
 
     return (
-        <div style={{width:'80%',}}>
+        <div className="navPillContainer" >
             <nav >
-            <div className="nav nav-pills" style={{width:'80%',}}>
+            <div className="nav nav-pills" >
                 {children.map((child) => {
                 const { label } = child.props;
     
