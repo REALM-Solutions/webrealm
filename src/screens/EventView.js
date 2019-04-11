@@ -20,11 +20,8 @@ class EventView extends Component {
          location: location,
          description: description,
          spotsAvailable: spotsAvailable,
-
-         isShowing: false
-
-         attendees: []
-
+         attendees: [],
+         isShowing:false
       }
    }
 

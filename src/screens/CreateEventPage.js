@@ -168,7 +168,6 @@ class CreateEventPage extends Component {
       this.setState({ showModal: true });
     };
 
-
    eventSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
@@ -244,8 +243,7 @@ class CreateEventPage extends Component {
                close={this.closeModalHandler}>               
             </Modal> : null }
 
-            <div className="createEventFormContainer" >
-
+            {!this.state.isShowing ? <div className="createEventFormContainer" >
             <div className="createEventMapContainer" >
                <img className="createEventViewMapStyling" alt="" src={map} />
             </div>
@@ -314,7 +312,7 @@ class CreateEventPage extends Component {
                   </fieldset>
                </div>
             </form>
-         </div> 
+         </div> :null}
          </div>
       )
    }
