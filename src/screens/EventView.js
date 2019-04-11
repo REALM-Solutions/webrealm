@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
-import "../assets/CSS/sharedStyles.css"
+import "../assets/CSS/sharedStyles.css";
+import Modal from "../components/Modals/LoginSignUpRedirectModal"
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 class EventView extends Component {
    constructor(props) {
       super(props);
-      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable , attendees} = props.location.state
+      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, attendees } = props.location.state
 
       this.state = {
          green: false,
@@ -18,18 +20,44 @@ class EventView extends Component {
          location: location,
          description: description,
          spotsAvailable: spotsAvailable,
+
+         isShowing: false
+
          attendees: []
+
       }
    }
 
+   componentDidMount() {
+      this.targetElement = document.querySelector("eventview_wrapper");
+      clearAllBodyScrollLocks();
+    }
 
    changeColor() {
       this.setState({ green: !this.state.green })
    }
 
+   openModalHandler = () => {
+      disableBodyScroll(this.targetElement);
+      this.setState({
+         isShowing: true
+      });
+   }
+
+   closeModalHandler = () => {
+      enableBodyScroll(this.targetElement);
+      clearAllBodyScrollLocks();
+      this.setState({
+         isShowing: false
+      });
+     
+      this.props.history.push('/')
+   }
+
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
       console.log(this.state)
+
 
       const btn_classStyle = {
          margin: '2em',
@@ -41,52 +69,66 @@ class EventView extends Component {
 
       return (
 
-         <div className="eventViewMainDiv">
-            <h1 className="eventHeader">{this.state.name}</h1>
-         <span className="eventViewMapStylingCont" >
-            <img src={map} alt="" className="eventViewMapStyling" />
-            <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br/>{this.state.description}</p>
-         </span>
+         <div className="eventview_wrapper">
+            {this.state.isShowing ? <div className="back-drop"></div> : null}
+            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
 
-            <span >
-               <ul className="ulEventData">
+            {this.state.isShowing ? <Modal
+               className="modal"
+               show={this.state.isShowing}
+               close={this.closeModalHandler}>
+            </Modal> : null}
+            
+            <div className="eventViewMainDiv">
 
-                  <li className="uleventdatali" >
-                     <text className="lisTxt_lead">Total Attending:</text>
-                     <text className="lisTxt_content">{this.state.attendees.length} </text>
-                     {/* change to this.state.attendees.length when that feature is available */}
-                     <text className="lisTxt_lead">Total Capacity:</text>
-                     <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
-                  </li>
+               <h1 className="eventHeader">{this.state.name}</h1>
+               <span className="eventViewMapStylingCont" >
+                  <img src={map} alt="" className="eventViewMapStyling" />
+                  <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
+               </span>
 
-                  <li className="eventLis">
-                     <text className="lisTxt_lead">Event Date and Time:</text>
-                     <text className="lisTxt_content"> {this.state.date} {this.state.startTime} to {this.state.endTime}</text>
-                  </li>
+               <span >
+                  <ul className="ulEventData">
 
-                  <li className="eventLis">
-                     <text className="lisTxt_lead">Event Host:</text>
-                     <text className="lisTxt_content"> {this.state.host}</text>
-                  </li>
+                     <li className="uleventdatali" >
+                        <text className="lisTxt_lead">Total Attending:</text>
+                        <text className="lisTxt_content">{this.state.attendees} </text>
+                        <text className="lisTxt_lead">Total Capacity:</text>
+                        <text className="lisTxt_content"> {this.state.spotsAvailable}</text>
+                     </li>
 
-                  <li className="eventLis">
-                     <text className="lisTxt_lead">Event Location:</text>
-                     <text className="lisTxt_content"> {this.state.location}</text>
-                  </li>
+                     <li className="eventLis">
+                        <text className="lisTxt_lead">Event Date and Time:</text>
+                        <text className="lisTxt_content"> {this.state.date} {this.state.startTime} to {this.state.endTime}</text>
+                     </li>
 
-               </ul>
+                     <li className="eventLis">
+                        <text className="lisTxt_lead">Event Host:</text>
+                        <text className="lisTxt_content"> {this.state.host}</text>
+                     </li>
 
-               <div >
-                  <button className={btn_class} onClick={this.changeColor.bind(this)}
-                     style={btn_classStyle}>
-                     {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
+                     <li className="eventLis">
+                        <text className="lisTxt_lead">Event Location:</text>
+                        <text className="lisTxt_content"> {this.state.location}</text>
+                     </li>
 
-               </div>
-            </span>
+                  </ul>
+
+                  <div >
+                     <button className={btn_class} onClick={this.changeColor.bind(this)}
+                        style={btn_classStyle}>
+                        {btn_class === 'greenButton' ? <text>Attending</text> : <text>I wanna go!</text>}</button>
+
+                  </div>
+               </span>
+            </div> : null}
+
          </div>
 
       );
    }
 }
+
+
 
 export default EventView;
