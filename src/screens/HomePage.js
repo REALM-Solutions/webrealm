@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
 import { ListGroup } from "react-bootstrap";
 import CategoryButtonGroup from "../components/CategoryButtonGroup/CategoryButtonGroup";
-import EventLink from "../components/EventLink"
+import EventLink from "../components/EventLink";
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 class HomePage extends Component {
    constructor(props) {
@@ -14,6 +15,7 @@ class HomePage extends Component {
    }
 
    componentWillMount() {
+      clearAllBodyScrollLocks()
       let eventArray = []
       fetch('http://localhost:8080/events', {
          method: 'GET',

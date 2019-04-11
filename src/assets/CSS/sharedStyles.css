@@ -5,21 +5,61 @@
 }
 
 body {
-  background-color: rgb(44, 44, 43);
-  padding: 20px;
-  margin: 0;
-}
-h1, h2, p, ul, li {
-  font-family: sans-serif;
-  color:#111; 
-}
-ul.header li {
+    background-color: rgb(44, 44, 43);
+    padding: 20px;
+    margin: 0;
+  }
+  h1, h2, p, ul, li {
+    font-family: sans-serif;
+    color:#111; 
+  }
+  ul.header li {
+    
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    
+  }
+  ul.header {
+    
+    background-color: #111;
+    padding: 0;
+    width:100%
+  }
+  ul.header li a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+  }
+  .content {
+    background-color: #FFF;
+    padding: 20px;
+    min-height: 700px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    vertical-align: top;
+  }
   
-  display: inline;
-  list-style-type: none;
-  margin: 0;
+  .content h2 {
+    padding: 0;
+    margin: 0;
+  }
+  .content li {
+    margin-bottom: 10px;
+  }
+
+  .menu {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
   
-}
 ul.header {
   
   background-color: #111;
@@ -104,9 +144,16 @@ ul.header li a {
 
 }
 
-.lisTxt_content{
-  font-size:2vw;
-}
+  .createEventViewMapStyling{ 
+   
+    width: 40vw; 
+    height: 90vh;
+    border-radius: 20px;
+    border:2px solid #000;
+    margin: 10px;
+    text-align: left;
+    margin-right:20px;    
+  }
 
 .eventHeader{ 
   color: #38c9ff;
@@ -312,9 +359,9 @@ width: 100%;
 }
 
 .createEventMapContainer{
-height:100%;
-width:50%;
-padding-left: 20px
+  height:100%;
+  width:50%;
+  padding-left: 20px
 }
 
 .eventform{
@@ -415,59 +462,59 @@ flex-direction: column;
 }
 
 .modal-wrapper {
-background: white;
-
-box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-margin: 10px auto 0;
-transition: all .8s;
-width: 50%;
-height:50%
+  background: white;
+  
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+  margin: 10px auto 0;
+  transition: all .8s;
+  width: 50%;
+  height:50%
 }
 
 .modal-header {
-border: 1px solid #d0cccc;
-background: #263238;
-height: 70px;
-line-height: 40px;
-padding: 5px 20px;
-text-align: right;
-text-align: center
+  border: 1px solid #d0cccc;
+  background: #263238;
+  height: 70px;
+  line-height: 40px;
+  padding: 5px 20px;
+  text-align: right;
+  text-align: center
 }
 
 .modal-header h3 {
-color: white;
-float: left;
-margin: 0;
-padding: 0;
-width:100%;
+  color: white;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width:100%;
 }
 
 .modal-body {
-padding: 50px 15px;
-text-align: center;
-height:83%;
-border: 1px solid #d0cccc;
-width: 100%;
-background-color: #000;
-background-image: url(../images/otqicon.png);
-background-size:27vw 47vh;
-background-repeat:no-repeat;
-  background-position:fixed;
-  background-position: center; 
+  padding: 50px 15px;
+  text-align: center;
+  height:83%;
+  border: 1px solid #d0cccc;
+  width: 100%;
+  background-color: #000;
+  background-image: url(../images/splash.png);
+  background-size:27vw 47vh;
+  background-repeat:no-repeat;
+    background-position:fixed;
+    background-position: center; 
 }
 .modal-body-text{
-color:white;
-font-size: 200%
+  color:white;
+  font-size: 200%
 }
 
 
 .modal-footer {
-justify-content: center;
-border: 1px solid #d0cccc;
-background: #263238;
-height: 46px;
-width:100%;
-padding: 15px;
+  justify-content: center;
+  border: 1px solid #d0cccc;
+  background: #263238;
+  height: 46px;
+  width:100%;
+  padding: 15px;
 }
 
 .close-modal-btn {
@@ -486,6 +533,12 @@ color: black;
 height:30px;
 color: white;
 border-radius: 5px;
+}
+
+.modal-signup-nav-btn{
+  height:30px;
+  color: white;
+  border-radius: 5px;
 }
 
 .btn-cancel, .btn-continue {
@@ -509,11 +562,11 @@ float: right;
 }
 
 .back-drop {
-background-color: rgba(0, 0, 0, .95);
-height: 100%;
-transition: all 1.3s;
-width: 95%;
-position: fixed;
+  background-color: rgba(0, 0, 0, .95);
+  height: 100%;
+  transition: all 1.3s;
+  width: 95%;
+  position: fixed;
 }
 
 .open-modal-btn {

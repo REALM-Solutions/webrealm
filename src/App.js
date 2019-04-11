@@ -6,9 +6,11 @@ import SignUp from "./screens/SignUp";
 import CreateEventPage from './screens/CreateEventPage';
 import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
-import logo from './assets/images/otqicon.png';
+import logo from './assets/images/splash.png';
 import MyEvents from './screens/MyEvents';
 import TermsandConditions from './screens/TermsandConditions';
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 
 
 class App extends Component {
@@ -30,6 +32,7 @@ class App extends Component {
       document.addEventListener('click', this.closeMenu);
     });
   }
+  
 
   closeMenu(event) {
 
@@ -43,10 +46,11 @@ class App extends Component {
   }
 
   render() {
+    clearAllBodyScrollLocks()
     return (
       <HashRouter>
         <div>
-          <ul className="header">
+          <ul className="header" >
             <li> <a style={{padding:'0'}}><img className="headerLogo"  src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/myEvents">Events</NavLink></li>

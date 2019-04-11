@@ -78,7 +78,9 @@ class SignUp extends Component {
 
 
       } else {
+
          this.state.formIsValid = true;
+
          console.log("something went wrong, check validation errors")
       }
    }
