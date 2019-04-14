@@ -13,10 +13,10 @@ class EventsList extends Component {
   }
   componentWillMount() {
     let eventArray = []
-    fetch('http://localhost:8080/events', {
+    fetch('https://onthequad.herokuapp.com/events', {
       method: 'GET',
       headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:8080'
+        'Access-Control-Allow-Origin': 'https://onthequad.herokuapp.com/'
       }
     })
       .then(response => response.json())

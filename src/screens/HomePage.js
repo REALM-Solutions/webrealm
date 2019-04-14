@@ -4,6 +4,7 @@ import { ListGroup } from "react-bootstrap";
 import CategoryButtonGroup from "../components/CategoryButtonGroup/CategoryButtonGroup";
 import EventLink from "../components/EventLink";
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
+import Map from "../components/maps/Map"
 
 class HomePage extends Component {
    constructor(props) {
@@ -17,10 +18,10 @@ class HomePage extends Component {
    componentWillMount() {
       clearAllBodyScrollLocks()
       let eventArray = []
-      fetch('http://localhost:8080/events', {
+      fetch('https://onthequad.herokuapp.com/events', {
          method: 'GET',
          headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:8080'
+            'Access-Control-Allow-Origin': 'https://onthequad.herokuapp.com/'
          }
       })
          .then(response => response.json())
@@ -73,7 +74,8 @@ class HomePage extends Component {
       return (
          <div className="homePageBanner" >
             <h1 className="homePageBannerMsg">Welcome "USER"</h1>
-            <img className="eventViewMapStyling" alt="" src={map}  />
+            {/* <img className="eventViewMapStyling" alt="" src={map}  /> */}
+            <Map/>
             <div>
 
                <CategoryButtonGroup />

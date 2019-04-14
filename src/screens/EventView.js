@@ -3,6 +3,8 @@ import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import Map from "../components/maps/Map";
+
 
 class EventView extends Component {
    constructor(props) {
@@ -68,7 +70,7 @@ class EventView extends Component {
 
          <div className="eventview_wrapper">
             {this.state.isShowing ? <div className="back-drop"></div> : null}
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
 
             {this.state.isShowing ? <Modal
                className="modal"
@@ -80,7 +82,8 @@ class EventView extends Component {
 
                <h1 className="eventHeader">{this.state.name}</h1>
                <span className="eventViewMapStylingCont" >
-                  <img src={map} alt="" className="eventViewMapStyling" />
+                  {/* <img src={map} alt="" className="eventViewMapStyling" /> */}
+                  <div className="eventViewMapStyling"><Map /></div>
                   <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
                </span>
 

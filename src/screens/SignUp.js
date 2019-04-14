@@ -50,7 +50,7 @@ class SignUp extends Component {
       if (this.handleValidation()) {
          let { firstName, lastName, email, password, photoUrl } = this.state
          console.log(this.state)
-         fetch('http://localhost:8080/users', {
+         fetch('https://onthequad.herokuapp.com/users', {
             method: 'POST',
             headers: {
                Accept: 'application/json',

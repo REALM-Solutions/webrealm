@@ -174,7 +174,7 @@ class CreateEventPage extends Component {
          let { categoryType, eventNameText, eventDescription, eventLocationText,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable } = this.state.fields
          console.log(this.state.fields)
-         fetch('http://localhost:8080/events', {
+         fetch('https://onthequad.herokuapp.com/events', {
             method: 'POST',
             headers: {
                Accept: 'application/json',
