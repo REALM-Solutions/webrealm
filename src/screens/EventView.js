@@ -9,8 +9,8 @@ import Map from "../components/maps/Map";
 class EventView extends Component {
    constructor(props) {
       super(props);
-      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, attendees } = props.location.state
-
+      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, coordinates } = props.location.state
+      console.log(props.location.state)
       this.state = {
          green: false,
          name: name,
@@ -23,8 +23,10 @@ class EventView extends Component {
          description: description,
          spotsAvailable: spotsAvailable,
          attendees: [],
+         coordinates:coordinates,
          isShowing:false
       }
+      console.log(this.state)
    }
 
    componentDidMount() {
@@ -55,7 +57,7 @@ class EventView extends Component {
 
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
-      console.log(this.state)
+      console.log(this.state.coordinates)
 
 
       const btn_classStyle = {
@@ -65,7 +67,6 @@ class EventView extends Component {
          width: '6em',
          borderRadius: '8px'
       };
-
       return (
 
          <div className="eventview_wrapper">
@@ -83,7 +84,12 @@ class EventView extends Component {
                <h1 className="eventHeader">{this.state.name}</h1>
                <span className="eventViewMapStylingCont" >
                   {/* <img src={map} alt="" className="eventViewMapStyling" /> */}
-                  <div className="eventViewMapStyling"><Map /></div>
+                  <div className="eventViewMapStyling">
+                     <Map
+                        markers={[{position: this.state.coordinates, name: this.state.name, description: this.state.location}]}
+                     />
+                     
+                  </div>
                   <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
                </span>
 
@@ -121,11 +127,12 @@ class EventView extends Component {
 
                   </div>
                </span>
-            </div> : null}
+            </div> 
 
          </div>
 
       );
+      
    }
 }
 

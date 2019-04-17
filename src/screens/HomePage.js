@@ -31,9 +31,11 @@ class HomePage extends Component {
                Object.values(responseJson).map(function (event) {
                   eventArray.push(event)
                })
+               console.log(eventArray)
                this.setState({
                   events: eventArray
                })
+               console.log(this.state.events)
                console.log(responseJson);
             }
          })
@@ -52,7 +54,9 @@ class HomePage extends Component {
             </div>
          )
       } else {
+         // console.log(this.state.events)
          this.state.events.forEach(function (event, index) {
+            console.log(event)
             eventElements.push(
                <EventLink
                   key={index}
@@ -66,6 +70,7 @@ class HomePage extends Component {
                   description={event.description}
                   spotsAvailable={event.availableSpots}
                   attendees={event.attendees}
+                  coordinates={event.coordinates}
                />
             )
          })
@@ -75,16 +80,15 @@ class HomePage extends Component {
          <div className="homePageBanner" >
             <h1 className="homePageBannerMsg">Welcome "USER"</h1>
             {/* <img className="eventViewMapStyling" alt="" src={map}  /> */}
-            <Map/>
+            {/* <Map/> */}
             <div>
 
                <CategoryButtonGroup />
 
-
-
-               <ListGroup as='ulhp'>
+               <ListGroup as='Ulhp'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements}
                </ListGroup>
+               
             </div>
          </div>
       );
