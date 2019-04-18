@@ -10,6 +10,7 @@ class HomePage extends Component {
    constructor(props) {
       super(props);
       this.state = {
+         viewOnly:true,
          selectedCategory: '',
          events: []
       }
@@ -34,6 +35,7 @@ class HomePage extends Component {
                console.log(eventArray)
                this.setState({
                   events: eventArray
+                  //at this point the objects in the events have coordinates.
                })
                console.log(this.state.events)
                console.log(responseJson);
@@ -56,7 +58,8 @@ class HomePage extends Component {
       } else {
          // console.log(this.state.events)
          this.state.events.forEach(function (event, index) {
-            console.log(event)
+            console.log(eventElements)
+            //at this point the objects in eventElements have the coordinates available
             eventElements.push(
                <EventLink
                   key={index}
@@ -79,8 +82,10 @@ class HomePage extends Component {
       return (
          <div className="homePageBanner" >
             <h1 className="homePageBannerMsg">Welcome "USER"</h1>
-            {/* <img className="eventViewMapStyling" alt="" src={map}  /> */}
-            {/* <Map/> */}
+            <img className="eventViewMapStyling" alt="" src={map}  />
+            {/* <Map
+            viewOnly={this.state.viewOnly}
+            /> */}
             <div>
 
                <CategoryButtonGroup />

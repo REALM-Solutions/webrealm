@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import map from "../assets/images/map.PNG";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import Map from "../components/maps/Map";
 
 
 
@@ -13,14 +14,15 @@ class CreateEventPage extends Component {
          fields: {},
          errors: {},
          formIsValid: true,
-
+         viewOnly:false,
          showModal:false,
-
+         coordinates:{}
       }
+      console.log(this.state)
 
       this.baseState = this.state
-
       this.handleValidation = this.handleValidation.bind(this)
+      
    }
 
    componentDidMount() {
@@ -171,10 +173,10 @@ class CreateEventPage extends Component {
    eventSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
-         let { categoryType, eventNameText, eventDescription, eventLocationText,
-            eventDate, eventStartTime, eventEndTime, eventSpotsAvailable } = this.state.fields
-         console.log(this.state.fields)
-         fetch('https://onthequad.herokuapp.com/events', {
+         let { categoryType, eventNameText, eventDescription, eventLocation,
+            eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
+         console.log(this.state.fields.categoryType)
+         fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
             headers: {
                Accept: 'application/json',
@@ -184,16 +186,15 @@ class CreateEventPage extends Component {
                category: categoryType,
                name: eventNameText,
                description: eventDescription,
-               location: eventLocationText,
+               location: eventLocation,
                date: eventDate,
                startTime: eventStartTime,
                endTime: eventEndTime,
-               creator: {
-                  username: "pperez"
-               },
+               creator: { username: "pperez" },
                availableSpots: eventSpotsAvailable,
-               coordinates: '',
-               public: 'true'
+               coordinates: {latitude:39.744055,longitude:-105.004363},
+               public: 'true',
+               attendees:[]
             }),
          }).then((response) => response.json())
             .then((responseJson) => {
@@ -224,18 +225,20 @@ class CreateEventPage extends Component {
       this.setState({ fields });
       this.state.formIsValid=true;
       console.log(this.state.formIsValid)
+      console.log(this.state.fields)
    }
 
    resetFields() {
       this.state = this.baseState
    }
+  
 
 
    render() {
       return (
          <div className="create_event_wrapper">
             {this.state.showModal ? <div className="back-drop"></div> : null}
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             
             {this.state.showModal ? <Modal 
                className="modal"
@@ -244,12 +247,14 @@ class CreateEventPage extends Component {
             </Modal> : null }
 
             {!this.state.isShowing ? <div className="createEventFormContainer" >
-            <div className="createEventMapContainer" >
-               <img className="createEventViewMapStyling" alt="" src={map} />
+            <div className="createEventMapContainer" style={{width:'60vw'}} >
+               {/* <img className="createEventViewMapStyling" alt="" src={map} /> */}
+               <Map markers={[{position: this.state.latLng, name: this.state.name, description: this.state.location}]}
+               viewOnly={this.state.viewOnly} />
             </div>
             <form name="eventform" className="eventform" onSubmit={this.eventSubmit.bind(this)} >
                <div className="eventFormInputContainer" >
-                  <fieldset className="createEventFieldset"  >
+                  <fieldset className="createEventFieldset">
 
                      <input className="event_input" ref="eventNameText" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
                      <br />
@@ -257,6 +262,7 @@ class CreateEventPage extends Component {
                      <br />
 
                      <select className="categoryDropdown" ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]}>
+                        <option categoryType="">Select A Category</option>
                         <option categoryType="sports">Sports</option>
                         <option categoryType="study">Study</option>
                         <option categoryType="games">Games</option>

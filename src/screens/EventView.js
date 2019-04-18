@@ -10,8 +10,9 @@ class EventView extends Component {
    constructor(props) {
       super(props);
       const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, coordinates } = props.location.state
-      console.log(props.location.state)
+      console.log(props.location)
       this.state = {
+         viewOnly: true,
          green: false,
          name: name,
          category: category,
@@ -24,6 +25,12 @@ class EventView extends Component {
          spotsAvailable: spotsAvailable,
          attendees: [],
          coordinates:coordinates,
+         lat:coordinates.latitude,
+         lng:coordinates.longitude,
+         latLng:{
+            lat:coordinates.latitude,
+            lng:coordinates.longitude
+         },
          isShowing:false
       }
       console.log(this.state)
@@ -57,7 +64,7 @@ class EventView extends Component {
 
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
-      console.log(this.state.coordinates)
+      console.log(this.state.latLng)
 
 
       const btn_classStyle = {
@@ -86,7 +93,8 @@ class EventView extends Component {
                   {/* <img src={map} alt="" className="eventViewMapStyling" /> */}
                   <div className="eventViewMapStyling">
                      <Map
-                        markers={[{position: this.state.coordinates, name: this.state.name, description: this.state.location}]}
+                        markers={[{position: this.state.latLng, name: this.state.name, description: this.state.location}]}
+                        viewOnly={this.state.viewOnly}
                      />
                      
                   </div>
