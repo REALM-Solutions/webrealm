@@ -37,22 +37,21 @@ class LogIn extends Component {
 
                let user = Object.values(responseJson)
                if (user[0] === 'i') {
-                  console.log("invalid")
-                  console.log(responseJson)
-                  alert(responseJson +": please check your email and password")
+
+                  alert(responseJson + ": please check your email and password")
                }
                else {
-                  console.log(user)
+
                   this.state.userName = user[1]
                   this.state.userId = user[4]
                   this.state.userLoggedIn = 'true'
-                  console.log(this.props.store)
+
                   alert('Logged In')
                   this.props.store.set("loggedInUser", this.state)
                   this.props.history.push('/')
                }
             }
-            
+
 
          })
          .catch((error) => {
@@ -63,12 +62,12 @@ class LogIn extends Component {
 
    handleEmailChange(e) {
       this.setState({ userEmail: e.target.value })
-      console.log(this.state)
+
    }
 
    handlePasswordChange(e) {
       this.setState({ userPassword: e.target.value })
-      console.log(this.state)
+
    }
 
    render() {
@@ -77,7 +76,7 @@ class LogIn extends Component {
             <form name="loginform" className="loginform" onSubmit={this.userLogin.bind(this)} >
                <input className="login_input" ref="userEmailText" type="text" size="30" placeholder="E-Mail Address" onChange={this.handleEmailChange} value={this.state.userEmail} />
                <br />
-               <input className="login_input" ref="passwordText" type="text" size="30" placeholder="Enter Password" onChange={this.handlePasswordChange} value={this.state.userPassword} />
+               <input className="login_input" ref="passwordText" type="password" size="30" placeholder="Enter Password" onChange={this.handlePasswordChange} value={this.state.userPassword} />
                <br />
                <button className="btnpro" id="submit" value="Submit">Sign In</button>
             </form>

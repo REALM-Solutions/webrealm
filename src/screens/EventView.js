@@ -11,7 +11,7 @@ class EventView extends Component {
    constructor(props) {
       super(props);
       const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, coordinates } = props.location.state
-      console.log(props.location)
+      
       this.state = {
          viewOnly: true,
          green: false,
@@ -25,19 +25,13 @@ class EventView extends Component {
          description: description,
          spotsAvailable: spotsAvailable,
          attendees: [],
-         coordinates:coordinates,
-         lat:coordinates.latitude,
-         lng:coordinates.longitude,
-         latLng:{
-            lat:coordinates.latitude,
-            lng:coordinates.longitude
-         },
+         
          isShowing:false
       }
-      console.log(this.state)
    }
 
    componentDidMount() {
+      window.scrollTo(0, 0)
       this.targetElement = document.querySelector("eventview_wrapper");
       // this.props.store.set("loggedIn","false");
       clearAllBodyScrollLocks();
@@ -72,8 +66,6 @@ class EventView extends Component {
 
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
-      console.log(this.state.latLng)
-
 
       const btn_classStyle = {
          margin: '2em',

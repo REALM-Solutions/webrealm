@@ -22,17 +22,6 @@ class HomePage extends Component {
    }
 
    componentWillMount() {
-
-      // if(this.props.store.loggedInUser.userName != null){
-      //    this.state.loggedInUser=this.props.store.loggedInUser.userName
-      // }
-      console.log(this.props.store.loggedInUser)
-      // this.state.loggedInUser = this.props.store.loggedInUser
-      // this.setState((prevState,props) => {
-      //    return{loggedInUser:this.props.store.loggedInUser}
-      // });
-      console.log(this.state.loggedInUser)
-
       clearAllBodyScrollLocks()
       let eventArray = []
       fetch('https://onthequad.herokuapp.com/events', {
@@ -60,7 +49,7 @@ class HomePage extends Component {
 
    componentDidUpdate(prevProps, prevState) {
       if((this.loggedInUser !== this.props.store.loggedInUser)&&(this.state.tggle==false)){
-      console.log(this.props.store.loggedInUser.userName)
+      
       this.setState({loggedInUser:this.props.store.loggedInUser})
       this.setState({tggle:true})
       if(this.state.loggedInUserName=='User'){
@@ -100,18 +89,13 @@ class HomePage extends Component {
                />
             )
          })
-         console.log("fetched")
       }
 
       return (
          <div className="homePageBanner" >
             <h1 className="homePageBannerMsg">Welcome {this.state.loggedInUserName}</h1>
             <img className="eventViewMapStyling" alt="" src={map} />
-            {/* <Map
-            viewOnly={this.state.viewOnly}
-            /> */}
             <div>
-
                <CategoryButtonGroup />
 
                <ListGroup as='ulhp'>

@@ -21,7 +21,6 @@ class EventsList extends Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         if (responseJson !== null) {
           Object.values(responseJson).map(function (event) {
             eventArray.push(event)
@@ -29,7 +28,6 @@ class EventsList extends Component {
           this.setState({
             events: eventArray
           })
-          console.log(responseJson);
         }
       })
       .catch((error) => {
@@ -62,7 +60,6 @@ class EventsList extends Component {
           />
         )
       })
-      console.log("fetched")
     }
     return (
       <ul >

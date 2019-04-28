@@ -19,7 +19,6 @@ class CreateEventPage extends Component {
          showModal: false,
          coordinates: {}
       }
-      console.log(this.state)
 
       this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
@@ -107,7 +106,6 @@ class CreateEventPage extends Component {
       }
       var chsnDate = chsnyr + "" + chsnmth + "" + chsnday;
       var dif = chsnDate - newDate;
-      console.log(dif + " " + chsnDate + " " + newDate)
 
       if (dif < 0) {
 
@@ -182,7 +180,7 @@ class CreateEventPage extends Component {
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
-         console.log(this.state.fields.categoryType)
+         
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
             headers: {
@@ -205,7 +203,6 @@ class CreateEventPage extends Component {
             }),
          }).then((response) => response.json())
             .then((responseJson) => {
-               console.log(responseJson);
             })
             .catch((error) => {
                console.error(error);
@@ -213,14 +210,13 @@ class CreateEventPage extends Component {
          alert('Event Created')
          this.resetFields()
 
-         console.log(this.state + "reset state")
          this.props.history.push('/')
 
 
       } else {
          this.resetFields()
          this.state.formIsValid = true;
-         console.log("something went wrong, check validation errors")
+         
       }
 
    }
@@ -231,8 +227,6 @@ class CreateEventPage extends Component {
       fields[field] = e.target.value;
       this.setState({ fields });
       this.state.formIsValid = true;
-      console.log(this.state.formIsValid)
-      console.log(this.state.fields)
    }
 
    resetFields() {

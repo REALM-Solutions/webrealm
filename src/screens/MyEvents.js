@@ -19,7 +19,6 @@ class MyEvents extends Component {
    componentDidMount() {
       this.targetElement = document.querySelector("my_events_wrapper");
       clearAllBodyScrollLocks();
-      console.log(this.props.store)
       if(this.props.store.loggedInUser == null){
          disableBodyScroll(this.targetElement);
       this.setState({
