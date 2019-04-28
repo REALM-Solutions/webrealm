@@ -81,6 +81,7 @@ class LogIn extends Component {
                <br />
                <button className="btnpro" id="submit" value="Submit">Sign In</button>
             </form>
+            <button className="btnfp" id="submit" value="forgotPassword">Forgot Password?</button>
          </div>
 
       );

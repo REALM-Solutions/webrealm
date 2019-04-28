@@ -292,7 +292,18 @@ width:180px;
 display: table-cell;
 vertical-align: middle;
 line-height: 100%
-
+}
+button.btnfp{
+padding: 10px;
+border: 1px solid #d8d8d8;
+background-color: #f9f9f9;
+border-radius: 3px;
+margin:2vh;
+height:35px;
+width:160px;
+display: table-cell;
+vertical-align: middle;
+line-height: 100%;
 }
 
 input.chkbox{
@@ -457,8 +468,9 @@ color: white
 }
 
 .logInFormContainer{
-display: flexbox;
-flex-direction: column;  
+display: flex;
+flex-direction: column;
+align-items: center; 
 }
 
 .modal-wrapper {
