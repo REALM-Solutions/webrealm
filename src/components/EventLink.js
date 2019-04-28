@@ -36,7 +36,6 @@ class EventLink extends Component {
             <div className='eventLinkContainer '>
                <p className='eventText'>{this.state.eventName}&nbsp; </p>
                <p className='eventText'>{this.state.eventCategory}&nbsp;</p>
-               <p className='eventText'>{this.state.eventHost}&nbsp;</p>
                <p className='eventText'>{this.state.eventDate}&nbsp;</p>
                <p className='eventText'>{this.state.eventStartTime}&nbsp;</p>
             </div>

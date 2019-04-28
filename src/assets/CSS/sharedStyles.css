@@ -686,3 +686,18 @@ width: 100%
       height: 100%;
       margin-left: 15%
       }
+  
+  .login_input{
+    height: 8vh;
+    border:solid 1px;
+    border-radius: 3px;
+    margin: 2vh;
+    text-align:center 
+  }
+
+  .loginform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }

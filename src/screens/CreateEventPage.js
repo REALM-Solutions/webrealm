@@ -3,6 +3,7 @@ import map from "../assets/images/map.PNG";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Map from "../components/maps/Map";
+import { withStore } from "../assets/helpers/store";
 
 
 
@@ -27,6 +28,12 @@ class CreateEventPage extends Component {
 
    componentDidMount() {
       this.targetElement = document.querySelector("create_event_wrapper");
+      if(this.props.store.loggedInUser == null){
+         disableBodyScroll(this.targetElement);
+      this.setState({
+         showModal: true
+      });
+      }
    }
 
    openModalHandler = () => {
@@ -247,10 +254,10 @@ class CreateEventPage extends Component {
             </Modal> : null}
 
             {!this.state.isShowing ? <div className="createEventFormContainer" >
-               <div className="createEventMapContainer" style={{ width: '30px' }} >
-                  {/* <img className="createEventViewMapStyling" alt="" src={map} /> */}
-                  <Map markers={[{ position: this.state.latLng, name: this.state.name, description: this.state.location }]}
-                     viewOnly={this.state.viewOnly} />
+               <div className="createEventMapContainer"  >
+                  <img className="createEventViewMapStyling" alt="" src={map} />
+                  {/* <Map markers={[{ position: this.state.latLng, name: this.state.name, description: this.state.location }]}
+                     viewOnly={this.state.viewOnly} /> */}
                </div>
 
                <form name="eventform" className="eventform" onSubmit={this.eventSubmit.bind(this)} >
@@ -307,6 +314,7 @@ class CreateEventPage extends Component {
 
 
                         <input className="event_input" style={{ width: '80%' }} refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
+                        <br/>
                         <span className="error">{this.state.errors["eventLocation"]}</span>
                         <br />
                         <textarea className="eventDescription" refs="eventDescription" cols="28" rows="4"
@@ -324,4 +332,4 @@ class CreateEventPage extends Component {
       )
    }
 }
-export default CreateEventPage;
+export default withStore( CreateEventPage);

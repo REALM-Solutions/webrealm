@@ -4,6 +4,7 @@ import Modal from "../components/Modals/LoginSignUpRedirectModal"
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Map from "../components/maps/Map";
 import { withStore } from "../assets/helpers/store";
+import map from "../assets/images/map.PNG"
 
 
 class EventView extends Component {
@@ -40,6 +41,12 @@ class EventView extends Component {
       this.targetElement = document.querySelector("eventview_wrapper");
       // this.props.store.set("loggedIn","false");
       clearAllBodyScrollLocks();
+      if(this.props.store.loggedInUser == null){
+         disableBodyScroll(this.targetElement);
+      this.setState({
+         isShowing: true
+      });
+      }
     }
 
    changeColor() {
@@ -92,14 +99,14 @@ class EventView extends Component {
                <h1 className="eventHeader">{this.state.name}</h1>
                {/* <h1 className="eventHeader">{this.props.store.loggedIn}</h1> */}
                <span className="eventViewMapStylingCont" >
-                  {/* <img src={map} alt="" className="eventViewMapStyling" /> */}
-                  <div className="eventViewMapStyling">
+                  <img src={map} alt="" className="eventViewMapStyling" />
+                  {/* <div className="eventViewMapStyling">
                      <Map
                         markers={[{position: this.state.latLng, name: this.state.name, description: this.state.location}]}
                         viewOnly={this.state.viewOnly}
                      />
                      
-                  </div>
+                  </div> */}
                   <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
                </span>
 

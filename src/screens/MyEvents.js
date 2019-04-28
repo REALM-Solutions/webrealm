@@ -5,19 +5,27 @@ import TabList from '../components/TabList';
 import EventsList from "../components/EventsList";
 import Modal from "../components/Modals/LoginSignUpRedirectModal";
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { withStore } from "../assets/helpers/store";
 
 class MyEvents extends Component {
    constructor(props) {
       super(props);
 
       this.state = {
-         isShowing: false
+         isShowing: false,
       }
    }
 
    componentDidMount() {
       this.targetElement = document.querySelector("my_events_wrapper");
       clearAllBodyScrollLocks();
+      console.log(this.props.store)
+      if(this.props.store.loggedInUser == null){
+         disableBodyScroll(this.targetElement);
+      this.setState({
+         isShowing: true
+      });
+      }
     }
 
    openModalHandler = () => {
@@ -37,7 +45,7 @@ class MyEvents extends Component {
 
       return (
          <div className="my_events_wrapper" >
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
             {this.state.isShowing ? <div className="back-drop">
             <Modal
                className="modal"
@@ -68,4 +76,4 @@ class MyEvents extends Component {
    }
 }
 
-export default MyEvents;
+export default withStore(MyEvents);

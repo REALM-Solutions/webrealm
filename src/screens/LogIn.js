@@ -38,6 +38,8 @@ class LogIn extends Component {
                let user = Object.values(responseJson)
                if (user[0] === 'i') {
                   console.log("invalid")
+                  console.log(responseJson)
+                  alert(responseJson +": please check your email and password")
                }
                else {
                   console.log(user)
@@ -45,18 +47,18 @@ class LogIn extends Component {
                   this.state.userId = user[4]
                   this.state.userLoggedIn = 'true'
                   console.log(this.props.store)
+                  alert('Logged In')
+                  this.props.store.set("loggedInUser", this.state)
+                  this.props.history.push('/')
                }
             }
-            console.log(this.state)
-            this.props.store.set("loggedInUser", this.state)
+            
 
          })
          .catch((error) => {
             console.error(error);
          })
-      alert('Logged In')
 
-      this.props.history.push('/')
    }
 
    handleEmailChange(e) {
@@ -72,7 +74,7 @@ class LogIn extends Component {
    render() {
       return (
          <div className="logInFormContainer">
-            <form name="loginform" className="loginform" display="flex" onSubmit={this.userLogin.bind(this)} >
+            <form name="loginform" className="loginform" onSubmit={this.userLogin.bind(this)} >
                <input className="login_input" ref="userEmailText" type="text" size="30" placeholder="E-Mail Address" onChange={this.handleEmailChange} value={this.state.userEmail} />
                <br />
                <input className="login_input" ref="passwordText" type="text" size="30" placeholder="Enter Password" onChange={this.handlePasswordChange} value={this.state.userPassword} />
