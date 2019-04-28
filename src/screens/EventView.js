@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import Map from "../components/maps/Map";
+import { withStore } from "../assets/helpers/store";
+import map from "../assets/images/map.PNG"
+
 
 class EventView extends Component {
    constructor(props) {
       super(props);
-      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, attendees } = props.location.state
-
+      const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, coordinates } = props.location.state
+      
       this.state = {
+         viewOnly: true,
          green: false,
          name: name,
          category: category,
@@ -21,13 +25,22 @@ class EventView extends Component {
          description: description,
          spotsAvailable: spotsAvailable,
          attendees: [],
+         
          isShowing:false
       }
    }
 
    componentDidMount() {
+      window.scrollTo(0, 0)
       this.targetElement = document.querySelector("eventview_wrapper");
+      // this.props.store.set("loggedIn","false");
       clearAllBodyScrollLocks();
+      if(this.props.store.loggedInUser == null){
+         disableBodyScroll(this.targetElement);
+      this.setState({
+         isShowing: true
+      });
+      }
     }
 
    changeColor() {
@@ -53,8 +66,6 @@ class EventView extends Component {
 
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
-      console.log(this.state)
-
 
       const btn_classStyle = {
          margin: '2em',
@@ -63,12 +74,11 @@ class EventView extends Component {
          width: '6em',
          borderRadius: '8px'
       };
-
       return (
 
          <div className="eventview_wrapper">
             {this.state.isShowing ? <div className="back-drop"></div> : null}
-            <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
+            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
 
             {this.state.isShowing ? <Modal
                className="modal"
@@ -79,8 +89,16 @@ class EventView extends Component {
             <div className="eventViewMainDiv">
 
                <h1 className="eventHeader">{this.state.name}</h1>
+               {/* <h1 className="eventHeader">{this.props.store.loggedIn}</h1> */}
                <span className="eventViewMapStylingCont" >
                   <img src={map} alt="" className="eventViewMapStyling" />
+                  {/* <div className="eventViewMapStyling">
+                     <Map
+                        markers={[{position: this.state.latLng, name: this.state.name, description: this.state.location}]}
+                        viewOnly={this.state.viewOnly}
+                     />
+                     
+                  </div> */}
                   <p className='eventDescription'><strong className="eventViewStrong">Description: </strong><br />{this.state.description}</p>
                </span>
 
@@ -118,14 +136,15 @@ class EventView extends Component {
 
                   </div>
                </span>
-            </div> : null}
+            </div> 
 
          </div>
 
       );
+      
    }
 }
 
 
 
-export default EventView;
+export default withStore (EventView);

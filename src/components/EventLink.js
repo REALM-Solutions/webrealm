@@ -14,11 +14,12 @@ class EventLink extends Component {
          eventEndTime: this.props.endTime.slice(11, 16),
          eventLocation: this.props.location,
          eventDescription: this.props.description,
-         spotsAvailable: this.props.spotsAvailable
+         spotsAvailable: this.props.spotsAvailable,
+         coordinates: this.props.coordinates
       };
    }
    render() {
-      const {eventName, eventCategory, eventHost, eventDate, eventStartTime, eventEndTime, eventLocation, eventDescription, spotsAvailable} = this.state
+      const {eventName, eventCategory, eventHost, eventDate, eventStartTime, eventEndTime, eventLocation, eventDescription, spotsAvailable, coordinates} = this.state
       return (
          <Link to={{pathname:'/EventView', state: {
                   name:eventName,
@@ -29,12 +30,12 @@ class EventLink extends Component {
                   endTime:eventEndTime,
                   location:eventLocation,
                   description:eventDescription,
-                  spotsAvailable:spotsAvailable
+                  spotsAvailable:spotsAvailable,
+                  coordinates:coordinates
             }}}>
             <div className='eventLinkContainer '>
                <p className='eventText'>{this.state.eventName}&nbsp; </p>
                <p className='eventText'>{this.state.eventCategory}&nbsp;</p>
-               <p className='eventText'>{this.state.eventHost}&nbsp;</p>
                <p className='eventText'>{this.state.eventDate}&nbsp;</p>
                <p className='eventText'>{this.state.eventStartTime}&nbsp;</p>
             </div>
