@@ -14,23 +14,23 @@ class CreateEventPage extends Component {
          fields: {},
          errors: {},
          formIsValid: true,
-         viewOnly:false,
-         showModal:false,
-         coordinates:{}
+         viewOnly: false,
+         showModal: false,
+         coordinates: {}
       }
       console.log(this.state)
 
       this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
-      
+
    }
 
    componentDidMount() {
       this.targetElement = document.querySelector("create_event_wrapper");
-    }
+   }
 
-   openModalHandler = () => {      
-    disableBodyScroll(this.targetElement);
+   openModalHandler = () => {
+      disableBodyScroll(this.targetElement);
       this.setState({
          showModal: true
       });
@@ -41,7 +41,7 @@ class CreateEventPage extends Component {
       this.setState({
          showModal: false
       });
-      
+
       this.props.history.push('/')
    }
 
@@ -53,7 +53,7 @@ class CreateEventPage extends Component {
       //Name
       if (!fields["eventNameText"]) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventNameText"] = "Please enter an event name";
       }
@@ -61,7 +61,7 @@ class CreateEventPage extends Component {
       if (typeof fields["eventNameText"] !== "undefined") {
          if (!fields["eventNameText"].match(/^[\S\s]{3,15}$/)) {
 
-            this.state.formIsValid=false;
+            this.state.formIsValid = false;
 
             errors["eventNameText"] = "Name must be longer than 3 characters";
          }
@@ -70,7 +70,7 @@ class CreateEventPage extends Component {
       //Event Date
       if (!fields["eventDate"]) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventDate"] = "Please enter a valid date";
       }
@@ -104,7 +104,7 @@ class CreateEventPage extends Component {
 
       if (dif < 0) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventDate"] = "Please enter a valid date";
       }
@@ -112,7 +112,7 @@ class CreateEventPage extends Component {
       //Event Start Time
       if (!fields["eventStartTime"]) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventStartTime"] = "Please enter a valid time";
       }
@@ -120,11 +120,11 @@ class CreateEventPage extends Component {
       //Event End Time
       if (!fields["eventEndTime"]) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
          errors["eventEndTime"] = "Please enter a valid time";
       }
       if (this.state.fields.eventStartTime > this.state.fields.eventEndTime) {
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventEndTime"] = "This must be later than the start time."
       }
@@ -132,14 +132,14 @@ class CreateEventPage extends Component {
       //Location
       if (!fields["eventLocation"]) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventLocation"] = "Cannot be empty";
       }
       if (typeof fields["eventLocation"] !== "undefined") {
          if (!fields["eventLocation"].match(/^[\S\s]{3,12}$/)) {
 
-            this.state.formIsValid=false;
+            this.state.formIsValid = false;
             errors["eventLocation"] = "Location must be longer than 3 characters";
          }
       }
@@ -148,7 +148,7 @@ class CreateEventPage extends Component {
       if (typeof fields["eventDescription"] !== "undefined") {
          if (!fields["eventDescription"].match(/^[\S\s]{5,325}$/)) {
 
-            this.state.formIsValid=false;
+            this.state.formIsValid = false;
 
             errors["eventDescription"] = "Description must be longer than 5 characters and less than 325 characters";
          }
@@ -156,7 +156,7 @@ class CreateEventPage extends Component {
 
       if (!fields["eventDescription"]) {
 
-         this.state.formIsValid=false;
+         this.state.formIsValid = false;
 
          errors["eventDescription"] = "Please enter an event description.";
       }
@@ -168,7 +168,7 @@ class CreateEventPage extends Component {
 
    showModal = () => {
       this.setState({ showModal: true });
-    };
+   };
 
    eventSubmit(e) {
       e.preventDefault();
@@ -192,9 +192,9 @@ class CreateEventPage extends Component {
                endTime: eventEndTime,
                creator: { username: "pperez" },
                availableSpots: eventSpotsAvailable,
-               coordinates: {latitude:39.744055,longitude:-105.004363},
+               coordinates: { latitude: 39.744055, longitude: -105.004363 },
                public: 'true',
-               attendees:[]
+               attendees: []
             }),
          }).then((response) => response.json())
             .then((responseJson) => {
@@ -212,7 +212,7 @@ class CreateEventPage extends Component {
 
       } else {
          this.resetFields()
-         this.state.formIsValid=true;
+         this.state.formIsValid = true;
          console.log("something went wrong, check validation errors")
       }
 
@@ -223,7 +223,7 @@ class CreateEventPage extends Component {
       let fields = this.state.fields;
       fields[field] = e.target.value;
       this.setState({ fields });
-      this.state.formIsValid=true;
+      this.state.formIsValid = true;
       console.log(this.state.formIsValid)
       console.log(this.state.fields)
    }
@@ -231,7 +231,7 @@ class CreateEventPage extends Component {
    resetFields() {
       this.state = this.baseState
    }
-  
+
 
 
    render() {
@@ -239,86 +239,87 @@ class CreateEventPage extends Component {
          <div className="create_event_wrapper">
             {this.state.showModal ? <div className="back-drop"></div> : null}
             {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
-            
-            {this.state.showModal ? <Modal 
+
+            {this.state.showModal ? <Modal
                className="modal"
                show={this.state.showModal}
-               close={this.closeModalHandler}>               
-            </Modal> : null }
+               close={this.closeModalHandler}>
+            </Modal> : null}
 
             {!this.state.isShowing ? <div className="createEventFormContainer" >
-            <div className="createEventMapContainer" style={{width:'60vw'}} >
-               {/* <img className="createEventViewMapStyling" alt="" src={map} /> */}
-               <Map markers={[{position: this.state.latLng, name: this.state.name, description: this.state.location}]}
-               viewOnly={this.state.viewOnly} />
-            </div>
-            <form name="eventform" className="eventform" onSubmit={this.eventSubmit.bind(this)} >
-               <div className="eventFormInputContainer" >
-                  <fieldset className="createEventFieldset">
-
-                     <input className="event_input" ref="eventNameText" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
-                     <br />
-                     <span className="error">{this.state.errors["eventNameText"]}</span>
-                     <br />
-
-                     <select className="categoryDropdown" ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]}>
-                        <option categoryType="">Select A Category</option>
-                        <option categoryType="sports">Sports</option>
-                        <option categoryType="study">Study</option>
-                        <option categoryType="games">Games</option>
-                        <option categoryType="entertainment">Entertainment</option>
-                        <option categoryType="casual">Casual</option>
-                        <option categoryType="miscelaneous">Miscelaneous</option>
-                     </select>
-                     <label> Select Category</label>
-
-                     <div className="eventInputDateTimeContainer" >
-                        <div className="timeFormContainer">
-                           <input className="event_input_small" style={{ maxHeight: '22.667px' }} type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
-                           <label >Enter Date </label>
-                           <br />
-                           <span className="error">{this.state.errors["eventDate"]}</span>
-                           <br />
-                        </div>
-
-                        <div className="timeFormContainer" >
-                           <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
-                           <label >Enter Start Time </label>
-                           <br />
-                           <span className="error">{this.state.errors["eventStartTime"]}</span>
-                           <br />
-                        </div>
-
-                        <div className="timeFormContainer">
-                           <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
-                           <label >Enter End Time </label>
-                           <br />
-                           <span className="error">{this.state.errors["eventEndTime"]}</span>
-                           <br />
-                        </div>
-
-                        <div className="spotsFormContainer">
-                           <input className="event_input_smallerNums" type='number' min='1' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
-                           <label >Available Spots </label>
-                           <br />
-                        </div>
-                     </div>
-
-
-                     <input className="event_input" style={{ width: '80%' }} refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
-                     <span className="error">{this.state.errors["eventLocation"]}</span>
-                     <br />
-                     <textarea className="eventDescription" refs="eventDescription" cols="28" rows="4"
-                        placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
-                     </textarea>
-                     <br />
-                     <span className="error">{this.state.errors["eventDescription"]}</span>
-                     <br />
-                     <button className="btnpro" id="submit" value="Submit">Submit Event</button>
-                  </fieldset>
+               <div className="createEventMapContainer" style={{ width: '30px' }} >
+                  {/* <img className="createEventViewMapStyling" alt="" src={map} /> */}
+                  <Map markers={[{ position: this.state.latLng, name: this.state.name, description: this.state.location }]}
+                     viewOnly={this.state.viewOnly} />
                </div>
-            </form>
-         </div> :null}
+
+               <form name="eventform" className="eventform" onSubmit={this.eventSubmit.bind(this)} >
+                  <div className="eventFormInputContainer" >
+                     <fieldset className="createEventFieldset">
+
+                        <input className="event_input" ref="eventNameText" type="text" size="30" placeholder="Event Name" onChange={this.handleChange.bind(this, "eventNameText")} value={this.state.fields["eventNameText"]} />
+                        <br />
+                        <span className="error">{this.state.errors["eventNameText"]}</span>
+                        <br />
+
+                        <select className="categoryDropdown" ref='categoryType' onChange={this.handleChange.bind(this, "categoryType")} value={this.state.fields["categoryType"]}>
+                           <option categoryType="">Select A Category</option>
+                           <option categoryType="sports">Sports</option>
+                           <option categoryType="study">Study</option>
+                           <option categoryType="games">Games</option>
+                           <option categoryType="entertainment">Entertainment</option>
+                           <option categoryType="casual">Casual</option>
+                           <option categoryType="miscelaneous">Miscelaneous</option>
+                        </select>
+                        <label> Select Category</label>
+
+                        <div className="eventInputDateTimeContainer" >
+                           <div className="timeFormContainer">
+                              <input className="event_input_small" style={{ maxHeight: '22.667px' }} type='date' ref='eventDate' onChange={this.handleChange.bind(this, "eventDate")} value={this.state.fields["eventDate"]} />
+                              <label >Enter Date </label>
+                              <br />
+                              <span className="error">{this.state.errors["eventDate"]}</span>
+                              <br />
+                           </div>
+
+                           <div className="timeFormContainer" >
+                              <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                              <label >Enter Start Time </label>
+                              <br />
+                              <span className="error">{this.state.errors["eventStartTime"]}</span>
+                              <br />
+                           </div>
+
+                           <div className="timeFormContainer">
+                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                              <label >Enter End Time </label>
+                              <br />
+                              <span className="error">{this.state.errors["eventEndTime"]}</span>
+                              <br />
+                           </div>
+
+                           <div className="spotsFormContainer">
+                              <input className="event_input_smallerNums" type='number' min='1' ref='eventSpotsAvailable' onChange={this.handleChange.bind(this, "eventSpotsAvailable")} value={this.state.fields["eventSpotsAvailable"]} />
+                              <label >Available Spots </label>
+                              <br />
+                           </div>
+                        </div>
+
+
+                        <input className="event_input" style={{ width: '80%' }} refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
+                        <span className="error">{this.state.errors["eventLocation"]}</span>
+                        <br />
+                        <textarea className="eventDescription" refs="eventDescription" cols="28" rows="4"
+                           placeholder="Describe your event." onChange={this.handleChange.bind(this, "eventDescription")}>{this.state.fields["eventDescription"]}
+                        </textarea>
+                        <br />
+                        <span className="error">{this.state.errors["eventDescription"]}</span>
+                        <br />
+                        <button className="btnpro" id="submit" value="Submit">Submit Event</button>
+                     </fieldset>
+                  </div>
+               </form>
+            </div> : null}
          </div>
       )
    }

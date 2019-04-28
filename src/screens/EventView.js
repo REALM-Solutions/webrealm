@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
 import Modal from "../components/Modals/LoginSignUpRedirectModal"
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Map from "../components/maps/Map";
+import { withStore } from "../assets/helpers/store";
 
 
 class EventView extends Component {
@@ -38,6 +38,7 @@ class EventView extends Component {
 
    componentDidMount() {
       this.targetElement = document.querySelector("eventview_wrapper");
+      // this.props.store.set("loggedIn","false");
       clearAllBodyScrollLocks();
     }
 
@@ -89,6 +90,7 @@ class EventView extends Component {
             <div className="eventViewMainDiv">
 
                <h1 className="eventHeader">{this.state.name}</h1>
+               {/* <h1 className="eventHeader">{this.props.store.loggedIn}</h1> */}
                <span className="eventViewMapStylingCont" >
                   {/* <img src={map} alt="" className="eventViewMapStyling" /> */}
                   <div className="eventViewMapStyling">
@@ -146,4 +148,4 @@ class EventView extends Component {
 
 
 
-export default EventView;
+export default withStore (EventView);

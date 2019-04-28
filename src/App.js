@@ -8,8 +8,10 @@ import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
 import logo from './assets/images/splash.png';
 import MyEvents from './screens/MyEvents';
+import LogIn from './screens/LogIn';
 import TermsandConditions from './screens/TermsandConditions';
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { createStore } from './assets/helpers/store';
 
 
 
@@ -31,8 +33,7 @@ class App extends Component {
     this.setState({ showMenu: true }, () => {
       document.addEventListener('click', this.closeMenu);
     });
-  }
-  
+  }  
 
   closeMenu(event) {
 
@@ -65,6 +66,7 @@ class App extends Component {
                   <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
                   {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
                   <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
+                  <NavLink to='/LogIn' style={{ color: 'black', display: 'block' }}>Log-In</NavLink>
                 </div>
               ) : (null)
               }
@@ -75,6 +77,7 @@ class App extends Component {
           <div className="content" >
             <Route exact path="/" component={HomePage} />
             <Route path="/EventView" component={EventView} />
+            <Route path="/LogIn" component={LogIn} />
             <Route path="/SignUp" component={SignUp} />
             <Route path='/createEvent' component={CreateEventPage} />
             <Route path='/myEvents' component={MyEvents} />
@@ -85,4 +88,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default createStore (App);

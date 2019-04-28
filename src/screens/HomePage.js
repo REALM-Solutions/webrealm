@@ -4,19 +4,35 @@ import { ListGroup } from "react-bootstrap";
 import CategoryButtonGroup from "../components/CategoryButtonGroup/CategoryButtonGroup";
 import EventLink from "../components/EventLink";
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
-import Map from "../components/maps/Map"
+import Map from "../components/maps/Map";
+import { withStore } from "../assets/helpers/store";
 
 class HomePage extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         viewOnly:true,
+         viewOnly: true,
          selectedCategory: '',
-         events: []
+         events: [],
+         loggedInUserName: 'User',
+         userLoggedIn: 'false',
+         loggedInUser: {},
+         tggle:false
       }
    }
 
    componentWillMount() {
+
+      // if(this.props.store.loggedInUser.userName != null){
+      //    this.state.loggedInUser=this.props.store.loggedInUser.userName
+      // }
+      console.log(this.props.store.loggedInUser)
+      // this.state.loggedInUser = this.props.store.loggedInUser
+      // this.setState((prevState,props) => {
+      //    return{loggedInUser:this.props.store.loggedInUser}
+      // });
+      console.log(this.state.loggedInUser)
+
       clearAllBodyScrollLocks()
       let eventArray = []
       fetch('https://onthequad.herokuapp.com/events', {
@@ -27,23 +43,30 @@ class HomePage extends Component {
       })
          .then(response => response.json())
          .then(responseJson => {
-            console.log(responseJson)
             if (responseJson !== null) {
                Object.values(responseJson).map(function (event) {
                   eventArray.push(event)
                })
-               console.log(eventArray)
                this.setState({
                   events: eventArray
                   //at this point the objects in the events have coordinates.
                })
-               console.log(this.state.events)
-               console.log(responseJson);
             }
          })
          .catch((error) => {
             console.error(error)
          });
+   }
+
+   componentDidUpdate(prevProps, prevState) {
+      if((this.loggedInUser !== this.props.store.loggedInUser)&&(this.state.tggle==false)){
+      console.log(this.props.store.loggedInUser.userName)
+      this.setState({loggedInUser:this.props.store.loggedInUser})
+      this.setState({tggle:true})
+      if(this.state.loggedInUserName=='User'){
+         this.state.loggedInUserName=this.props.store.loggedInUser.userName
+      }
+      }
    }
 
 
@@ -56,9 +79,9 @@ class HomePage extends Component {
             </div>
          )
       } else {
-         // console.log(this.state.events)
+
          this.state.events.forEach(function (event, index) {
-            console.log(eventElements)
+
             //at this point the objects in eventElements have the coordinates available
             eventElements.push(
                <EventLink
@@ -79,10 +102,11 @@ class HomePage extends Component {
          })
          console.log("fetched")
       }
+
       return (
          <div className="homePageBanner" >
-            <h1 className="homePageBannerMsg">Welcome "USER"</h1>
-            <img className="eventViewMapStyling" alt="" src={map}  />
+            <h1 className="homePageBannerMsg">Welcome {this.state.loggedInUserName}</h1>
+            <img className="eventViewMapStyling" alt="" src={map} />
             {/* <Map
             viewOnly={this.state.viewOnly}
             /> */}
@@ -90,14 +114,14 @@ class HomePage extends Component {
 
                <CategoryButtonGroup />
 
-               <ListGroup as='Ulhp'>
+               <ListGroup as='ulhp'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements}
                </ListGroup>
-               
+
             </div>
          </div>
       );
    }
 }
 
-export default HomePage;
+export default withStore(HomePage);
