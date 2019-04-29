@@ -17,7 +17,7 @@ class HomePage extends Component {
          loggedInUserName: 'User',
          userLoggedIn: 'false',
          loggedInUser: {},
-         tggle:false
+         tggle: false
       }
    }
 
@@ -48,13 +48,13 @@ class HomePage extends Component {
    }
 
    componentDidUpdate(prevProps, prevState) {
-      if((this.loggedInUser !== this.props.store.loggedInUser)&&(this.state.tggle==false)){
-      
-      this.setState({loggedInUser:this.props.store.loggedInUser})
-      this.setState({tggle:true})
-      if(this.state.loggedInUserName=='User'){
-         this.state.loggedInUserName=this.props.store.loggedInUser.userName
-      }
+      if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.tggle == false)) {
+
+         this.setState({ loggedInUser: this.props.store.loggedInUser })
+         this.setState({ tggle: true })
+         if (this.state.loggedInUserName === 'User') {
+            this.state.loggedInUserName = this.props.store.loggedInUser.userFirstName
+         }
       }
    }
 

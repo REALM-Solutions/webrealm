@@ -10,7 +10,8 @@ class LogIn extends Component {
          userPassword: '',
          userLoggedIn: 'false',
          userId: "",
-         userName: ""
+         userName: "",
+         userFirstName:"",
       }
       this.userLogin = this.userLogin.bind(this)
       this.handleEmailChange = this.handleEmailChange.bind(this)
@@ -41,8 +42,10 @@ class LogIn extends Component {
                   alert(responseJson + ": please check your email and password")
                }
                else {
+                  console.log(user)
 
-                  this.state.userName = user[1]
+                  this.state.userName = user[5]
+                  this.state.userFirstName=user[1]
                   this.state.userId = user[4]
                   this.state.userLoggedIn = 'true'
 

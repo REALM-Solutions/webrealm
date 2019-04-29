@@ -27,11 +27,11 @@ class CreateEventPage extends Component {
 
    componentDidMount() {
       this.targetElement = document.querySelector("create_event_wrapper");
-      if(this.props.store.loggedInUser == null){
+      if (this.props.store.loggedInUser == null) {
          disableBodyScroll(this.targetElement);
-      this.setState({
-         showModal: true
-      });
+         this.setState({
+            showModal: true
+         });
       }
    }
 
@@ -65,7 +65,7 @@ class CreateEventPage extends Component {
       }
 
       if (typeof fields["eventNameText"] !== "undefined") {
-         if (!fields["eventNameText"].match(/^[\S\s]{3,15}$/)) {
+         if (!fields["eventNameText"].match(/^[\S\s]{3,25}$/)) {
 
             this.state.formIsValid = false;
 
@@ -142,7 +142,7 @@ class CreateEventPage extends Component {
          errors["eventLocation"] = "Cannot be empty";
       }
       if (typeof fields["eventLocation"] !== "undefined") {
-         if (!fields["eventLocation"].match(/^[\S\s]{3,12}$/)) {
+         if (!fields["eventLocation"].match(/^[\S\s]{3,25}$/)) {
 
             this.state.formIsValid = false;
             errors["eventLocation"] = "Location must be longer than 3 characters";
@@ -180,7 +180,7 @@ class CreateEventPage extends Component {
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
-         
+
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
             headers: {
@@ -195,14 +195,16 @@ class CreateEventPage extends Component {
                date: eventDate,
                startTime: eventStartTime,
                endTime: eventEndTime,
-               creator: { username: "pperez" },
+               creator: { username: this.props.store.loggedInUser.userName },
                availableSpots: eventSpotsAvailable,
                coordinates: { latitude: 39.744055, longitude: -105.004363 },
                public: 'true',
                attendees: []
             }),
+
          }).then((response) => response.json())
             .then((responseJson) => {
+               console.log(this.props.store.loggedInUser)
             })
             .catch((error) => {
                console.error(error);
@@ -216,7 +218,7 @@ class CreateEventPage extends Component {
       } else {
          this.resetFields()
          this.state.formIsValid = true;
-         
+
       }
 
    }
@@ -308,7 +310,7 @@ class CreateEventPage extends Component {
 
 
                         <input className="event_input" style={{ width: '80%' }} refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
-                        <br/>
+                        <br />
                         <span className="error">{this.state.errors["eventLocation"]}</span>
                         <br />
                         <textarea className="eventDescription" refs="eventDescription" cols="28" rows="4"
@@ -326,4 +328,4 @@ class CreateEventPage extends Component {
       )
    }
 }
-export default withStore( CreateEventPage);
+export default withStore(CreateEventPage);
