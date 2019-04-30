@@ -21,6 +21,8 @@ class App extends Component {
 
     this.state = {
       showMenu: false,
+      query: '',
+      results: []
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -46,6 +48,45 @@ class App extends Component {
     }
   }
 
+  getInfo = () => {
+    let eventArray = []
+    let apiWParams = 'https://onthequad.herokuapp.com/events?search='+this.state.query
+    
+    fetch(apiWParams, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': 'https://onthequad.herokuapp.com/'
+      }
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        if (responseJson !== null) {
+          Object.values(responseJson).map(function (event) {
+            eventArray.push(event)
+          })
+          this.setState({
+            results: eventArray
+          })
+          console.log(this.state.results)
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      });
+  }
+
+  handleInputChange = () => {
+    this.setState({
+      query: this.search.value
+    }, () => {
+      if (this.state.query && this.state.query.length > 1) {
+        if (this.state.query.length % 2 === 0) {
+          this.getInfo()
+        }
+      }
+    })
+  }
+
   render() {
     clearAllBodyScrollLocks()
     return (
@@ -56,7 +97,8 @@ class App extends Component {
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/myEvents">Events</NavLink></li>
             <li>  <div className="navBarMenuBtnContainer" >
-              <input type="text" className="input" placeholder="Search..." />
+              <input type="text" className="input" placeholder="Search..." ref={input => this.search = input}
+                onChange={this.handleInputChange} />
               <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
               {this.state.showMenu ? (
                 <div
