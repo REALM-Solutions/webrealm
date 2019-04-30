@@ -22,6 +22,7 @@ class CreateEventPage extends Component {
 
       this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
+      this.newDate = this.newDate.bind(this)
 
    }
 
@@ -175,11 +176,13 @@ class CreateEventPage extends Component {
       this.setState({ showModal: true });
    };
 
+
    eventSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
+            console.log(this.state.fields)
 
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
@@ -195,11 +198,11 @@ class CreateEventPage extends Component {
                date: eventDate,
                startTime: eventStartTime,
                endTime: eventEndTime,
-               creator: { username: this.props.store.loggedInUser.userName },
+               creator: this.props.store.loggedInUser.userName,
                availableSpots: eventSpotsAvailable,
                coordinates: { latitude: 39.744055, longitude: -105.004363 },
                public: 'true',
-               attendees: []
+               attendees: ['placeholder']
             }),
 
          }).then((response) => response.json())
@@ -230,6 +233,26 @@ class CreateEventPage extends Component {
       this.setState({ fields });
       this.state.formIsValid = true;
    }
+
+   handleTimeChange(field, e) {
+      let fields = this.state.fields;
+      let time = ""
+      time = this.newDate(this.state.fields.eventDate, e.target.value)
+      console.log(time)
+      fields[field] = time;
+      this.setState({ fields });
+      this.state.formIsValid = true;
+   }
+
+   newDate(date, time) {
+      
+      let nDate = new Date(date + 'T' + time + 'Z')
+      let nd = nDate.toJSON()
+      console.log(nd)
+      
+      return nd
+   }
+
 
    resetFields() {
       this.state = this.baseState
@@ -286,7 +309,7 @@ class CreateEventPage extends Component {
                            </div>
 
                            <div className="timeFormContainer" >
-                              <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                              <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleTimeChange.bind(this, "eventStartTime")} />
                               <label >Enter Start Time </label>
                               <br />
                               <span className="error">{this.state.errors["eventStartTime"]}</span>
@@ -294,7 +317,7 @@ class CreateEventPage extends Component {
                            </div>
 
                            <div className="timeFormContainer">
-                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleTimeChange.bind(this, "eventEndTime")}  />
                               <label >Enter End Time </label>
                               <br />
                               <span className="error">{this.state.errors["eventEndTime"]}</span>

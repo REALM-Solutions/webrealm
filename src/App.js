@@ -33,7 +33,7 @@ class App extends Component {
     this.setState({ showMenu: true }, () => {
       document.addEventListener('click', this.closeMenu);
     });
-  }  
+  }
 
   closeMenu(event) {
 
@@ -52,10 +52,9 @@ class App extends Component {
       <HashRouter>
         <div>
           <ul className="header" >
-            <li> <a style={{padding:'0'}}><img className="headerLogo"  src={logo} alt="" /></a> </li>
+            <li> <a style={{ padding: '0' }}><img className="headerLogo" src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/myEvents">Events</NavLink></li>
-            <li><NavLink to="/SignUp">Sign Up</NavLink></li>
             <li>  <div className="navBarMenuBtnContainer" >
               <input type="text" className="input" placeholder="Search..." />
               <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
@@ -88,4 +87,4 @@ class App extends Component {
     );
   }
 }
-export default createStore (App);
+export default createStore(App);
