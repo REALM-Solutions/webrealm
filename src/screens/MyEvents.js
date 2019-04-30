@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import map from "../assets/images/map.PNG";
 import "../assets/CSS/sharedStyles.css";
 import TabList from '../components/TabList';
-import EventsList from "../components/EventsList";
+import MyEventsList from "../components/MyEventsList";
+import MyAttendingEventsList from "../components/MyAttendingEventsList";
 import Modal from "../components/Modals/LoginSignUpRedirectModal";
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { withStore } from "../assets/helpers/store";
@@ -54,10 +55,10 @@ class MyEvents extends Component {
              <div className="tabsFlexContainer" >
                <TabList >
                   <div label="Attending" className="tab-content">
-                     <EventsList />
+                     <MyAttendingEventsList />
                   </div>
                   <div label="My Events" className="tab-content">
-                     <EventsList />
+                     <MyEventsList />
                   </div>
 
                </TabList>

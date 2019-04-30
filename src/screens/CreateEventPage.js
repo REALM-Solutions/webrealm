@@ -182,7 +182,7 @@ class CreateEventPage extends Component {
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
-         
+            
 
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
@@ -207,7 +207,6 @@ class CreateEventPage extends Component {
 
          }).then((response) => response.json())
             .then((responseJson) => {
-               
             })
             .catch((error) => {
                console.error(error);
@@ -248,6 +247,7 @@ class CreateEventPage extends Component {
       
       let nDate = new Date(date + 'T' + time + 'Z')
       let nd = nDate.toJSON()
+      
       
       return nd
    }
