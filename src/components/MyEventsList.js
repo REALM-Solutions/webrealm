@@ -15,7 +15,7 @@ class MyEventsList extends Component {
   componentWillMount() {
     let eventArray = []
     let apiWParams = 'https://onthequad.herokuapp.com/events?creator='+this.props.store.loggedInUser.userName
-    console.log(apiWParams)
+    
     fetch(apiWParams, {
       method: 'GET',
       headers: {

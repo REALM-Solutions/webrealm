@@ -42,8 +42,6 @@ class LogIn extends Component {
                   alert(responseJson + ": please check your email and password")
                }
                else {
-                  console.log(user)
-
                   this.state.userName = user[5]
                   this.state.userFirstName=user[1]
                   this.state.userId = user[4]
