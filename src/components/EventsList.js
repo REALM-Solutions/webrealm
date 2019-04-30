@@ -50,7 +50,7 @@ class EventsList extends Component {
             key={index}
             name={event.name}
             category={event.category}
-            host={event.creator.username}
+            host={event.creator}
             date={event.date}
             startTime={event.startTime}
             endTime={event.endTime}

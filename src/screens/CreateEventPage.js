@@ -22,16 +22,17 @@ class CreateEventPage extends Component {
 
       this.baseState = this.state
       this.handleValidation = this.handleValidation.bind(this)
+      this.newDate = this.newDate.bind(this)
 
    }
 
    componentDidMount() {
       this.targetElement = document.querySelector("create_event_wrapper");
-      if(this.props.store.loggedInUser == null){
+      if (this.props.store.loggedInUser == null) {
          disableBodyScroll(this.targetElement);
-      this.setState({
-         showModal: true
-      });
+         this.setState({
+            showModal: true
+         });
       }
    }
 
@@ -65,7 +66,7 @@ class CreateEventPage extends Component {
       }
 
       if (typeof fields["eventNameText"] !== "undefined") {
-         if (!fields["eventNameText"].match(/^[\S\s]{3,15}$/)) {
+         if (!fields["eventNameText"].match(/^[\S\s]{3,25}$/)) {
 
             this.state.formIsValid = false;
 
@@ -142,7 +143,7 @@ class CreateEventPage extends Component {
          errors["eventLocation"] = "Cannot be empty";
       }
       if (typeof fields["eventLocation"] !== "undefined") {
-         if (!fields["eventLocation"].match(/^[\S\s]{3,12}$/)) {
+         if (!fields["eventLocation"].match(/^[\S\s]{3,25}$/)) {
 
             this.state.formIsValid = false;
             errors["eventLocation"] = "Location must be longer than 3 characters";
@@ -175,12 +176,14 @@ class CreateEventPage extends Component {
       this.setState({ showModal: true });
    };
 
+
    eventSubmit(e) {
       e.preventDefault();
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
          
+
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
             headers: {
@@ -195,14 +198,16 @@ class CreateEventPage extends Component {
                date: eventDate,
                startTime: eventStartTime,
                endTime: eventEndTime,
-               creator: { username: "pperez" },
+               creator: this.props.store.loggedInUser.userName,
                availableSpots: eventSpotsAvailable,
                coordinates: { latitude: 39.744055, longitude: -105.004363 },
                public: 'true',
-               attendees: []
+               attendees: ['placeholder']
             }),
+
          }).then((response) => response.json())
             .then((responseJson) => {
+               
             })
             .catch((error) => {
                console.error(error);
@@ -216,7 +221,7 @@ class CreateEventPage extends Component {
       } else {
          this.resetFields()
          this.state.formIsValid = true;
-         
+
       }
 
    }
@@ -228,6 +233,25 @@ class CreateEventPage extends Component {
       this.setState({ fields });
       this.state.formIsValid = true;
    }
+
+   handleTimeChange(field, e) {
+      let fields = this.state.fields;
+      let time = ""
+      time = this.newDate(this.state.fields.eventDate, e.target.value)
+      
+      fields[field] = time;
+      this.setState({ fields });
+      this.state.formIsValid = true;
+   }
+
+   newDate(date, time) {
+      
+      let nDate = new Date(date + 'T' + time + 'Z')
+      let nd = nDate.toJSON()
+      
+      return nd
+   }
+
 
    resetFields() {
       this.state = this.baseState
@@ -284,7 +308,7 @@ class CreateEventPage extends Component {
                            </div>
 
                            <div className="timeFormContainer" >
-                              <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleChange.bind(this, "eventStartTime")} value={this.state.fields["eventStartTime"]} />
+                              <input className="event_input_smaller" type='time' ref='eventStartTime' onChange={this.handleTimeChange.bind(this, "eventStartTime")} />
                               <label >Enter Start Time </label>
                               <br />
                               <span className="error">{this.state.errors["eventStartTime"]}</span>
@@ -292,7 +316,7 @@ class CreateEventPage extends Component {
                            </div>
 
                            <div className="timeFormContainer">
-                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleChange.bind(this, "eventEndTime")} value={this.state.fields["eventEndTime"]} />
+                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleTimeChange.bind(this, "eventEndTime")}  />
                               <label >Enter End Time </label>
                               <br />
                               <span className="error">{this.state.errors["eventEndTime"]}</span>
@@ -308,7 +332,7 @@ class CreateEventPage extends Component {
 
 
                         <input className="event_input" style={{ width: '80%' }} refs="eventLocation" type="text" size="30" placeholder="Location Details" onChange={this.handleChange.bind(this, "eventLocation")} value={this.state.fields["eventLocation"]} />
-                        <br/>
+                        <br />
                         <span className="error">{this.state.errors["eventLocation"]}</span>
                         <br />
                         <textarea className="eventDescription" refs="eventDescription" cols="28" rows="4"
@@ -326,4 +350,4 @@ class CreateEventPage extends Component {
       )
    }
 }
-export default withStore( CreateEventPage);
+export default withStore(CreateEventPage);

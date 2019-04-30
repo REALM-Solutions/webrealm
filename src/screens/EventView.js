@@ -33,7 +33,6 @@ class EventView extends Component {
    componentDidMount() {
       window.scrollTo(0, 0)
       this.targetElement = document.querySelector("eventview_wrapper");
-      // this.props.store.set("loggedIn","false");
       clearAllBodyScrollLocks();
       if(this.props.store.loggedInUser == null){
          disableBodyScroll(this.targetElement);
@@ -66,6 +65,7 @@ class EventView extends Component {
 
    render() {
       let btn_class = this.state.green ? "greenButton" : "redButton";
+
 
       const btn_classStyle = {
          margin: '2em',
