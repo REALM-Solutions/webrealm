@@ -182,7 +182,7 @@ class CreateEventPage extends Component {
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
-            console.log(this.state.fields)
+         
 
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
@@ -207,7 +207,7 @@ class CreateEventPage extends Component {
 
          }).then((response) => response.json())
             .then((responseJson) => {
-               console.log(this.props.store.loggedInUser)
+               
             })
             .catch((error) => {
                console.error(error);
@@ -238,7 +238,7 @@ class CreateEventPage extends Component {
       let fields = this.state.fields;
       let time = ""
       time = this.newDate(this.state.fields.eventDate, e.target.value)
-      console.log(time)
+      
       fields[field] = time;
       this.setState({ fields });
       this.state.formIsValid = true;
@@ -248,7 +248,6 @@ class CreateEventPage extends Component {
       
       let nDate = new Date(date + 'T' + time + 'Z')
       let nd = nDate.toJSON()
-      console.log(nd)
       
       return nd
    }
