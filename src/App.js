@@ -8,6 +8,7 @@ import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
 import logo from './assets/images/splash.png';
 import MyEvents from './screens/MyEvents';
+import SearchResults from './screens/SearchResults';
 import LogIn from './screens/LogIn';
 import TermsandConditions from './screens/TermsandConditions';
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
@@ -16,8 +17,8 @@ import { createStore } from './assets/helpers/store';
 
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       showMenu: false,
@@ -50,8 +51,8 @@ class App extends Component {
 
   getInfo = () => {
     let eventArray = []
-    let apiWParams = 'https://onthequad.herokuapp.com/events?search='+this.state.query
-    
+    let apiWParams = 'https://onthequad.herokuapp.com/events?search=' + this.state.query
+
     fetch(apiWParams, {
       method: 'GET',
       headers: {
@@ -75,17 +76,21 @@ class App extends Component {
       });
   }
 
-  handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
+  handleInputChange = (e) => {
+    
+      this.setState({
+        query: this.search.value
+      }, () => {
+        if (this.state.query && this.state.query.length > 1) {
+          if (this.state.query.length % 2 === 0) {
+            this.getInfo()
+            console.log(this.state.query)
+          }
         }
-      }
-    })
+      })
+    
   }
+
 
   render() {
     clearAllBodyScrollLocks()
@@ -98,7 +103,11 @@ class App extends Component {
             <li><NavLink to="/myEvents">Events</NavLink></li>
             <li>  <div className="navBarMenuBtnContainer" >
               <input type="text" className="input" placeholder="Search..." ref={input => this.search = input}
-                onChange={this.handleInputChange} />
+                onKeyDown={this.handleInputChange} />
+              <NavLink to="/SearchResults">
+                <button type="button"> Search </button>
+              </NavLink>
+              {/* <button style={{ height: '24px', marginLeft: '6px' }}>Search</button> */}
               <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
               {this.state.showMenu ? (
                 <div
@@ -117,6 +126,7 @@ class App extends Component {
 
           <div className="content" >
             <Route exact path="/" component={HomePage} />
+            <Route path="/SearchResults" render={(routeProps) => (<SearchResults {...routeProps} results={this.state.results} />)} />
             <Route path="/EventView" component={EventView} />
             <Route path="/LogIn" component={LogIn} />
             <Route path="/SignUp" component={SignUp} />
