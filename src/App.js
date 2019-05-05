@@ -77,18 +77,23 @@ class App extends Component {
   }
 
   handleInputChange = (e) => {
-    
-      this.setState({
-        query: this.search.value
-      }, () => {
-        if (this.state.query && this.state.query.length > 1) {
-          if (this.state.query.length % 2 === 0) {
-            this.getInfo()
-            console.log(this.state.query)
-          }
+    // if (e.key === 'Enter') {
+    this.setState({
+      query: this.search.value
+    }, () => {
+      if (this.state.query && this.state.query.length > 1) {
+        if (this.state.query.length % 2 === 0) {
+          this.getInfo()
+          console.log(this.state.query)
         }
-      })
-    
+      }
+    })
+    // }
+
+  }
+  clearInput() {
+    document.getElementById("navBarMenuBtnContainer").reset();
+    console.log()
   }
 
 
@@ -101,26 +106,27 @@ class App extends Component {
             <li> <a style={{ padding: '0' }}><img className="headerLogo" src={logo} alt="" /></a> </li>
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/myEvents">Events</NavLink></li>
-            <li>  <div className="navBarMenuBtnContainer" >
-              <input type="text" className="input" placeholder="Search..." ref={input => this.search = input}
-                onKeyDown={this.handleInputChange} />
-              <NavLink to="/SearchResults">
-                <button type="button"> Search </button>
-              </NavLink>
-              {/* <button style={{ height: '24px', marginLeft: '6px' }}>Search</button> */}
-              <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
-              {this.state.showMenu ? (
-                <div
-                  className="menu" ref={(element) => { this.dropdownMenu = element; }}>
-                  {/* these NavLink styles must be hard coded to function properly */}
-                  <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
-                  {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
-                  <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
-                  <NavLink to='/LogIn' style={{ color: 'black', display: 'block' }}>Log-In</NavLink>
-                </div>
-              ) : (null)
-              }
-            </div>
+            <li>
+              <form className="navBarMenuBtnContainer" id="navBarMenuBtnContainer" >
+                <input type="text" className="inputSearch" id="inputSearch" placeholder="Search..." ref={input => this.search = input}
+                  onKeyDown={this.handleInputChange} />
+                <NavLink to="/SearchResults" >
+                  <button type="button" style={{ color: 'black', borderRadius: '3px' }} onClick={this.clearInput.bind()}> Search </button>
+                </NavLink>
+                {/* <button style={{ height: '24px', marginLeft: '6px' }}>Search</button> */}
+                <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
+                {this.state.showMenu ? (
+                  <div
+                    className="menu" ref={(element) => { this.dropdownMenu = element; }}>
+                    {/* these NavLink styles must be hard coded to function properly */}
+                    <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
+                    {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
+                    <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
+                    <NavLink to='/LogIn' style={{ color: 'black', display: 'block' }}>Log-In</NavLink>
+                  </div>
+                ) : (null)
+                }
+              </form>
             </li>
           </ul>
 

@@ -315,6 +315,7 @@ list-style-type:none;
 text-align: center;
 width: 150vh;
 margin: auto;
+margin-top:10px;
 }
 
 ulme.list-group{
@@ -713,3 +714,7 @@ width: 100%
     align-items: center;
     justify-content: center;
   }
+
+.clearbtn{
+  background:'grey'
+}

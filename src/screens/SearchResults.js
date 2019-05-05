@@ -6,7 +6,7 @@ import EventLink from "../components/EventLink";
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Map from "../components/maps/Map";
 import { withStore } from "../assets/helpers/store";
-import {withRouter} from 'react-router-dom'
+import {withRouter, NavLink} from 'react-router-dom'
 
 class SearchResults extends Component {
    constructor(props) {
@@ -56,8 +56,6 @@ class SearchResults extends Component {
       } else {
 
          this.props.results.forEach(function (event, index) {
-
-            //at this point the objects in eventElements have the coordinates available
             eventElements.push(
                <EventLink
                   key={index}
@@ -82,11 +80,10 @@ class SearchResults extends Component {
             <h1 className="homePageBannerMsg"> {this.state.loggedInUserName} these are your search results</h1>
             <img className="eventViewMapStyling" alt="" src={map} />
             <div>
-               <CategoryButtonGroup />
-
                <ListGroup as='ulhp'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements}
                </ListGroup>
+               <NavLink to='/'>Clear Search</NavLink>
 
             </div>
          </div>
