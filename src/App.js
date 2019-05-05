@@ -4,6 +4,7 @@ import { Route, NavLink, HashRouter } from "react-router-dom";
 import HomePage from "./screens/HomePage";
 import SignUp from "./screens/SignUp";
 import CreateEventPage from './screens/CreateEventPage';
+import Profile from './screens/Profile';
 import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
 import logo from './assets/images/splash.png';
@@ -119,7 +120,7 @@ class App extends Component {
                   <div
                     className="menu" ref={(element) => { this.dropdownMenu = element; }}>
                     {/* these NavLink styles must be hard coded to function properly */}
-                    <NavLink to='/' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
+                    <NavLink to='/Profile' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
                     {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
                     <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
                     <NavLink to='/LogIn' style={{ color: 'black', display: 'block' }}>Log-In</NavLink>
@@ -134,6 +135,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/SearchResults" render={(routeProps) => (<SearchResults {...routeProps} results={this.state.results} />)} />
             <Route path="/EventView" component={EventView} />
+            <Route path="/Profile" component={Profile} />
             <Route path="/LogIn" component={LogIn} />
             <Route path="/SignUp" component={SignUp} />
             <Route path='/createEvent' component={CreateEventPage} />
