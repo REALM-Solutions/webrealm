@@ -25,10 +25,11 @@ const modal = (props) => {
                         To view and create events, create a free On the Quad account!
                     </p>
                 </div>
-                <div className="modal-footer">
+                <div className="modal-footer" >
                     <NavLink style={{ paddingRight: '30px' }} to="/LogIn"><button className="modal-signup-nav-btn" style={{ backgroundColor: " #397fef" }}
                         onClick={() => { clearAllBodyScrollLocks() }}>Sign In</button></NavLink>
-                    <NavLink to="/SignUp"><button className="modal-signup-nav-btn" style={{ backgroundColor: " #00cc00" }}>Sign Up</button></NavLink>
+                    <NavLink to="/SignUp"><button className="modal-signup-nav-btn" style={{ backgroundColor: " #00cc00", marginRight:'30px' }}>Sign Up</button></NavLink>
+                    <NavLink to="/AboutUs"><button className="modal-signup-nav-btn" style={{ backgroundColor: " #c8c5c9"}}>About Us</button></NavLink>
                 </div>
             </div>
         </div>

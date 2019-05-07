@@ -9,6 +9,7 @@ import "../src/assets/CSS/sharedStyles.css";
 import EventView from "./screens/EventView";
 import logo from './assets/images/splash.png';
 import MyEvents from './screens/MyEvents';
+import AboutUs from './screens/AboutUs';
 import SearchResults from './screens/SearchResults';
 import LogIn from './screens/LogIn';
 import TermsandConditions from './screens/TermsandConditions';
@@ -148,6 +149,7 @@ class App extends Component {
             <Route path='/createEvent' component={CreateEventPage} />
             <Route path='/myEvents' component={MyEvents} />
             <Route exact path="/TermsandConditions" component={TermsandConditions} />
+            <Route path ="/AboutUs" component={AboutUs}/>
           </div>
         </div>
       </HashRouter>
