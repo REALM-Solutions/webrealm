@@ -29,7 +29,7 @@ class App extends Component {
       loggedInUserName: 'User',
       userLoggedIn: 'false',
       loggedInUser: {},
-      tggle: false,
+      toggleLoggedIn: false,
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -57,14 +57,14 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.tggle == false)) {
-       this.setState({ loggedInUser: this.props.store.loggedInUser })
-       this.setState({ tggle: true })
-       if (this.state.loggedInUserName === 'User') {
-          this.state.loggedInUserName = this.props.store.loggedInUser.userFirstName
-       }
+    if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.toggleLoggedIn == false)) {
+      this.setState({ loggedInUser: this.props.store.loggedInUser })
+      this.setState({ toggleLoggedIn: true })
+      if (this.state.loggedInUserName === 'User') {
+        this.state.loggedInUserName = this.props.store.loggedInUser.userFirstName
+      }
     }
- }
+  }
 
   getInfo = () => {
     let eventArray = []
@@ -97,16 +97,14 @@ class App extends Component {
       query: this.search.value
     }, () => {
       if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
-        }
+        this.getInfo()
       }
     })
-    
+
   }
   clearInput() {
     document.getElementById("navBarMenuBtnContainer").reset();
-    
+
   }
 
 
@@ -126,15 +124,11 @@ class App extends Component {
                 <NavLink to="/SearchResults" >
                   <button type="button" style={{ color: 'black', borderRadius: '3px' }} onClick={this.clearInput.bind()}> Search </button>
                 </NavLink>
-                {/* <button style={{ height: '24px', marginLeft: '6px' }}>Search</button> */}
                 <a onClick={this.showMenu} style={{ color: '#ffffff' }}>Menu</a>
                 {this.state.showMenu ? (
                   <div
                     className="menu" ref={(element) => { this.dropdownMenu = element; }}>
-                    {/* these NavLink styles must be hard coded to function properly */}
                     {(this.state.loggedInUserName !== 'User') ? <NavLink to='/Profile' style={{ color: 'black', display: 'block' }}>Profile</NavLink> : null}
-                    {/* <NavLink to='/Profile' style={{ color: 'black', display: 'block' }}>Profile</NavLink> */}
-                    {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
                     <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
                     <NavLink to='/LogIn' style={{ color: 'black', display: 'block' }}>Log-In</NavLink>
                   </div>
@@ -160,4 +154,4 @@ class App extends Component {
     );
   }
 }
-export default compose( createStore, withStore)(App);
+export default compose(createStore, withStore)(App);

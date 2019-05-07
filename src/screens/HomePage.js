@@ -17,7 +17,7 @@ class HomePage extends Component {
          loggedInUserName: 'User',
          userLoggedIn: 'false',
          loggedInUser: {},
-         tggle: false,
+         toggleLoggedIn: false,
          clicked: false,
          searchCategory: ''
       }
@@ -26,7 +26,7 @@ class HomePage extends Component {
 
    changeColor(e) {
       this.setState({ searchCategory: e.target.value }, () => {
-         
+
       })
    }
 
@@ -85,9 +85,9 @@ class HomePage extends Component {
 
    componentDidUpdate(prevProps, prevState) {
 
-      if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.tggle == false)) {
+      if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.toggleLoggedIn == false)) {
          this.setState({ loggedInUser: this.props.store.loggedInUser })
-         this.setState({ tggle: true })
+         this.setState({ toggleLoggedIn: true })
          if (this.state.loggedInUserName === 'User') {
             this.state.loggedInUserName = this.props.store.loggedInUser.userFirstName
          }

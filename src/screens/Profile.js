@@ -13,7 +13,7 @@ class Profile extends Component {
          loggedInUserName: 'User',
          userLoggedIn: 'false',
          loggedInUser: {},
-         tggle: false,
+         toggleLoggedIn: false,
       }
    }
 
@@ -43,34 +43,33 @@ class Profile extends Component {
       this.props.history.push('/')
    }
 
-   resetBtnClick(e){
+   resetBtnClick(e) {
       e.preventDefault();
       fetch('https://otq-dev.herokuapp.com/resetpassword', {
-            method: 'POST',
-            headers: {
-               Accept: 'application/json',
-               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-               email: this.props.store.loggedInUser.userEmail,
-               
-            }),
+         method: 'POST',
+         headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+            email: this.props.store.loggedInUser.userEmail,
 
-         }).then((response) => response.json())
-            .then((responseJson) => {
-            })
-            .catch((error) => {
-               console.error(error);
-            })
-         alert('Password Reset Sent, Check your inbox!')
+         }),
+
+      }).then((response) => response.json())
+         .then((responseJson) => {
+         })
+         .catch((error) => {
+            console.error(error);
+         })
+      alert('Password Reset Sent, Check your inbox!')
    }
 
 
    render() {
       return (
-         <div className="profileView" style={{display:"flex", justifyContent:"center", alignContent:"center"}} >
+         <div className="profileView" >
             {this.state.isShowing ? <div className="back-drop"></div> : null}
-            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
 
             {this.state.isShowing ? <Modal
                className="modal"
@@ -78,8 +77,8 @@ class Profile extends Component {
                close={this.closeModalHandler}>
             </Modal> : null}
 
-            <div className="profileWrapper" style={{display:"flex", flexDirection:"column"}}>
-               <span style={{display:"flex", flexDirection:"row"}} >
+            <div className="profileWrapper" >
+               <span className = "profileSpan"  >
                   <div> User:&nbsp;{this.props.store.loggedInUser.userFirstName}&nbsp;{this.props.store.loggedInUser.userLastName} </div>
                </span>
 

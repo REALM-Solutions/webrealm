@@ -582,6 +582,14 @@ float: right;
   position: fixed;
 }
 
+.back-dropsearch {
+  background-color: rgba(0, 0, 0, .95);
+  height: 100%;
+  transition: all 1.3s;
+  width: 95%;
+  position: fixed;
+}
+
 .open-modal-btn {
 margin: 15px;
 padding: 10px;
@@ -717,4 +725,32 @@ width: 100%
 
 .clearbtn{
   background:'grey'
+}
+
+.searchResultsPageBanner{
+  text-align:center;
+  margin: 0 auto;
+  width: 100%;
+  
+  }
+
+.profileView{
+  display: flex;
+  justify-content: center;
+  align-content: center 
+  }
+
+.profileWrapper{
+  display: flex;
+  flex-direction: column  
+  }
+
+.profileSpan{
+  display: flex; 
+  flex-direction: row
+}
+
+.userform{
+  width: 100%; 
+  text-align: center
 }
