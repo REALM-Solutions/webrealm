@@ -31,7 +31,7 @@ class HomePage extends Component {
    }
 
 
-   fetchList = async (e) => {
+   fetchCategoryList = async (e) => {
       await this.changeColor(e)
       let eventArray = []
       this.setState({ events: [] })
@@ -141,13 +141,13 @@ class HomePage extends Component {
             <img className="eventViewMapStyling" alt="" src={map} />
             <div>
                <span >
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Sports'>Sports</button>
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Entertainment'>Entertainment</button>
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Study'>Study</button>
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Casual'>Casual</button>
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Games'>Games</button>
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='misc'>Misc</button>
-                  <button className="catbtn" onClick={this.fetchList.bind(this)} value=''>All Events</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Sports'>Sports</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Entertainment'>Entertainment</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Study'>Study</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Casual'>Casual</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Games'>Games</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='misc'>Misc</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value=''>All Events</button>
                </span>
 
                <ListGroup as='ulhp'>
