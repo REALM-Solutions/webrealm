@@ -21,42 +21,41 @@ class HomePage extends Component {
          clicked: false,
          searchCategory: ''
       }
+      this.changeColor = this.changeColor.bind(this)
    }
 
    changeColor(e) {
-      if (e.target.style.backgroundColor === 'black') {
-         e.target.style.backgroundColor = '#dddddd'
-         e.target.style.color = 'black'
-         this.setState({ searchCategory: '' })
-      } else {
-         this.setState({ clicked: !this.state.clicked })
-         e.target.style.backgroundColor = 'black'
-         e.target.style.color = 'white'
-         this.setState({ searchCategory: e.target.value }, () => {
-            console.log(this.state.searchCategory)
-         })
-         let eventArray = []
-         fetch('https://onthequad.herokuapp.com/category=' + this.state.searchCategory, {
-            method: 'GET',
-            headers: {
-               'Access-Control-Allow-Origin': 'https://onthequad.herokuapp.com/'
+      this.setState({ searchCategory: e.target.value }, () => {
+         
+      })
+   }
+
+
+   fetchList = async (e) => {
+      await this.changeColor(e)
+      let eventArray = []
+      this.setState({ events: [] })
+      let fetchWCategory = "https://onthequad.herokuapp.com/events?category=" + this.state.searchCategory
+      fetch(fetchWCategory, {
+         method: 'GET',
+         headers: {
+            'Access-Control-Allow-Origin': 'https://onthequad.herokuapp.com/'
+         }
+      })
+         .then(response => response.json())
+         .then(responseJson => {
+            if (responseJson !== null) {
+               Object.values(responseJson).map(function (event) {
+                  eventArray.push(event)
+               })
+               this.setState({
+                  events: eventArray
+               })
             }
          })
-            .then(response => response.json())
-            .then(responseJson => {
-               if (responseJson !== null) {
-                  Object.values(responseJson).map(function (event) {
-                     eventArray.push(event)
-                  })
-                  this.setState({
-                     events: eventArray
-                  })
-               }
-            })
-            .catch((error) => {
-               console.error(error)
-            });
-      }
+         .catch((error) => {
+            console.error(error)
+         });
    }
 
    componentWillMount() {
@@ -96,20 +95,16 @@ class HomePage extends Component {
    }
 
    componentWillReceiveProps(nextProps) {
-      console.log(this.props.results)
       if (this.props.results !== nextProps.results) {
          this.setState({ events: this.props.results })
-         console.log(this.state.events)
       }
    }
 
    handleChangeValue(e) {
       this.setState({ selectedCategory: e.target.value })
-      console.log(e.target)
    };
 
    render() {
-
       let eventElements = []
       if (this.state.events === []) {
          eventElements.push(
@@ -146,12 +141,13 @@ class HomePage extends Component {
             <img className="eventViewMapStyling" alt="" src={map} />
             <div>
                <span >
-                  <button className="catbtn" onClick={this.changeColor.bind(this)} value='Sports'>Sports</button>
-                  <button className="catbtn" onClick={this.changeColor.bind(this)} value='Entertainment'>Entertainment</button>
-                  <button className="catbtn" onClick={this.changeColor.bind(this)} value='Study'>Study</button>
-                  <button className="catbtn" onClick={this.changeColor.bind(this)} value='Casual'>Casual</button>
-                  <button className="catbtn" onClick={this.changeColor.bind(this)} value='Games'>Games</button>
-                  <button className="catbtn" onClick={this.changeColor.bind(this)} value='Misc'>Misc.</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Sports'>Sports</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Entertainment'>Entertainment</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Study'>Study</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Casual'>Casual</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='Games'>Games</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value='misc'>Misc</button>
+                  <button className="catbtn" onClick={this.fetchList.bind(this)} value=''>All Events</button>
                </span>
 
                <ListGroup as='ulhp'>

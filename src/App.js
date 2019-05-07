@@ -13,7 +13,8 @@ import SearchResults from './screens/SearchResults';
 import LogIn from './screens/LogIn';
 import TermsandConditions from './screens/TermsandConditions';
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { createStore } from './assets/helpers/store';
+import { createStore, withStore } from './assets/helpers/store';
+import { compose } from 'recompose'
 
 
 
@@ -24,7 +25,11 @@ class App extends Component {
     this.state = {
       showMenu: false,
       query: '',
-      results: []
+      results: [],
+      loggedInUserName: 'User',
+      userLoggedIn: 'false',
+      loggedInUser: {},
+      tggle: false,
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -50,6 +55,17 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+
+    if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.tggle == false)) {
+       this.setState({ loggedInUser: this.props.store.loggedInUser })
+       this.setState({ tggle: true })
+       if (this.state.loggedInUserName === 'User') {
+          this.state.loggedInUserName = this.props.store.loggedInUser.userFirstName
+       }
+    }
+ }
+
   getInfo = () => {
     let eventArray = []
     let apiWParams = 'https://onthequad.herokuapp.com/events?search=' + this.state.query
@@ -69,7 +85,6 @@ class App extends Component {
           this.setState({
             results: eventArray
           })
-          console.log(this.state.results)
         }
       })
       .catch((error) => {
@@ -78,23 +93,20 @@ class App extends Component {
   }
 
   handleInputChange = (e) => {
-    // if (e.key === 'Enter') {
     this.setState({
       query: this.search.value
     }, () => {
       if (this.state.query && this.state.query.length > 1) {
         if (this.state.query.length % 2 === 0) {
           this.getInfo()
-          console.log(this.state.query)
         }
       }
     })
-    // }
-
+    
   }
   clearInput() {
     document.getElementById("navBarMenuBtnContainer").reset();
-    console.log()
+    
   }
 
 
@@ -120,7 +132,8 @@ class App extends Component {
                   <div
                     className="menu" ref={(element) => { this.dropdownMenu = element; }}>
                     {/* these NavLink styles must be hard coded to function properly */}
-                    <NavLink to='/Profile' style={{ color: 'black', display: 'block' }}>Profile</NavLink>
+                    {(this.state.loggedInUserName !== 'User') ? <NavLink to='/Profile' style={{ color: 'black', display: 'block' }}>Profile</NavLink> : null}
+                    {/* <NavLink to='/Profile' style={{ color: 'black', display: 'block' }}>Profile</NavLink> */}
                     {/* not hooked up, needs to be created still, linked to single-event view just for accessing view */}
                     <NavLink to='/createEvent' style={{ color: 'black', display: 'block' }}>Create Event</NavLink>
                     <NavLink to='/LogIn' style={{ color: 'black', display: 'block' }}>Log-In</NavLink>
@@ -147,4 +160,4 @@ class App extends Component {
     );
   }
 }
-export default createStore(App);
+export default compose( createStore, withStore)(App);

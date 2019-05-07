@@ -19,7 +19,7 @@ class CategoryButtonGroup extends React.Component {
     const item = e.target.name;
     const isChecked = e.target.checked;
     this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
-    console.log(this.state.checkedItems)
+   
   }
 
   render() {

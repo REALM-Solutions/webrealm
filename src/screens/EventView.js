@@ -11,7 +11,6 @@ class EventView extends Component {
    constructor(props) {
       super(props);
       const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, coordinates } = props.location.state
-      
       this.state = {
          viewOnly: true,
          green: false,

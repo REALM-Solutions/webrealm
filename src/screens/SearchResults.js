@@ -77,7 +77,7 @@ class SearchResults extends Component {
 
       return (
          <div className="homePageBanner" >
-            <h1 className="homePageBannerMsg"> {this.state.loggedInUserName} these are your search results</h1>
+            <h1 className="homePageBannerMsg"> These are your search results</h1>
             <img className="eventViewMapStyling" alt="" src={map} />
             <div>
                <ListGroup as='ulhp'>

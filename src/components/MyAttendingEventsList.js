@@ -13,7 +13,6 @@ class MyAttendingEventsList extends Component {
     }
   }
   componentWillMount() {
-    console.log(this.props.store.loggedInUser)
     let eventArray = []
     if(this.props.store.loggedInUser){
     let apiWParams = 'https://onthequad.herokuapp.com/events?attending='+this.props.store.loggedInUser.userName
