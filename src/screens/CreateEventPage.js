@@ -182,7 +182,7 @@ class CreateEventPage extends Component {
       if (this.handleValidation()) {
          let { categoryType, eventNameText, eventDescription, eventLocation,
             eventDate, eventStartTime, eventEndTime, eventSpotsAvailable, coordinates } = this.state.fields
-            
+
 
          fetch('https://onthequad.herokuapp.com/events?userid=4321', {
             method: 'POST',
@@ -237,18 +237,18 @@ class CreateEventPage extends Component {
       let fields = this.state.fields;
       let time = ""
       time = this.newDate(this.state.fields.eventDate, e.target.value)
-      
+
       fields[field] = time;
       this.setState({ fields });
       this.state.formIsValid = true;
    }
 
    newDate(date, time) {
-      
+
       let nDate = new Date(date + 'T' + time + 'Z')
       let nd = nDate.toJSON()
-      
-      
+
+
       return nd
    }
 
@@ -263,7 +263,6 @@ class CreateEventPage extends Component {
       return (
          <div className="create_event_wrapper">
             {this.state.showModal ? <div className="back-drop"></div> : null}
-            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
 
             {this.state.showModal ? <Modal
                className="modal"
@@ -316,7 +315,7 @@ class CreateEventPage extends Component {
                            </div>
 
                            <div className="timeFormContainer">
-                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleTimeChange.bind(this, "eventEndTime")}  />
+                              <input className="event_input_smaller" type='time' ref='eventEndTime' onChange={this.handleTimeChange.bind(this, "eventEndTime")} />
                               <label >Enter End Time </label>
                               <br />
                               <span className="error">{this.state.errors["eventEndTime"]}</span>
