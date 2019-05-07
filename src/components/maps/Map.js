@@ -3,14 +3,17 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 const mapStyles = {
-  width: '50%',
-  height: '50%'
+  width: '31vw',
+  height: '42vh',
+  borderRadius:'3px',
+  border:'1px solid black'
 };
 
 export class MapContainer extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props)
 
     this.state = {
       showingInfoWindow: false,
@@ -21,16 +24,20 @@ export class MapContainer extends Component {
       position: props.markers[0].position
     }
     this.addMarker = this.addMarker.bind(this)
+    console.log(this.state.markers)
   }
 
 
   onMarkerClick = (props, marker, e) => {
+    console.log(marker)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-   
+    console.log(this.state.selectedPlace)
+    // console.log(this.state.markers[0])
+
   }
 
   onClose = props => {
@@ -43,7 +50,7 @@ export class MapContainer extends Component {
   };
 
   addMarker(mapProps, map, clickEvent) {
-    
+    console.log(this.state.viewOnly)
     if (!this.state.viewOnly) {
       var marker = {
         position: { lat: clickEvent.latLng.lat(), lng: clickEvent.latLng.lng() },
@@ -51,21 +58,20 @@ export class MapContainer extends Component {
         name: 'I am a new marker',
         description: 'Just created a new marker'
       }
-      
+      console.log(this.state.markers)
 
       this.setState({
         markers: [marker],
         selectedPlace: marker
       })
     }
-    
+    console.log(this.state.markers[0].name)
   }
 
   render() {
     return (
       <div className="mpctnr">
         <Map
-          style={{ height: '50%', width: '50%' }}
           google={this.props.google}
           zoom={15}
           style={mapStyles}
@@ -75,7 +81,6 @@ export class MapContainer extends Component {
           }}
           onClick={this.addMarker}
         >
-
 
           {this.state.markers.map(marker => (
             <Marker
