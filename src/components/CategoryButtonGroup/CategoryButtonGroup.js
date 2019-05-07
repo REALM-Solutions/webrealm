@@ -11,6 +11,7 @@ class CategoryButtonGroup extends React.Component {
       checkedItems: new Map(),
     }
 
+
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -18,6 +19,7 @@ class CategoryButtonGroup extends React.Component {
     const item = e.target.name;
     const isChecked = e.target.checked;
     this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+   
   }
 
   render() {
@@ -28,6 +30,7 @@ class CategoryButtonGroup extends React.Component {
             <label className="checkBxLbl"  key={item.key}>
               {item.name}
               <Checkbox name={item.name}
+                value={this.props.checkedItems}
                 checked={this.state.checkedItems.get(item.name)}
                 onChange={this.handleChange}  />
             </label>

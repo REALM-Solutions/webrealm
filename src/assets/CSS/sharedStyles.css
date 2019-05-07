@@ -55,6 +55,7 @@ body {
     display: block;
     position: absolute;
     background-color: #f9f9f9;
+    margin-left: 14vw;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -315,6 +316,7 @@ list-style-type:none;
 text-align: center;
 width: 150vh;
 margin: auto;
+margin-top:10px;
 }
 
 ulme.list-group{
@@ -581,6 +583,14 @@ float: right;
   position: fixed;
 }
 
+.back-dropsearch {
+  background-color: rgba(0, 0, 0, .95);
+  height: 100%;
+  transition: all 1.3s;
+  width: 95%;
+  position: fixed;
+}
+
 .open-modal-btn {
 margin: 15px;
 padding: 10px;
@@ -713,3 +723,35 @@ width: 100%
     align-items: center;
     justify-content: center;
   }
+
+.clearbtn{
+  background:'grey'
+}
+
+.searchResultsPageBanner{
+  text-align:center;
+  margin: 0 auto;
+  width: 100%;
+  
+  }
+
+.profileView{
+  display: flex;
+  justify-content: center;
+  align-content: center 
+  }
+
+.profileWrapper{
+  display: flex;
+  flex-direction: column  
+  }
+
+.profileSpan{
+  display: flex; 
+  flex-direction: row
+}
+
+.userform{
+  width: 100%; 
+  text-align: center
+}

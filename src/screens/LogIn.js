@@ -12,6 +12,7 @@ class LogIn extends Component {
          userId: "",
          userName: "",
          userFirstName:"",
+         userLastName:"",
       }
       this.userLogin = this.userLogin.bind(this)
       this.handleEmailChange = this.handleEmailChange.bind(this)
@@ -43,7 +44,9 @@ class LogIn extends Component {
                }
                else {
                   this.state.userName = user[5]
+                  this.state.userEmail = user[0]
                   this.state.userFirstName=user[1]
+                  this.state.userLastName = user[2]
                   this.state.userId = user[4]
                   this.state.userLoggedIn = 'true'
 
@@ -59,6 +62,31 @@ class LogIn extends Component {
             console.error(error);
          })
 
+   }
+
+   resetBtnClick(e){
+      if(this.state.userEmail===""){
+         alert("Please enter your email address and try again.")
+      }
+      e.preventDefault();
+      fetch('https://otq-dev.herokuapp.com/resetpassword', {
+            method: 'POST',
+            headers: {
+               Accept: 'application/json',
+               'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               email: this.state.userEmail,
+               
+            }),
+
+         }).then((response) => response.json())
+            .then((responseJson) => {
+            })
+            .catch((error) => {
+               console.error(error);
+            })
+         alert('Password Reset Sent, Check your inbox!')
    }
 
    handleEmailChange(e) {
@@ -81,7 +109,7 @@ class LogIn extends Component {
                <br />
                <button className="btnpro" id="submit" value="Submit">Sign In</button>
             </form>
-            <button className="btnfp" id="submit" value="forgotPassword">Forgot Password?</button>
+            <button className="btnfp" id="submit" value="forgotPassword" onClick={this.resetBtnClick.bind(this)}>Forgot Password?</button>
          </div>
 
       );

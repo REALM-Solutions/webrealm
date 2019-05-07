@@ -17,8 +17,45 @@ class HomePage extends Component {
          loggedInUserName: 'User',
          userLoggedIn: 'false',
          loggedInUser: {},
-         tggle: false
+         toggleLoggedIn: false,
+         clicked: false,
+         searchCategory: ''
       }
+      this.changeColor = this.changeColor.bind(this)
+   }
+
+   changeColor(e) {
+      this.setState({ searchCategory: e.target.value }, () => {
+
+      })
+   }
+
+
+   fetchCategoryList = async (e) => {
+      await this.changeColor(e)
+      let eventArray = []
+      this.setState({ events: [] })
+      let fetchWCategory = "https://onthequad.herokuapp.com/events?category=" + this.state.searchCategory
+      fetch(fetchWCategory, {
+         method: 'GET',
+         headers: {
+            'Access-Control-Allow-Origin': 'https://onthequad.herokuapp.com/'
+         }
+      })
+         .then(response => response.json())
+         .then(responseJson => {
+            if (responseJson !== null) {
+               Object.values(responseJson).map(function (event) {
+                  eventArray.push(event)
+               })
+               this.setState({
+                  events: eventArray
+               })
+            }
+         })
+         .catch((error) => {
+            console.error(error)
+         });
    }
 
    componentWillMount() {
@@ -38,7 +75,6 @@ class HomePage extends Component {
                })
                this.setState({
                   events: eventArray
-                  //at this point the objects in the events have coordinates.
                })
             }
          })
@@ -48,16 +84,25 @@ class HomePage extends Component {
    }
 
    componentDidUpdate(prevProps, prevState) {
-      if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.tggle == false)) {
 
+      if ((this.loggedInUser !== this.props.store.loggedInUser) && (this.state.toggleLoggedIn == false)) {
          this.setState({ loggedInUser: this.props.store.loggedInUser })
-         this.setState({ tggle: true })
+         this.setState({ toggleLoggedIn: true })
          if (this.state.loggedInUserName === 'User') {
             this.state.loggedInUserName = this.props.store.loggedInUser.userFirstName
          }
       }
    }
 
+   componentWillReceiveProps(nextProps) {
+      if (this.props.results !== nextProps.results) {
+         this.setState({ events: this.props.results })
+      }
+   }
+
+   handleChangeValue(e) {
+      this.setState({ selectedCategory: e.target.value })
+   };
 
    render() {
       let eventElements = []
@@ -68,7 +113,6 @@ class HomePage extends Component {
             </div>
          )
       } else {
-
          this.state.events.forEach(function (event, index) {
 
             //at this point the objects in eventElements have the coordinates available
@@ -96,7 +140,15 @@ class HomePage extends Component {
             <h1 className="homePageBannerMsg">Welcome {this.state.loggedInUserName}</h1>
             <img className="eventViewMapStyling" alt="" src={map} />
             <div>
-               <CategoryButtonGroup />
+               <span >
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Sports'>Sports</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Entertainment'>Entertainment</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Study'>Study</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Casual'>Casual</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Games'>Games</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='misc'>Misc</button>
+                  <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value=''>All Events</button>
+               </span>
 
                <ListGroup as='ulhp'>
                   {this.state.events === [] ? <p>No Events Found</p> : eventElements}

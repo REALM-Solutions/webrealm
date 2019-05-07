@@ -109,7 +109,7 @@ class SignUp extends Component {
    render() {
 
       return (
-         <form name="userform" className="userform" style={{ width: '100%', textAlign: 'center' }} onSubmit={this.userSubmit.bind(this)} >
+         <form name="userform" className="userform" onSubmit={this.userSubmit.bind(this)} >
             <div className="logInFormContainer">
             {!this.state.isShowing ?<div>
                <h1>Welcome to On the Quad!</h1>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../assets/CSS/sharedStyles.css";
-import Modal from "../components/Modals/LoginSignUpRedirectModal"
+import Modal from "../components/Modals/LoginSignUpRedirectModal";
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Map from "../components/maps/Map";
 import { withStore } from "../assets/helpers/store";
@@ -11,7 +11,6 @@ class EventView extends Component {
    constructor(props) {
       super(props);
       const { name, category, host, date, startTime, endTime, location, description, spotsAvailable, coordinates } = props.location.state
-      
       this.state = {
          viewOnly: true,
          green: false,
@@ -78,7 +77,6 @@ class EventView extends Component {
 
          <div className="eventview_wrapper">
             {this.state.isShowing ? <div className="back-drop"></div> : null}
-            {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
 
             {this.state.isShowing ? <Modal
                className="modal"
@@ -88,8 +86,7 @@ class EventView extends Component {
             
             <div className="eventViewMainDiv">
 
-               <h1 className="eventHeader">{this.state.name}</h1>
-               {/* <h1 className="eventHeader">{this.props.store.loggedIn}</h1> */}
+               <h1 className="eventHeader">{this.state.name}</h1>}
                <span className="eventViewMapStylingCont" >
                   <img src={map} alt="" className="eventViewMapStyling" />
                   {/* <div className="eventViewMapStyling">
