@@ -19,7 +19,8 @@ class HomePage extends Component {
          loggedInUser: {},
          toggleLoggedIn: false,
          clicked: false,
-         searchCategory: ''
+         searchCategory: '',
+         markers:[]
       }
       this.changeColor = this.changeColor.bind(this)
    }
@@ -61,6 +62,7 @@ class HomePage extends Component {
    componentWillMount() {
       clearAllBodyScrollLocks()
       let eventArray = []
+      let markersHolder =[]
       fetch('https://onthequad.herokuapp.com/events', {
          method: 'GET',
          headers: {
@@ -72,9 +74,13 @@ class HomePage extends Component {
             if (responseJson !== null) {
                Object.values(responseJson).map(function (event) {
                   eventArray.push(event)
+                  console.log(event)
+                  markersHolder.push({position: event.coordinates, name: event.name, description: event.location})
+                  console.log(markersHolder)
                })
                this.setState({
-                  events: eventArray
+                  events: eventArray,
+                  markers:markersHolder                  
                })
             }
          })
@@ -106,6 +112,7 @@ class HomePage extends Component {
 
    render() {
       let eventElements = []
+      
       if (this.state.events === []) {
          eventElements.push(
             <div className="noEventContatiner">
@@ -138,7 +145,13 @@ class HomePage extends Component {
       return (
          <div className="homePageBanner" >
             <h1 className="homePageBannerMsg">Welcome {this.state.loggedInUserName}</h1>
-            <img className="eventViewMapStyling" alt="" src={map} />
+            {/* <img className="eventViewMapStyling" alt="" src={map} /> */}
+            <div>
+            <Map
+                        markers={this.state.markers}
+                        viewOnly={this.state.viewOnly}
+                     />
+                     </div><br/>
             <div>
                <span >
                   <button className="catbtn" onClick={this.fetchCategoryList.bind(this)} value='Sports'>Sports</button>

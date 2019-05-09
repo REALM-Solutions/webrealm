@@ -89,7 +89,7 @@ class EventView extends Component {
                <h1 className="eventHeader">{this.state.name}</h1>
                <span className="eventViewMapStylingCont" >
                   <div >
-                  {this.state.isShowing ? null : <Map
+                  { this.state.isShowing ? null : <Map
                         markers={[{position: this.state.latLng, name: this.state.name, description: this.state.location}]}
                         viewOnly={this.state.viewOnly}
                      />} 
